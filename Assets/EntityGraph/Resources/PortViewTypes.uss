@@ -1,0 +1,65 @@
+.Port_EntityChunkMatrix {
+	--port-color: #b89d1a;
+}
+
+.Port_IEntitySettingsSampler {
+	--port-color: #994fe3
+}
+
+.Port_ISampler {
+	--port-color: #b83793
+}
+
+.Port_ErrorPort {
+	--port-color: #ff5100;
+}
+
+/* MAYBE REMOVE THESE */
+
+.Port_Single {
+	--port-color: #207cb3;
+}
+
+.Port_Vector2 {
+	--port-color: #aaaaaa;
+}
+
+.Port_Vector3 {
+	--port-color: #aaaaaa;
+}
+
+.Port_Vector4 {
+	--port-color: #aaaaaa;
+}
+
+.Port_Object {
+	--port-color: #aaaaaa;
+}
+
+.Port_Color {
+	--port-color: #aaaaaa;
+}
+
+.Port_GameObject {
+	--port-color: #aaaaaa;
+}
+
+.Port_String {
+	--port-color: #aaaaaa;
+}
+
+.Port_Boolean {
+	--port-color: #aaaaaa;
+}
+
+.Port_ConditionalLink {
+	--port-color: #aaaaaa;
+}
+
+.Port_AnimationCurve{
+	--port-color: #aaaaaa;
+}
+
+.Port_Gradient{
+	--port-color: #aaaaaa;
+}
