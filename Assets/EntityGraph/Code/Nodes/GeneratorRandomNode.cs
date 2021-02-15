@@ -21,18 +21,18 @@ namespace OrionReed
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix(graph.OutputMasterNode.origin, graph.OutputMasterNode.bounds);
+      output = new EntityChunkMatrix(graph.OutputMasterNode.bounds);
 
       foreach (Coordinate chunk in output.AllChunkCoordinates)
       {
         CallCounter.Count(this);
         System.Random rng = RNG(chunk);
-        Vector3 worldPos = Coordinate.GetWorldPositionFromCoordinate(chunk);
-        int numberOfPoints = (int)(EntityChunkMatrix.chunkSize / frequency);
+        Vector3 worldPos = Coordinate.WorldPosition(chunk);
+        int numberOfPoints = (int)(Coordinate.scale / frequency);
         for (int i = 0; i < numberOfPoints; i++)
         {
           CallCounter.Count(this);
-          Vector3 randomPos = rng.NextZeroedVector3(worldPos, worldPos + (Vector3.one * EntityChunkMatrix.chunkSize));
+          Vector3 randomPos = rng.NextZeroedVector3(worldPos, worldPos + (Vector3.one * Coordinate.scale));
           output.AddEntity(new Entity(randomPos, entitySettings.Get()));
         }
       }

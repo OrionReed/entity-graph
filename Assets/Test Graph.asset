@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7035fbdc1b0e04b6db208e92936ce657, type: 3}
-  m_Name: EntityGraph
+  m_Name: Test Graph
   m_EditorClassIdentifier: 
   serializedNodes: []
   nodes:
@@ -146,8 +146,8 @@ MonoBehaviour:
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: -160, y: 113, z: 0}
-  scale: {x: 0.65751624, y: 0.65751624, z: 1}
+  position: {x: 86, y: 172, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 1
     00000000:
@@ -157,16 +157,17 @@ MonoBehaviour:
         computeOrder: 12
         position:
           serializedVersion: 2
-          x: 1728
-          y: 355
-          width: 297
-          height: 140
+          x: 1747.6598
+          y: 346.5
+          width: 290
+          height: 157
         expanded: 0
         debug: 0
         nodeLock: 0
         seed: 0
-        origin: {x: 0, y: 0, z: 0}
-        bounds: {x: 100, y: 10, z: 100}
+        bounds:
+          m_Center: {x: 50, y: 0, z: -50}
+          m_Extent: {x: 50, y: 5, z: 50}
         inputs: []
     00000001:
       type: {class: GeneratorPoissonNode, ns: OrionReed, asm: Assembly-CSharp}

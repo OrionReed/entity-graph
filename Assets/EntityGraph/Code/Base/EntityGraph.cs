@@ -8,19 +8,11 @@ namespace OrionReed
   [System.Serializable]
   public class EntityGraph : BaseGraph
   {
-    private ChunkRandoms rnd;
-    private EntityChunkMatrix entityCache;
-    private OutputMasterNode _outputMasterNode;
+    [NonSerialized] private ChunkRandoms rnd;
+    [NonSerialized] private OutputMasterNode _outputMasterNode;
 
     public ChunkRandoms ChunkRandoms => rnd ??= new ChunkRandoms(OutputMasterNode.seed);
-    public EntityChunkMatrix EntityCache
-    {
-      get
-      {
-        return entityCache ??= new EntityChunkMatrix();
-      }
-      set { entityCache = value; }
-    }
+    public EntityChunkMatrix EntityCache { get; set; }
 
     public OutputMasterNode OutputMasterNode
     {
@@ -59,14 +51,14 @@ namespace OrionReed
     public void Visualize()
     {
       OutputMasterNode.Visualize();
-      if (EntityCache.ChunkCount > 0)
+      if (EntityCache?.ChunkCount > 0)
       {
         foreach (Coordinate chunk in EntityCache.AllChunkCoordinates)
         {
-          Utils.DrawBounds(Coordinate.GetWorldPositionFromCoordinate(chunk), Vector3.one * EntityChunkMatrix.chunkSize, Color.cyan / 8);
+          Utils.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, Color.cyan / 2);
         }
       }
-      if (EntityCache.EntityCount > 0)
+      if (EntityCache?.EntityCount > 0)
       {
         foreach (IEntity entity in EntityCache.AllEntities)
         {
@@ -78,7 +70,7 @@ namespace OrionReed
     public void Reset()
     {
       rnd = null;
-      entityCache = null;
+      EntityCache = null;
     }
   }
 }

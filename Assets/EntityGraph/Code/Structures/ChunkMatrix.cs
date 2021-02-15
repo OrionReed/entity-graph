@@ -9,8 +9,6 @@ namespace OrionReed
   [Serializable]
   public class EntityChunkMatrix
   {
-    public const int chunkSize = 10;
-
     private readonly Dictionary<string, IEntity> _entities = new Dictionary<string, IEntity>();
     private readonly Dictionary<Coordinate, HashSet<string>> _chunks = new Dictionary<Coordinate, HashSet<string>>();
     private static readonly Dictionary<Coordinate, Vector3> _worldSpaceCache = new Dictionary<Coordinate, Vector3>();
@@ -20,9 +18,9 @@ namespace OrionReed
 
     public EntityChunkMatrix() { }
 
-    public EntityChunkMatrix(Vector3 position, Vector3 bounds)
+    public EntityChunkMatrix(Bounds bounds)
     {
-      foreach (Coordinate coord in Coordinate.IntersectsBounds(position, bounds))
+      foreach (Coordinate coord in Coordinate.InsideBounds(bounds))
       {
         CreateEmptyChunk(coord);
       }
@@ -88,7 +86,7 @@ namespace OrionReed
       }
       else
       {
-        return _worldSpaceCache[coordinate] = Coordinate.GetWorldPositionFromCoordinate(coordinate);
+        return _worldSpaceCache[coordinate] = Coordinate.WorldPosition(coordinate);
       }
     }
 

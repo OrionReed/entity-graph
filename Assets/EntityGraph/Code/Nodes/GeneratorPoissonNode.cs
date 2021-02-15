@@ -22,12 +22,12 @@ namespace OrionReed
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix(graph.OutputMasterNode.origin, graph.OutputMasterNode.bounds);
+      output = new EntityChunkMatrix(graph.OutputMasterNode.bounds);
 
       foreach (Coordinate chunk in output.AllChunkCoordinates)
       {
         System.Random rng = RNG(chunk);
-        foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, EntityChunkMatrix.chunkSize, EntityChunkMatrix.chunkSize))
+        foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, Coordinate.scale, Coordinate.scale))
         {
           Entity e = new Entity(MapToChunkSpace(sample, chunk), entitySettings.Get());
           output.AddEntity(e);
@@ -35,7 +35,7 @@ namespace OrionReed
       }
       static Vector3 MapToChunkSpace(Vector2 vector2, Coordinate coordinate)
       {
-        return new Vector3(vector2.x + Coordinate.GetWorldPositionFromCoordinate(coordinate).x, 0, vector2.y + Coordinate.GetWorldPositionFromCoordinate(coordinate).z);
+        return new Vector3(vector2.x + Coordinate.WorldPosition(coordinate).x, 0, vector2.y + Coordinate.WorldPosition(coordinate).z);
       }
     }
 

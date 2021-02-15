@@ -31,10 +31,16 @@ namespace OrionReed
       return new Vector3((int)(r * Math.Cos(theta)), 0, (int)(r * Math.Sin(theta)));
     }
 
-    public static void DrawBounds(Vector3 position, Vector3 size, Color color)
+    public static void DrawBoundsFromCorners(Vector3 cornerA, Vector3 cornerB, Color color)
     {
       Gizmos.color = color;
-      Gizmos.DrawWireCube(position + (size / 2), size);
+      Gizmos.DrawWireCube(cornerA + (cornerB / 2), cornerB);
+    }
+
+    public static void DrawBounds(Bounds bounds, Color color)
+    {
+      Gizmos.color = color;
+      Gizmos.DrawWireCube(bounds.center, bounds.size);
     }
   }
 }

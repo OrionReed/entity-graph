@@ -7,16 +7,18 @@ namespace OrionReed
   [Serializable]
   public struct Coordinate
   {
+    public static int scale = 10;
+
     public Coordinate(int x, int y)
     {
       X = x;
       Y = y;
     }
 
-    public static Vector3 GetWorldPositionFromCoordinate(Coordinate coordinate)
+    public static Vector3 WorldPosition(Coordinate coordinate)
     {
-      float x = coordinate.X * EntityChunkMatrix.chunkSize;
-      float z = coordinate.Y * EntityChunkMatrix.chunkSize;
+      float x = coordinate.X * scale;
+      float z = coordinate.Y * scale;
       return new Vector3(x, 0, z);
     }
 
@@ -26,13 +28,13 @@ namespace OrionReed
     public static Coordinate FromWorldSpace(float x, float y)
     {
       CallCounter.Count("Coordinate.FromWorldSpace");
-      return new Coordinate(Mathf.FloorToInt(x / EntityChunkMatrix.chunkSize), Mathf.FloorToInt(y / EntityChunkMatrix.chunkSize));
+      return new Coordinate(Mathf.FloorToInt(x / scale), Mathf.FloorToInt(y / scale));
     }
 
     public static IEnumerable<Coordinate> IntersectsCircle(Vector3 position, float radius)
     {
       Coordinate centerCoord = Coordinate.FromWorldSpace(position);
-      int max = (int)(Utils.RoundDownToDivisor(EntityChunkMatrix.chunkSize + radius, EntityChunkMatrix.chunkSize) / EntityChunkMatrix.chunkSize);
+      int max = (int)(Utils.RoundDownToDivisor(scale + radius, scale) / scale);
       int startX = centerCoord.X - max;
       int endX = centerCoord.X + max;
       int startY = centerCoord.Y - max;
@@ -47,18 +49,17 @@ namespace OrionReed
       }
     }
 
-    public static IEnumerable<Coordinate> IntersectsBounds(Vector3 position, Vector3 bounds)
+    public static IEnumerable<Coordinate> InsideBounds(Bounds bounds)
     {
+      int xOnBoundary = Mathf.Approximately(bounds.max.x % scale, 0) ? -1 : 0;
+      int zOnBoundary = Mathf.Approximately(bounds.max.z % scale, 0) ? -1 : 0;
 
-      // Account for user input being on the chunk boundary
-      Vector3 outerBound = position + (bounds * 0.9999f);
+      Coordinate startCoord = FromWorldSpace(bounds.min);
+      Coordinate endCoord = FromWorldSpace(bounds.max);
 
-      Coordinate startCoord = FromWorldSpace(position);
-      Coordinate endCoord = FromWorldSpace(outerBound);
-
-      for (int x = startCoord.X; x <= endCoord.X; x++)
+      for (int x = startCoord.X; x <= endCoord.X + xOnBoundary; x++)
       {
-        for (int y = startCoord.Y; y <= endCoord.Y; y++)
+        for (int y = startCoord.Y; y <= endCoord.Y + zOnBoundary; y++)
         {
           yield return new Coordinate(x, y);
         }

@@ -8,20 +8,18 @@ namespace OrionReed
   [System.Serializable]
   public class OutputMasterNode : BaseEntityGraphNode
   {
+    //[VisibleIf("someVar", 1)]
     public int seed;
-    [Space]
-    public Vector3 origin = Vector3.zero;
-    //[VisibleIf("seed", 1)]
-    public Vector3 bounds = new Vector3(100, 10, 100);
+    public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
 
     [Input, RequiredInput]
     public List<EntityChunkMatrix> inputs;
 
     private List<EntityChunkMatrix> values = new List<EntityChunkMatrix>();
 
-    public override string name => "Master Output";
+    public override string name => "Output";
     public override bool deletable => false;
-    public override string layoutStyle => "MasterStyle";
+    public override string layoutStyle => "OutputStyle";
 
     protected override void Process()
     {
@@ -42,7 +40,7 @@ namespace OrionReed
 
     public void Visualize()
     {
-      Utils.DrawBounds(origin, bounds, Color.white / 2);
+      Utils.DrawBounds(bounds, Color.white);
     }
   }
 }
