@@ -27,6 +27,7 @@ MonoBehaviour:
   - id: 10
   - id: 11
   - id: 12
+  - id: 13
   edges:
   - GUID: aca0eeab-6db5-4546-a3f0-f797b6d257fd
     owner: {fileID: 11400000}
@@ -72,14 +73,6 @@ MonoBehaviour:
     owner: {fileID: 11400000}
     inputNodeGUID: c55db32c-a589-43b2-8a9b-cd9a87a2dc19
     outputNodeGUID: 5d6b0496-4551-4669-a4c5-7899c37060b0
-    inputFieldName: entitySettings
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: fde8c099-2df5-48ac-928b-ec16601f268e
-    owner: {fileID: 11400000}
-    inputNodeGUID: 6d1ec868-8104-4ade-8e67-bdfc667d3416
-    outputNodeGUID: c0679e80-61d2-4b22-a4e4-2ee4f34c6327
     inputFieldName: entitySettings
     outputFieldName: output
     inputPortIdentifier: 
@@ -140,13 +133,21 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
+  - GUID: 423b508d-482d-4794-b3bb-ea7bebb33c32
+    owner: {fileID: 11400000}
+    inputNodeGUID: 6d1ec868-8104-4ade-8e67-bdfc667d3416
+    outputNodeGUID: 76406704-0da2-4a4f-8bd1-6272458b9cb3
+    inputFieldName: entitySettings
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
   groups: []
   stackNodes: []
   pinnedElements: []
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 86, y: 172, z: 0}
+  position: {x: 206, y: 306, z: 0}
   scale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 1
@@ -157,16 +158,17 @@ MonoBehaviour:
         computeOrder: 12
         position:
           serializedVersion: 2
-          x: 1747.6598
-          y: 346.5
-          width: 290
-          height: 157
+          x: 2042.9175
+          y: 335
+          width: 179
+          height: 122
         expanded: 0
         debug: 0
         nodeLock: 0
         seed: 0
-        bounds: []
-        ints: 
+        bounds:
+          m_Center: {x: 0, y: 0, z: 0}
+          m_Extent: {x: 100, y: 5, z: 100}
         inputs: []
     00000001:
       type: {class: GeneratorPoissonNode, ns: OrionReed, asm: Assembly-CSharp}
@@ -311,11 +313,11 @@ MonoBehaviour:
       type: {class: RandomEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: c0679e80-61d2-4b22-a4e4-2ee4f34c6327
-        computeOrder: 0
+        computeOrder: 13
         position:
           serializedVersion: 2
-          x: 383.99997
-          y: 752
+          x: -20.000092
+          y: 682.5
           width: 369
           height: 139
         expanded: 0
@@ -354,3 +356,19 @@ MonoBehaviour:
         debug: 0
         nodeLock: 0
         radius: 3
+    0000000D:
+      type: {class: EntitySettingsDiskSampler, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: 76406704-0da2-4a4f-8bd1-6272458b9cb3
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: 344.9999
+          y: 986.26
+          width: 369
+          height: 118
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+        size: 1

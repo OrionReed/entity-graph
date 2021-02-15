@@ -11,7 +11,7 @@ namespace OrionReed
     public float radius = 5f;
 
     [Input("Entity Settings")]
-    public IEntitySettingsSampler entitySettings;
+    public IEntitySampler entitySettings;
 
     [Output(name = "Out")]
     public EntityCollection output;
@@ -28,7 +28,7 @@ namespace OrionReed
         System.Random rng = RNG(chunk);
         foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, Coordinate.scale, Coordinate.scale))
         {
-          Entity e = new Entity(MapToChunkSpace(sample, chunk), entitySettings.Get());
+          Entity e = new Entity(MapToChunkSpace(sample, chunk), entitySettings.GetWithRandom(rng));
           output.AddEntity(e);
         }
       }

@@ -10,7 +10,7 @@ namespace OrionReed
     public float frequency = 0.5f;
 
     [Input("Entity Settings")]
-    public IEntitySettingsSampler entitySettings;
+    public IEntitySampler entitySettings;
 
     [Output(name = "Out")]
     public EntityCollection output;
@@ -32,7 +32,7 @@ namespace OrionReed
         {
           CallCounter.Count(this);
           Vector3 randomPos = rng.NextZeroedVector3(worldPos, worldPos + (Vector3.one * Coordinate.scale));
-          output.AddEntity(new Entity(randomPos, entitySettings.Get()));
+          output.AddEntity(new Entity(randomPos, entitySettings.GetWithRandom(rng)));
         }
       }
     }

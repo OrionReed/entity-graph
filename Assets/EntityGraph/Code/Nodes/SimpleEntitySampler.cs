@@ -1,26 +1,24 @@
-using System.Collections.Generic;
+using System;
 using GraphProcessor;
 using UnityEngine;
 
 namespace OrionReed
 {
   [System.Serializable, NodeMenuItem("Entities/Simple")]
-  public class SimpleEntitySampler : BaseEntityGraphNode, IEntitySettingsSampler
+  public class SimpleEntitySampler : BaseEntityGraphNode, IEntitySampler
   {
+    public override string name => "Simple Entities";
+    public override string layoutStyle => "EntitySettingsStyle";
+
     new public Color color = new Color(0.75f, 0.75f, 0.75f, 1f);
     public float size = 0.5f;
 
     [Output(name = "Out")]
-    public IEntitySettingsSampler output;
+    public IEntitySampler output;
 
-    public override string name => "Simple Entities";
 
-    public IEntitySettings Get()
-    {
-      return new SimpleEntitySettings(color, size);
-    }
-
-    public override string layoutStyle => "EntitySettingsStyle";
+    public IEntitySettingsData Get => new SimpleEntitySettings(color, size);
+    public IEntitySettingsData GetWithRandom(System.Random _) => Get;
 
     protected override void Process()
     {
@@ -28,8 +26,8 @@ namespace OrionReed
     }
   }
 
-  [System.Serializable]
-  public class SimpleEntitySettings : IEntitySettings
+  [Serializable]
+  public class SimpleEntitySettings : IEntitySettingsData
   {
     public SimpleEntitySettings(Color color, float size)
     {

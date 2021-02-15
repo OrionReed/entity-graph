@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace OrionReed
 {
-  public abstract class BaseSamplerNode : BaseNode, ISampler
+  public abstract class BaseSamplerNode : BaseNode, IPositionSampler
   {
     [Output(name = "Out")]
-    public ISampler output;
+    public IPositionSampler output;
 
     protected override void Process() { output = this; }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace OrionReed
 {
@@ -6,22 +7,24 @@ namespace OrionReed
   {
     Vector3 Position { get; }
     string ID { get; }
-    IEntitySettings Settings { get; }
+    IEntitySettingsData Settings { get; }
   }
 
-  public interface IEntitySettings
+  public interface IEntitySettingsData
   {
-    public Color Color { get; }
-    public float Size { get; }
+    //public Color Color { get; }
+    //public float Size { get; }
     void Visualize(Vector3 position);
   }
 
-  public interface IEntitySettingsSampler
+  public interface IEntitySampler
   {
-    IEntitySettings Get();
+    IEntitySettingsData Get { get; }
+
+    IEntitySettingsData GetWithRandom(System.Random random);
   }
 
-  public interface ISampler
+  public interface IPositionSampler
   {
     float SamplePosition(Vector3 position);
   }

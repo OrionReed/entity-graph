@@ -10,7 +10,7 @@ namespace OrionReed
     [Input(name = "Entities")]
     public EntityCollection entities;
     [Input(name = "Sampler")]
-    public ISampler sampler;
+    public IPositionSampler sampler;
 
     [Output(name = "Out")]
     public EntityCollection output;

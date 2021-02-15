@@ -7,7 +7,7 @@ using UnityEditor;
 namespace OrionReed
 {
   [System.Serializable]
-  [NodeMenuItem("Bounds")]
+  //[NodeMenuItem("Bounds")]
   public class BoundsNode : BaseEntityGraphNode
   {
     public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
