@@ -24,9 +24,7 @@ namespace OrionReed
       Vector2 initializerPoint = new Vector2(width / 2, height / 2);
 
       // keep track of our active samples
-      List<Vector2> activeSamples = new List<Vector2>();
-
-      activeSamples.Add(initializerPoint);
+      List<Vector2> activeSamples = new List<Vector2> { initializerPoint };
 
       // begin sample generation
       while (activeSamples.Count != 0)

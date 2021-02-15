@@ -34,7 +34,6 @@ namespace OrionReed
 
     public static void Reset() => counts = new Dictionary<string, int>();
 
-
     private static void AddCount(string key)
     {
       if (counts.TryGetValue(key, out _))
@@ -83,7 +82,6 @@ namespace OrionReed
 
           if (benchmarkMethods.Count == 0)
             continue;
-
 
           foreach ((MethodInfo, int) run in benchmarkMethods)
           {

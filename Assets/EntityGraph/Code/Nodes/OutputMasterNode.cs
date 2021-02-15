@@ -28,7 +28,7 @@ namespace OrionReed
     }
 
     [CustomPortBehavior(nameof(inputs))]
-    private IEnumerable<PortData> GetPortsForInputs(List<SerializableEdge> edges)
+    private IEnumerable<PortData> GetPortsForInputs(List<SerializableEdge> _)
     {
       yield return new PortData { displayName = "In", displayType = typeof(EntityCollection), acceptMultipleEdges = true };
     }
@@ -41,7 +41,7 @@ namespace OrionReed
 
     public void Visualize()
     {
-      Utils.DrawBounds(bounds, Color.white);
+      Util.DrawBounds(bounds, Color.white / 2);
     }
   }
 }

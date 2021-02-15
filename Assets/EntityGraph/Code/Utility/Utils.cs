@@ -6,10 +6,9 @@ using UnityEngine;
 
 namespace OrionReed
 {
-  internal static class Utils
+  internal static class Util
   {
     public static float RoundDownToDivisor(float num, float divisor) => num - (num % divisor);
-
 
     public static float NextFloat(this System.Random random, float min, float max)
     {

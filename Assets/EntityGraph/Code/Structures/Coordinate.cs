@@ -34,7 +34,7 @@ namespace OrionReed
     public static IEnumerable<Coordinate> IntersectsCircle(Vector3 position, float radius)
     {
       Coordinate centerCoord = Coordinate.FromWorldSpace(position);
-      int max = (int)(Utils.RoundDownToDivisor(scale + radius, scale) / scale);
+      int max = (int)(Util.RoundDownToDivisor(scale + radius, scale) / scale);
       int startX = centerCoord.X - max;
       int endX = centerCoord.X + max;
       int startY = centerCoord.Y - max;

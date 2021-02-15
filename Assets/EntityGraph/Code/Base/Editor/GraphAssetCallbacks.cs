@@ -14,7 +14,7 @@ namespace OrionReed
     }
 
     [OnOpenAsset(0)]
-    public static bool OnBaseGraphOpened(int instanceID, int line)
+    public static bool OnBaseGraphOpened(int instanceID, int _)
     {
       var asset = EditorUtility.InstanceIDToObject(instanceID) as EntityGraph;
 

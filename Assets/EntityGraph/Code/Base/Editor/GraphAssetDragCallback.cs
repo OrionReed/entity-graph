@@ -14,7 +14,7 @@ namespace OrionReed
       EditorApplication.hierarchyWindowItemOnGUI += HierarchyWindowItemCallback;
     }
 
-    static void HierarchyWindowItemCallback(int pID, Rect pRect)
+    private static void HierarchyWindowItemCallback(int pID, Rect pRect)
     {
       // happens when an acceptable item is released over the GUI window
       if (Event.current.type == EventType.DragPerform)

@@ -1,11 +1,14 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class Deprecated : Attribute
+namespace OrionReed
 {
-  public Deprecated(Type type)
+  [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+  public class Deprecated : Attribute
   {
-    newType = type;
+    public Deprecated(Type type)
+    {
+      newType = type;
+    }
+    public Type newType;
   }
-  public Type newType;
 }

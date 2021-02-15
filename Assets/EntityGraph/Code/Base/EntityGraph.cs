@@ -4,14 +4,13 @@ using System;
 
 namespace OrionReed
 {
-  // Needs investigation into why stuff cant be serialized. This is all clunky and will scale horribly.
-  [System.Serializable]
+  [Serializable]
   public class EntityGraph : BaseGraph
   {
-    [NonSerialized] private ChunkRandoms rnd;
+    [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private OutputMasterNode _outputMasterNode;
 
-    public ChunkRandoms ChunkRandoms => rnd ??= new ChunkRandoms(OutputMasterNode.seed);
+    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
     public EntityCollection EntityCache { get; set; }
 
     public OutputMasterNode OutputMasterNode
@@ -55,7 +54,7 @@ namespace OrionReed
       {
         foreach (Coordinate chunk in EntityCache.AllChunkCoordinates)
         {
-          Utils.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, Color.cyan / 2);
+          Util.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, Color.cyan / 7);
         }
       }
       if (EntityCache?.EntityCount > 0)

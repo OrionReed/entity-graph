@@ -5,10 +5,7 @@ using System.Collections.Generic;
 
 namespace OrionReed
 {
-  [Deprecated(typeof(OperationPoissonRemoveNode))]
-  public class OperationPoissonRemoveNode { }
-
-  [System.Serializable, NodeMenuItem("Operations/Remove In Range")]
+  [Serializable, NodeMenuItem("Operations/Remove In Range")]
   public class OperationRemoveInRange : BaseEntityGraphNode
   {
     [Input(name = "A")]

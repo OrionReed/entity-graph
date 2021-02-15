@@ -19,7 +19,6 @@ namespace OrionReed
     public override string name => "Generate Poisson";
     public override string layoutStyle => "EntityCollectionStyle";
 
-
     protected override void Process()
     {
       output = new EntityCollection(graph.OutputMasterNode.bounds);
@@ -38,6 +37,5 @@ namespace OrionReed
         return new Vector3(vector2.x + Coordinate.WorldPosition(coordinate).x, 0, vector2.y + Coordinate.WorldPosition(coordinate).z);
       }
     }
-
   }
 }

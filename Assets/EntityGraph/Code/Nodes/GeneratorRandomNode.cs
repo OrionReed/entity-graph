@@ -18,7 +18,6 @@ namespace OrionReed
     public override string name => "Generate Random";
     public override string layoutStyle => "EntityCollectionStyle";
 
-
     protected override void Process()
     {
       output = new EntityCollection(graph.OutputMasterNode.bounds);
