@@ -25,6 +25,17 @@ namespace OrionReed
         CreateEmptyChunk(coord);
       }
     }
+    public EntityCollection(List<Bounds> bounds)
+    {
+      foreach (Bounds b in bounds)
+      {
+        foreach (Coordinate coord in Coordinate.InsideBounds(b))
+        {
+          if (!ChunkExists(coord))
+            CreateEmptyChunk(coord);
+        }
+      }
+    }
 
     public void AddEntity(IEntity entity)
     {

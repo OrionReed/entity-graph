@@ -165,9 +165,8 @@ MonoBehaviour:
         debug: 0
         nodeLock: 0
         seed: 0
-        bounds:
-          m_Center: {x: 50, y: 0, z: -50}
-          m_Extent: {x: 50, y: 5, z: 50}
+        bounds: []
+        ints: 
         inputs: []
     00000001:
       type: {class: GeneratorPoissonNode, ns: OrionReed, asm: Assembly-CSharp}
@@ -266,8 +265,8 @@ MonoBehaviour:
         computeOrder: 8
         position:
           serializedVersion: 2
-          x: 0
-          y: 138.00002
+          x: 14.999956
+          y: 126.09751
           width: 369
           height: 139
         expanded: 0
