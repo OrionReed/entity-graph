@@ -7,18 +7,18 @@ namespace OrionReed
   public class OperationAdd : BaseEntityGraphNode
   {
     [Input(name = "Input A")]
-    public EntityChunkMatrix a;
+    public EntityCollection a;
     [Input(name = "Input B")]
-    public EntityChunkMatrix b;
+    public EntityCollection b;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Add";
 
     protected override void Process()
     {
-      output = EntityChunkMatrix.MergeIntoFirst(a, b);
+      output = EntityCollection.MergeIntoFirst(a, b);
     }
   }
 }

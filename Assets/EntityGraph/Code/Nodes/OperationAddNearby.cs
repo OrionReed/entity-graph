@@ -8,7 +8,7 @@ namespace OrionReed
   public class OperationAddNearby : BaseEntityGraphNode
   {
     [Input(name = "In")]
-    public EntityChunkMatrix input;
+    public EntityCollection input;
 
     [Input(name = "Number to Add"), ShowAsDrawer]
     public int numberToAdd = 1;
@@ -19,13 +19,13 @@ namespace OrionReed
     public IEntitySettingsSampler entitySettings;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Generate Nearby";
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix();
+      output = new EntityCollection();
       foreach (KeyValuePair<Coordinate, HashSet<string>> chunk in input.AllChunkPairs)
       {
         System.Random rng = RNG(chunk.Key);

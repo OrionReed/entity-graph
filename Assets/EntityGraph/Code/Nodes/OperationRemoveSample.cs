@@ -8,18 +8,18 @@ namespace OrionReed
   public class OperationRemoveSample : BaseEntityGraphNode
   {
     [Input(name = "Entities")]
-    public EntityChunkMatrix entities;
+    public EntityCollection entities;
     [Input(name = "Sampler")]
     public ISampler sampler;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Remove Sampler";
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix();
+      output = new EntityCollection();
 
       foreach (KeyValuePair<Coordinate, HashSet<string>> chunk in entities.AllChunkPairs)
       {

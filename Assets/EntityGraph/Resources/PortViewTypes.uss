@@ -1,4 +1,4 @@
-.Port_EntityChunkMatrix {
+.Port_EntityCollection {
 	--port-color: #b89d1a;
 }
 

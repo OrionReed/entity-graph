@@ -13,9 +13,9 @@ namespace OrionReed
     public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
 
     [Input, RequiredInput]
-    public List<EntityChunkMatrix> inputs;
+    public List<EntityCollection> inputs;
 
-    private List<EntityChunkMatrix> values = new List<EntityChunkMatrix>();
+    private List<EntityCollection> values = new List<EntityCollection>();
 
     public override string name => "Output";
     public override bool deletable => false;
@@ -23,19 +23,19 @@ namespace OrionReed
 
     protected override void Process()
     {
-      graph.EntityCache = EntityChunkMatrix.MergeIntoFirst(values);
+      graph.EntityCache = EntityCollection.MergeIntoFirst(values);
     }
 
     [CustomPortBehavior(nameof(inputs))]
     private IEnumerable<PortData> GetPortsForInputs(List<SerializableEdge> edges)
     {
-      yield return new PortData { displayName = "In", displayType = typeof(EntityChunkMatrix), acceptMultipleEdges = true };
+      yield return new PortData { displayName = "In", displayType = typeof(EntityCollection), acceptMultipleEdges = true };
     }
 
-    [CustomPortInput(nameof(inputs), typeof(EntityChunkMatrix), allowCast = true)]
+    [CustomPortInput(nameof(inputs), typeof(EntityCollection), allowCast = true)]
     public void GetInputs(List<SerializableEdge> edges)
     {
-      values = edges.ConvertAll(e => (EntityChunkMatrix)e.passThroughBuffer);
+      values = edges.ConvertAll(e => (EntityCollection)e.passThroughBuffer);
     }
 
     public void Visualize()

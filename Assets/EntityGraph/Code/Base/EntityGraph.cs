@@ -12,7 +12,7 @@ namespace OrionReed
     [NonSerialized] private OutputMasterNode _outputMasterNode;
 
     public ChunkRandoms ChunkRandoms => rnd ??= new ChunkRandoms(OutputMasterNode.seed);
-    public EntityChunkMatrix EntityCache { get; set; }
+    public EntityCollection EntityCache { get; set; }
 
     public OutputMasterNode OutputMasterNode
     {

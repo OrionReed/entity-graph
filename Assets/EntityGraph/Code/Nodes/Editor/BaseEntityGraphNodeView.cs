@@ -10,14 +10,14 @@ namespace OrionReed
   {
     private BaseEntityGraphNode node;
 
-    private EntityChunkMatrix EntityOutput
+    private EntityCollection EntityOutput
     {
       get
       {
         foreach (var item in node.outputPorts)
         {
-          if (item.fieldInfo.FieldType == typeof(EntityChunkMatrix))
-            return item.fieldInfo.GetValue(item.fieldOwner) as EntityChunkMatrix;
+          if (item.fieldInfo.FieldType == typeof(EntityCollection))
+            return item.fieldInfo.GetValue(item.fieldOwner) as EntityCollection;
         }
         return null;
       }
@@ -91,7 +91,7 @@ namespace OrionReed
     {
       foreach (var view in outputPortViews)
       {
-        if (view.fieldType == typeof(EntityChunkMatrix) && view.connectionCount == 0)
+        if (view.fieldType == typeof(EntityCollection) && view.connectionCount == 0)
           return false;
       }
       return true;

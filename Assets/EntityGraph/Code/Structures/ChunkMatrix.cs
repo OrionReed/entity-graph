@@ -7,7 +7,7 @@ using System.Linq;
 namespace OrionReed
 {
   [Serializable]
-  public class EntityChunkMatrix
+  public class EntityCollection
   {
     private readonly Dictionary<string, IEntity> _entities = new Dictionary<string, IEntity>();
     private readonly Dictionary<Coordinate, HashSet<string>> _chunks = new Dictionary<Coordinate, HashSet<string>>();
@@ -16,9 +16,9 @@ namespace OrionReed
     public int EntityCount => _entities.Count;
     public int ChunkCount => _chunks.Count;
 
-    public EntityChunkMatrix() { }
+    public EntityCollection() { }
 
-    public EntityChunkMatrix(Bounds bounds)
+    public EntityCollection(Bounds bounds)
     {
       foreach (Coordinate coord in Coordinate.InsideBounds(bounds))
       {
@@ -159,9 +159,9 @@ namespace OrionReed
       }
     }
 
-    public static EntityChunkMatrix Merge(List<EntityChunkMatrix> matrices)
+    public static EntityCollection Merge(List<EntityCollection> matrices)
     {
-      EntityChunkMatrix result = new EntityChunkMatrix();
+      EntityCollection result = new EntityCollection();
       for (int i = 0; i < matrices.Count; i++)
       {
         if (matrices[i].EntityCount == 0) continue;
@@ -170,11 +170,11 @@ namespace OrionReed
       }
       return result;
     }
-    public static EntityChunkMatrix MergeIntoFirst(params EntityChunkMatrix[] matrices)
+    public static EntityCollection MergeIntoFirst(params EntityCollection[] matrices)
     {
-      return Merge(new List<EntityChunkMatrix>(matrices));
+      return Merge(new List<EntityCollection>(matrices));
     }
-    public static EntityChunkMatrix MergeIntoFirst(List<EntityChunkMatrix> matrices)
+    public static EntityCollection MergeIntoFirst(List<EntityCollection> matrices)
     {
       return Merge(matrices);
     }

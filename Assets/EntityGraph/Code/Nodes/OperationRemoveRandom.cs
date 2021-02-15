@@ -8,19 +8,19 @@ namespace OrionReed
   public class OperationRemoveRandom : BaseEntityGraphNode
   {
     [Input(name = "In")]
-    public EntityChunkMatrix input;
+    public EntityCollection input;
 
     [Input(name = "Survival Probability"), ShowAsDrawer]
     public int chanceOfSurvival;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Remove Random";
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix();
+      output = new EntityCollection();
 
       foreach (KeyValuePair<Coordinate, HashSet<string>> chunk in input.AllChunkPairs)
       {

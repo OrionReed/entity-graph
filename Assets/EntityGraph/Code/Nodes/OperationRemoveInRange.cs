@@ -12,15 +12,15 @@ namespace OrionReed
   public class OperationRemoveInRange : BaseEntityGraphNode
   {
     [Input(name = "A")]
-    public EntityChunkMatrix a;
+    public EntityCollection a;
     [Input(name = "B")]
-    public EntityChunkMatrix b;
+    public EntityCollection b;
 
     [Input(name = "Radius"), ShowAsDrawer]
     public float radius = 1f;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Remove In Range";
 

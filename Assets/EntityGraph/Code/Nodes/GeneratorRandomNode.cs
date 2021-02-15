@@ -13,7 +13,7 @@ namespace OrionReed
     public IEntitySettingsSampler entitySettings;
 
     [Output(name = "Out")]
-    public EntityChunkMatrix output;
+    public EntityCollection output;
 
     public override string name => "Generate Random";
     public override string layoutStyle => "EntityCollectionStyle";
@@ -21,7 +21,7 @@ namespace OrionReed
 
     protected override void Process()
     {
-      output = new EntityChunkMatrix(graph.OutputMasterNode.bounds);
+      output = new EntityCollection(graph.OutputMasterNode.bounds);
 
       foreach (Coordinate chunk in output.AllChunkCoordinates)
       {
