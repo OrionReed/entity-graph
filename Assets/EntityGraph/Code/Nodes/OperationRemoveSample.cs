@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OrionReed
 {
-  [System.Serializable, NodeMenuItem("Operations/Remove from Sampler")]
+  [System.Serializable, NodeMenuItem("Operations/Remove using Sampler")]
   public class OperationRemoveSample : BaseEntityGraphNode
   {
     [Input(name = "Entities")]
@@ -28,7 +28,7 @@ namespace OrionReed
         {
           if (!entities.TryGetEntity(entityID, out IEntity entity))
             continue;
-          if (RNG.NextFloat(0, 1) < sampler.SamplePosition(entity.Position))
+          if (RNG.NextFloat(0, 1) > sampler.SamplePosition(entity.Position))
             output.AddEntity(entity);
         }
       }

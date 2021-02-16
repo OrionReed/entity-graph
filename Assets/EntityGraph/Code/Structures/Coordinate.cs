@@ -31,18 +31,21 @@ namespace OrionReed
       return new Coordinate(Mathf.FloorToInt(x / scale), Mathf.FloorToInt(y / scale));
     }
 
+    public static Coordinate FromWorldSpace(Vector3 position, out Vector3 positionInsideChunk)
+    {
+      var result = FromWorldSpace(position);
+      positionInsideChunk = position - WorldPosition(result);
+      return result;
+    }
+
     public static IEnumerable<Coordinate> IntersectsCircle(Vector3 position, float radius)
     {
-      Coordinate centerCoord = Coordinate.FromWorldSpace(position);
+      Coordinate centerCoord = FromWorldSpace(position);
       int max = (int)(Util.RoundDownToDivisor(scale + radius, scale) / scale);
-      int startX = centerCoord.X - max;
-      int endX = centerCoord.X + max;
-      int startY = centerCoord.Y - max;
-      int endY = centerCoord.Y + max;
 
-      for (int x = startX; x <= endX; x++)
+      for (int x = centerCoord.X - max; x <= centerCoord.X + max; x++)
       {
-        for (int y = startY; y <= endY; y++)
+        for (int y = centerCoord.Y - max; y <= centerCoord.Y + max; y++)
         {
           yield return new Coordinate(x, y);
         }
