@@ -25,6 +25,7 @@ namespace OrionReed
     protected override void Process()
     {
       graph.EntityCache = EntityCollection.MergeIntoFirst(values);
+      Debug.LogWarning($"Entities: {graph.EntityCache.EntityCount}");
     }
 
     [CustomPortBehavior(nameof(inputs))]

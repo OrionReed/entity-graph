@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using System.Linq;
 
@@ -19,7 +18,7 @@ namespace OrionReed
     {
       CallCounter.Count(this);
       Coordinate coord = Coordinate.FromWorldSpace(entity.Position);
-      if (TryGetEntity(entity.ID, out IEntity e))
+      if (TryGetEntity(entity.ID, out IEntity _))
       {
         Debug.LogWarning("Entity hash collision. Previous entity will not be replaced.");
       }
@@ -112,15 +111,6 @@ namespace OrionReed
       }
     }
 
-    public void RemoveEntity(HashSet<string> keys)
-    {
-      foreach (string key in keys)
-      {
-        // if(TryRe)
-        RemoveEntity(key);
-      }
-    }
-
     public static EntityCollection Merge(List<EntityCollection> matrices)
     {
       EntityCollection result = new EntityCollection();
@@ -132,14 +122,8 @@ namespace OrionReed
       }
       return result;
     }
-    public static EntityCollection MergeIntoFirst(params EntityCollection[] matrices)
-    {
-      return Merge(new List<EntityCollection>(matrices));
-    }
-    public static EntityCollection MergeIntoFirst(List<EntityCollection> matrices)
-    {
-      return Merge(matrices);
-    }
+    public static EntityCollection MergeIntoFirst(params EntityCollection[] matrices) => Merge(new List<EntityCollection>(matrices));
+    public static EntityCollection MergeIntoFirst(List<EntityCollection> matrices) => Merge(matrices);
 
     public static EntityCollection SubtractLayers(EntityCollection radiusSource, EntityCollection target, float radius)
     {
@@ -160,7 +144,10 @@ namespace OrionReed
           }
         }
       }
-      target.RemoveEntity(idsToRemove);
+      foreach (string key in idsToRemove)
+      {
+        target.RemoveEntity(key);
+      }
       return target;
     }
 

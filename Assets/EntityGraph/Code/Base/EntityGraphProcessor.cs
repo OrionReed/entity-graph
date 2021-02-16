@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GraphProcessor;
 using Unity.Jobs;
-using UnityEngine;
+using System.Diagnostics;
 
 namespace OrionReed
 {
@@ -17,9 +17,12 @@ namespace OrionReed
 
     public void ProcessEntityGraph()
     {
+      Stopwatch st = new Stopwatch();
+      st.Start();
       EntityGraph.Reset();
       UpdateComputeOrder();
       Run();
+      UnityEngine.Debug.LogWarning(st.Elapsed);
       CallCounter.Results();
     }
 

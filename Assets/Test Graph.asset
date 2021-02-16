@@ -127,22 +127,6 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 1a3b9a91-d1db-4789-814f-e123fb1d9a74
-    owner: {fileID: 11400000}
-    inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
-    outputNodeGUID: db8c2896-909f-49ca-89b6-caebd2e50945
-    inputFieldName: inputs
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: 57efd7b3-e1b6-4a88-b3ba-875b81753326
-    owner: {fileID: 11400000}
-    inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
-    outputNodeGUID: a68ca13c-41b2-4715-bef0-a6fec04078bc
-    inputFieldName: inputs
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
   - GUID: 57beed5e-e436-4580-82d1-7d3eff3ca8ce
     owner: {fileID: 11400000}
     inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
@@ -159,35 +143,35 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: c24054f7-5106-44ec-9ad0-651d81fcc6e3
-    owner: {fileID: 11400000}
-    inputNodeGUID: f9022d7f-ed2f-40f2-abce-1d41aee08fdf
-    outputNodeGUID: f914ddf3-3b8e-4c3f-a3d5-c52b0c61b971
-    inputFieldName: b
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: 3b11d9ef-fb68-4616-956e-e75f2dfb64fe
+  - GUID: 2382a068-9358-4f32-8c4a-6331ea5ddab8
     owner: {fileID: 11400000}
     inputNodeGUID: f35b8fca-942d-42d9-ad4d-fe7de4c27b2c
     outputNodeGUID: a68ca13c-41b2-4715-bef0-a6fec04078bc
-    inputFieldName: a
+    inputFieldName: applyTo
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 8231539b-0151-4f54-a350-fcc909cf18a7
+  - GUID: 10bdccf8-e2f9-4157-b677-088bdf5606e3
     owner: {fileID: 11400000}
     inputNodeGUID: f9022d7f-ed2f-40f2-abce-1d41aee08fdf
-    outputNodeGUID: a68ca13c-41b2-4715-bef0-a6fec04078bc
-    inputFieldName: a
+    outputNodeGUID: db8c2896-909f-49ca-89b6-caebd2e50945
+    inputFieldName: applyTo
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 0c5e9445-c0ce-4456-8d32-e83139b376db
+  - GUID: 8310d6e9-46fd-465d-a113-570b15747284
+    owner: {fileID: 11400000}
+    inputNodeGUID: f9022d7f-ed2f-40f2-abce-1d41aee08fdf
+    outputNodeGUID: f914ddf3-3b8e-4c3f-a3d5-c52b0c61b971
+    inputFieldName: radiusSource
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 74e01a07-68f3-4bed-83c3-27221cf0a64d
     owner: {fileID: 11400000}
     inputNodeGUID: f35b8fca-942d-42d9-ad4d-fe7de4c27b2c
     outputNodeGUID: f914ddf3-3b8e-4c3f-a3d5-c52b0c61b971
-    inputFieldName: b
+    inputFieldName: radiusSource
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
@@ -197,8 +181,8 @@ MonoBehaviour:
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: -490, y: 124, z: 0}
-  scale: {x: 0.8695652, y: 0.8695652, z: 1}
+  position: {x: -149, y: 224, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 1
     00000000:
@@ -217,21 +201,21 @@ MonoBehaviour:
         nodeLock: 0
         seed: 1
         bounds:
-          m_Center: {x: 0, y: 0, z: 50}
+          m_Center: {x: 56.5, y: 0, z: 50}
           m_Extent: {x: 100, y: 5, z: 100}
         inputs: []
     00000001:
       type: {class: GeneratorPoissonNode, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: c1b49342-1375-4b00-9b7c-bf3166e6a78a
-        computeOrder: 11
+        computeOrder: 12
         position:
           serializedVersion: 2
           x: 955
           y: 23.000004
           width: 169
           height: 101
-        expanded: 0
+        expanded: 1
         debug: 0
         nodeLock: 0
         radius: 2
@@ -269,7 +253,7 @@ MonoBehaviour:
       type: {class: OperationRemoveSample, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: a68ca13c-41b2-4715-bef0-a6fec04078bc
-        computeOrder: 12
+        computeOrder: 13
         position:
           serializedVersion: 2
           x: 1218
@@ -283,7 +267,7 @@ MonoBehaviour:
       type: {class: SamplerGradientNode, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: e7a46438-2fb5-4fe5-bb47-99bd23b629f8
-        computeOrder: 9
+        computeOrder: 10
         position:
           serializedVersion: 2
           x: 955.0001
@@ -299,11 +283,11 @@ MonoBehaviour:
       type: {class: RandomEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: 7493a6ad-277b-4b90-ad63-705f691e5100
-        computeOrder: 10
+        computeOrder: 11
         position:
           serializedVersion: 2
-          x: 376.30008
-          y: 8.999981
+          x: 417
+          y: 54.499992
           width: 369
           height: 140
         expanded: 0
@@ -319,8 +303,8 @@ MonoBehaviour:
         computeOrder: 6
         position:
           serializedVersion: 2
-          x: 415.4001
-          y: 352.99997
+          x: 417.3
+          y: 366.0001
           width: 369
           height: 139
         expanded: 0
@@ -336,10 +320,10 @@ MonoBehaviour:
         computeOrder: 1
         position:
           serializedVersion: 2
-          x: 1082.7
-          y: 674.0001
+          x: 1095
+          y: 674
           width: 169
-          height: 125
+          height: 101
         expanded: 0
         debug: 0
         nodeLock: 0
@@ -410,12 +394,12 @@ MonoBehaviour:
       type: {class: OperationRemoveInRange, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: f9022d7f-ed2f-40f2-abce-1d41aee08fdf
-        computeOrder: 13
+        computeOrder: 9
         position:
           serializedVersion: 2
-          x: 1875.2003
-          y: 96.95006
-          width: 145
+          x: 1894.8375
+          y: 164.44753
+          width: 167
           height: 125
         expanded: 0
         debug: 0
@@ -428,9 +412,9 @@ MonoBehaviour:
         computeOrder: 14
         position:
           serializedVersion: 2
-          x: 1875.2003
-          y: -37.049942
-          width: 145
+          x: 1894.8375
+          y: 30.447514
+          width: 167
           height: 125
         expanded: 0
         debug: 0

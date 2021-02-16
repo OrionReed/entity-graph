@@ -9,9 +9,9 @@ namespace OrionReed
   {
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private OutputMasterNode _outputMasterNode;
-    [NonSerialized] private Region completeRegion;
+    [NonSerialized] private Region _completeRegion;
 
-    public Region CompleteRegion => completeRegion ??= new Region(OutputMasterNode.bounds);
+    public Region CompleteRegion => _completeRegion ??= new Region(OutputMasterNode.bounds);
 
     public EntityGraph()
     {
@@ -67,6 +67,7 @@ namespace OrionReed
 
     public void Reset()
     {
+      _completeRegion = null;
       rnd = null;
       EntityCache = null;
     }
