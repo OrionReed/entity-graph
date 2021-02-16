@@ -21,7 +21,7 @@ namespace OrionReed
     {
       output = new EntityCollection();
 
-      foreach (KeyValuePair<Coordinate, HashSet<string>> chunk in entities.AllChunkPairs)
+      foreach (KeyValuePair<Coordinate, HashSet<string>> chunk in entities.AllChunks)
       {
         System.Random RNG = graph.ChunkRandoms[chunk.Key];
         foreach (string entityID in chunk.Value)

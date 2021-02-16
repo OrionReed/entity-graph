@@ -9,26 +9,25 @@ namespace OrionReed
   {
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private OutputMasterNode _outputMasterNode;
+    [NonSerialized] private Region completeRegion;
 
-    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
-    public EntityCollection EntityCache { get; set; }
-
-    public OutputMasterNode OutputMasterNode
-    {
-      get => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
-      internal set => _outputMasterNode = value;
-    }
+    public Region CompleteRegion => completeRegion ??= new Region(OutputMasterNode.bounds);
 
     public EntityGraph()
     {
       base.onEnabled += Initialize;
     }
 
+    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
+    public EntityCollection EntityCache { get; set; }
+
+    private OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
+
     private void Initialize()
     {
       if (OutputMasterNode == null)
       {
-        _outputMasterNode = AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100)) as OutputMasterNode;
+        AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100));
       }
     }
 
@@ -52,7 +51,7 @@ namespace OrionReed
       OutputMasterNode.Visualize();
       if (EntityCache?.ChunkCount > 0)
       {
-        foreach (Coordinate chunk in EntityCache.AllChunkCoordinates)
+        foreach (Coordinate chunk in CompleteRegion.EnumerateCoordinates())
         {
           Util.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, Color.cyan / 7);
         }
@@ -73,3 +72,4 @@ namespace OrionReed
     }
   }
 }
+

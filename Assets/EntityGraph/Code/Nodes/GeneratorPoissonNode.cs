@@ -21,9 +21,9 @@ namespace OrionReed
 
     protected override void Process()
     {
-      output = new EntityCollection(graph.OutputMasterNode.bounds);
+      output = new EntityCollection();
 
-      foreach (Coordinate chunk in output.AllChunkCoordinates)
+      foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
       {
         System.Random rng = RNG(chunk);
         foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, Coordinate.scale, Coordinate.scale))

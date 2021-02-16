@@ -11,31 +11,9 @@ namespace OrionReed
   {
     private readonly Dictionary<string, IEntity> _entities = new Dictionary<string, IEntity>();
     private readonly Dictionary<Coordinate, HashSet<string>> _chunks = new Dictionary<Coordinate, HashSet<string>>();
-    private static readonly Dictionary<Coordinate, Vector3> _worldSpaceCache = new Dictionary<Coordinate, Vector3>();
 
     public int EntityCount => _entities.Count;
     public int ChunkCount => _chunks.Count;
-
-    public EntityCollection() { }
-
-    public EntityCollection(Bounds bounds)
-    {
-      foreach (Coordinate coord in Coordinate.InsideBounds(bounds))
-      {
-        CreateEmptyChunk(coord);
-      }
-    }
-    public EntityCollection(List<Bounds> bounds)
-    {
-      foreach (Bounds b in bounds)
-      {
-        foreach (Coordinate coord in Coordinate.InsideBounds(b))
-        {
-          if (!ChunkExists(coord))
-            CreateEmptyChunk(coord);
-        }
-      }
-    }
 
     public void AddEntity(IEntity entity)
     {
@@ -89,18 +67,6 @@ namespace OrionReed
       }
     }
 
-    public static Vector3 GetWorldSpace(Coordinate coordinate)
-    {
-      if (_worldSpaceCache.TryGetValue(coordinate, out Vector3 result))
-      {
-        return result;
-      }
-      else
-      {
-        return _worldSpaceCache[coordinate] = Coordinate.WorldPosition(coordinate);
-      }
-    }
-
     public void CreateEmptyChunk(Coordinate coordinate)
     {
       _chunks[coordinate] = new HashSet<string>();
@@ -111,29 +77,7 @@ namespace OrionReed
       return _chunks.ContainsKey(coordinate);
     }
 
-    public IEnumerable<HashSet<string>> AllChunkStrings
-    {
-      get
-      {
-        foreach (HashSet<string> chunk in _chunks.Values)
-        {
-          yield return chunk;
-        }
-      }
-    }
-
-    public IEnumerable<Coordinate> AllChunkCoordinates
-    {
-      get
-      {
-        foreach (Coordinate chunk in _chunks.Keys)
-        {
-          yield return chunk;
-        }
-      }
-    }
-
-    public IEnumerable<KeyValuePair<Coordinate, HashSet<string>>> AllChunkPairs
+    public IEnumerable<KeyValuePair<Coordinate, HashSet<string>>> AllChunks
     {
       get
       {
@@ -152,8 +96,6 @@ namespace OrionReed
       }
     }
 
-    public Dictionary<Coordinate, Vector3> WorldSpaceCache => _worldSpaceCache;
-
     public void AddEntity(IEnumerable<IEntity> entities)
     {
       foreach (IEntity entity in entities)
@@ -167,6 +109,15 @@ namespace OrionReed
       for (int i = 0; i < keys.Count; i++)
       {
         RemoveEntity(keys[i]);
+      }
+    }
+
+    public void RemoveEntity(HashSet<string> keys)
+    {
+      foreach (string key in keys)
+      {
+        // if(TryRe)
+        RemoveEntity(key);
       }
     }
 
@@ -190,39 +141,28 @@ namespace OrionReed
       return Merge(matrices);
     }
 
-    public void RemoveInRadiusOf(Vector3 worldPosition, float radius)
+    public static EntityCollection SubtractLayers(EntityCollection radiusSource, EntityCollection target, float radius)
     {
-      foreach (Coordinate coord in Coordinate.IntersectsCircle(worldPosition, radius))
+      static bool DistanceLessThan(Vector3 a, Vector3 b, float distance) => (a - b).sqrMagnitude < distance * distance;
+      HashSet<string> idsToRemove = new HashSet<string>();
+      foreach (var c in radiusSource.AllEntities)
       {
-        if (!_chunks.TryGetValue(coord, out HashSet<string> value))
-          continue;
-
-        List<string> idsToRemove = new List<string>();
-        foreach (string entityID in value)
+        foreach (Coordinate coord in Coordinate.IntersectsCircle(c.Position, radius))
         {
-          if (!TryGetEntity(entityID, out IEntity entity)) continue;
-          if (DistanceLessThan(worldPosition, entity.Position, radius))
+          if (!target.ChunkExists(coord) || !radiusSource.ChunkExists(coord))
+            continue;
+
+          foreach (string entityID in target.GetChunk(coord))
           {
-            idsToRemove.Add(entity.ID);
+            if (!target.TryGetEntity(entityID, out IEntity entity)) continue;
+            if (DistanceLessThan(c.Position, entity.Position, radius))
+              idsToRemove.Add(entity.ID);
           }
         }
-        RemoveEntity(idsToRemove);
       }
+      target.RemoveEntity(idsToRemove);
+      return target;
     }
 
-    private bool DistanceLessThan(Vector3 a, Vector3 b, float distance) => (a - b).sqrMagnitude < distance * distance;
-
-    private IEntity GetEntity(string key)
-    {
-      if (_entities.TryGetValue(key, out IEntity value))
-      {
-        return value;
-      }
-      else
-      {
-        Debug.LogError($"Entity {key} not found!");
-        return null;
-      }
-    }
   }
 }
