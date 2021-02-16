@@ -8,7 +8,6 @@ namespace OrionReed
   public class SimpleEntitySampler : BaseEntityGraphNode, IEntitySampler
   {
     public override string name => "Simple Entities";
-    public override string layoutStyle => "EntitySettingsStyle";
 
     new public Color color = new Color(0.75f, 0.75f, 0.75f, 1f);
     public float size = 0.5f;

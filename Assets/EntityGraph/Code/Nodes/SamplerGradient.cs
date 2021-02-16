@@ -12,7 +12,6 @@ namespace OrionReed
     public float bottom = 0f;
 
     public override string name => "Sample Gradient";
-    public override string layoutStyle => "SamplerStyle";
 
     protected override float Sample(Vector3 position)
     {

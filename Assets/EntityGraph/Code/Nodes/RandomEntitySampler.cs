@@ -16,7 +16,6 @@ namespace OrionReed
     public IEntitySampler output;
 
     public override string name => "Random Entities";
-    public override string layoutStyle => "EntitySettingsStyle";
 
     public IEntitySettingsData Get => new SimpleEntitySettings(color, max);
 

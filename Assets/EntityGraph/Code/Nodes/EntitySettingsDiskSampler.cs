@@ -19,8 +19,6 @@ namespace OrionReed
     public IEntitySettingsData Get => new DiskEntitySettings(color, radius);
     public IEntitySettingsData GetWithRandom(System.Random coordinate) => Get;
 
-    public override string layoutStyle => "EntitySettingsStyle";
-
     protected override void Process()
     {
       output = this;

@@ -17,7 +17,6 @@ namespace OrionReed
     public EntityCollection output;
 
     public override string name => "Generate Poisson";
-    public override string layoutStyle => "EntityCollectionStyle";
 
     protected override void Process()
     {

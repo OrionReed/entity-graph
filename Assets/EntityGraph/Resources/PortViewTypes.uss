@@ -2,11 +2,11 @@
 	--port-color: #b89d1a;
 }
 
-.Port_IEntitySettingsSampler {
-	--port-color: #994fe3
+.Port_IEntitySampler {
+	--port-color: #9e7420
 }
 
-.Port_ISampler {
+.Port_IPositionSampler {
 	--port-color: #b83793
 }
 
