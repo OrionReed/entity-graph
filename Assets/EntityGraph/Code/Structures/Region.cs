@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
 namespace OrionReed
@@ -10,7 +9,10 @@ namespace OrionReed
   {
     private static readonly Dictionary<Coordinate, Vector3> coordinateLocationCache = new Dictionary<Coordinate, Vector3>();
     private readonly Dictionary<Coordinate, bool> coordinatesToProcess = new Dictionary<Coordinate, bool>();
+    private Bounds coordinateBounds = new Bounds();
+
     public Bounds Bounds { get; }
+    public Bounds CoordinateBounds => coordinateBounds;
 
     public Region(Bounds bounds)
     {
@@ -20,6 +22,7 @@ namespace OrionReed
           coordinatesToProcess.Add(coord, false);
       }
       Bounds = bounds;
+      coordinateBounds = Coordinate.BoundsAroundEnclosedChunks(bounds);
     }
 
     public Region(List<Bounds> bounds)
@@ -37,7 +40,6 @@ namespace OrionReed
         max = Vector3.Max(max, b.max);
       }
       Bounds = new Bounds((max + min) / 2, max - min);
-      Debug.Log(Bounds);
     }
 
     public bool IsCoordinateProcessed(Coordinate coordinate)

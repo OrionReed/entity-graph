@@ -68,7 +68,20 @@ namespace OrionReed
         }
       }
     }
+    public static Bounds BoundsAroundEnclosedChunks(Bounds bounds)
+    {
+      int xOnBoundary = Mathf.Approximately(bounds.max.x % scale, 0) ? -1 : 0;
+      int zOnBoundary = Mathf.Approximately(bounds.max.z % scale, 0) ? -1 : 0;
 
+      Coordinate m = FromWorldSpace(bounds.max);
+      int x = m.X + xOnBoundary;
+      int y = m.Y + zOnBoundary;
+      return new Bounds
+      {
+        min = WorldPosition(FromWorldSpace(bounds.min)),
+        max = WorldPosition(new Coordinate(x, y)) + (Vector3.one * scale)
+      };
+    }
     public int X { get; }
     public int Y { get; }
   }
