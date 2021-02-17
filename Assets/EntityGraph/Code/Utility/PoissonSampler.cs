@@ -111,4 +111,96 @@ namespace OrionReed
       return true; // this is a valid generated sample as there are no other samples too close to it
     }
   }
+
+  public static class PoissonSamplerNew
+  {
+    public static EntityCollection GenerateSamples(System.Random rng, float radius, Region region, int k = 30)
+    {
+      EntityCollection entities = new EntityCollection();
+      List<Vector3> samples = new List<Vector3>();
+      float cellSize = radius / (float)Math.Sqrt(radius);
+
+      int acceleratorWidth = (int)Math.Ceiling(region.Bounds.size.x / cellSize);
+      int acceleratorHeight = (int)Math.Ceiling(region.Bounds.size.z / cellSize);
+
+      int[,] accelerator = new int[acceleratorHeight, acceleratorWidth];
+
+      // initializer point right at the center
+      Vector3 initializerPoint = new Vector3(region.Bounds.size.x / 2, region.Bounds.size.z / 2);
+
+      List<Vector3> activeSamples = new List<Vector3> { initializerPoint };
+
+      // begin sample generation
+      while (activeSamples.Count != 0)
+      {
+        // pop off the most recently added samples and begin generating addtional samples around it
+        int index = rng.Next(0, activeSamples.Count);
+        Vector3 currentOrigin = activeSamples[index];
+        bool isValid = false; // need to keep track whether or not the sample we have meets our criteria
+
+        // attempt to randomly place a point near our current origin up to _k rejections
+        for (int i = 0; i < k; i++)
+        {
+          // create a random direction to place a new sample at
+          float angle = (float)(rng.NextDouble() * Math.PI * 2);
+          Vector3 direction;
+          direction.x = (float)Math.Sin(angle);
+          direction.y = (float)Math.Cos(angle);
+
+          // create a random distance between r and 2r away for that direction
+          float distance = rng.NextFloat(radius, 2 * radius);
+          direction.x *= distance;
+          direction.y *= distance;
+
+          // create our generated sample from our currentOrigin plus our new direction vector
+          Vector3 generatedSample = new Vector3(currentOrigin.x + direction.x, currentOrigin.y + direction.y);
+
+          int cellX = (int)(generatedSample.x / cellSize);
+          int cellY = (int)(generatedSample.y / cellSize);
+
+          isValid = IsGeneratedSampleValid(generatedSample, cellX, cellY, region, radius, samples, accelerator);
+
+          if (isValid)
+          {
+            activeSamples.Add(generatedSample);
+            samples.Add(generatedSample);
+            entities.AddEntity(new Entity(generatedSample));
+            accelerator[cellX, cellY] = samples.Count;
+            break;
+          }
+        }
+
+        if (!isValid)
+        {
+          activeSamples.RemoveAt(index);
+        }
+      }
+      return entities;
+    }
+
+    private static bool IsGeneratedSampleValid(Vector3 sample, int cellX, int cellY, Region region, float radius, List<Vector3> samples, int[,] accelerator)
+    {
+      if (!region.Bounds.Contains(sample))
+        return false;
+
+      for (int x = Math.Max(0, cellX - 2); x <= Math.Min(cellX + 2, accelerator.GetLength(0) - 1); x++)
+      {
+        for (int y = Math.Max(0, cellY - 2); y <= Math.Min(cellY + 2, accelerator.GetLength(1) - 1); y++)
+        {
+          int index = accelerator[x, y] - 1; // index of sample at this point (if there is one)
+
+          if (index >= 0) // in each point for the accelerator where we have a sample we put the current size of the number of samples
+          {
+            // compute Euclidean distance squared (more performant as there is no square root)
+            float distance = (sample - samples[index]).sqrMagnitude;
+            if (distance < radius * radius)
+            {
+              return false; // too close to another point
+            }
+          }
+        }
+      }
+      return true;
+    }
+  }
 }

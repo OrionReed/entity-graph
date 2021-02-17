@@ -8,8 +8,9 @@ namespace OrionReed
   [Serializable]
   public class Region
   {
-    private readonly Dictionary<Coordinate, bool> coordinatesToProcess = new Dictionary<Coordinate, bool>();
     private static readonly Dictionary<Coordinate, Vector3> coordinateLocationCache = new Dictionary<Coordinate, Vector3>();
+    private readonly Dictionary<Coordinate, bool> coordinatesToProcess = new Dictionary<Coordinate, bool>();
+    public Bounds Bounds { get; }
 
     public Region(Bounds bounds)
     {
@@ -18,10 +19,13 @@ namespace OrionReed
         if (!coordinatesToProcess.TryGetValue(coord, out _))
           coordinatesToProcess.Add(coord, false);
       }
+      Bounds = bounds;
     }
 
     public Region(List<Bounds> bounds)
     {
+      Vector3 min = new Vector3();
+      Vector3 max = new Vector3();
       foreach (Bounds b in bounds)
       {
         foreach (Coordinate coord in Coordinate.InsideBounds(b))
@@ -29,7 +33,11 @@ namespace OrionReed
           if (!coordinatesToProcess.TryGetValue(coord, out _))
             coordinatesToProcess.Add(coord, false);
         }
+        min = Vector3.Min(min, b.min);
+        max = Vector3.Max(max, b.max);
       }
+      Bounds = new Bounds((max + min) / 2, max - min);
+      Debug.Log(Bounds);
     }
 
     public bool IsCoordinateProcessed(Coordinate coordinate)
