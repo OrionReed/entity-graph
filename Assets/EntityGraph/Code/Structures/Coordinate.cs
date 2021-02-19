@@ -51,6 +51,16 @@ namespace OrionReed
         }
       }
     }
+    public static IEnumerable<Coordinate> IterateRect(Coordinate start, Coordinate end)
+    {
+      for (int x = start.X; x < end.X; x++)
+      {
+        for (int y = start.Y; y < end.Y; y++)
+        {
+          yield return new Coordinate(x, y);
+        }
+      }
+    }
 
     public static IEnumerable<Coordinate> InsideBounds(Bounds bounds)
     {

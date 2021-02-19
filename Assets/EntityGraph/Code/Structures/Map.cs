@@ -40,21 +40,21 @@ namespace OrionReed
 
     public void ImprintSquare(Vector3 bottomLeft, float size, float value)
     {
-      Coordinate startCoord = Coordinate.FromWorldSpace(bottomLeft, out Vector3 localPos);
+      Coordinate startCoord = Coordinate.FromWorldSpace(bottomLeft, out Vector3 localPosStart);
       Coordinate currentCoord = startCoord;
 
-      int startX = LocalIndex(localPos.x);
-      int startZ = LocalIndex(localPos.z);
-      int endXAtStart = LocalIndex(localPos.x + size);
+      int startX = LocalIndex(localPosStart.x);
+      int startZ = LocalIndex(localPosStart.z);
+      int endXAtStart = LocalIndex(localPosStart.x + size);
       int endX = endXAtStart;
-      int endZ = LocalIndex(localPos.z + size);
+      int endZ = LocalIndex(localPosStart.z + size);
       int coordinateRows = endZ / cellCount;
       for (int row = 0; row <= coordinateRows; row++)
       {
         AddChunkIfNull(currentCoord);
         for (int x = startX; x < endX; x++)
         {
-          if (x % cellCount == 0)
+          if (x > 0 && x % cellCount == 0)
           {
             currentCoord = new Coordinate(currentCoord.X + 1, currentCoord.Y);
             endX -= x;
