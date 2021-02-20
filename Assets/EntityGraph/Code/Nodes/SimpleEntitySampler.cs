@@ -40,7 +40,7 @@ namespace OrionReed
     public void Visualize(Vector3 position)
     {
       Gizmos.color = Color;
-      Gizmos.DrawSphere(position, Size);
+      Gizmos.DrawSphere(position, Size / 2);
     }
   }
 }

@@ -105,7 +105,7 @@ MonoBehaviour:
         seed: 1
         bounds:
           m_Center: {x: 0, y: 0, z: 0}
-          m_Extent: {x: 100, y: 5, z: 100}
+          m_Extent: {x: 300, y: 5, z: 300}
         inputs: []
     00000001:
       type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}

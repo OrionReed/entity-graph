@@ -21,7 +21,7 @@ namespace OrionReed
     public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
     public EntityCollection EntityCache { get; set; }
 
-    private OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
+    public OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
 
     private void Initialize()
     {

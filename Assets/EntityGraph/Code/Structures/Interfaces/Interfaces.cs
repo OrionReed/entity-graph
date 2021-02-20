@@ -12,8 +12,8 @@ namespace OrionReed
 
   public interface IEntitySettingsData
   {
-    //public Color Color { get; }
-    //public float Size { get; }
+    public Color Color { get; }
+    public float Size { get; }
     void Visualize(Vector3 position);
   }
 
