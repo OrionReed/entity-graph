@@ -84,8 +84,8 @@ MonoBehaviour:
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 322, y: 126, z: 0}
-  scale: {x: 1, y: 1, z: 1}
+  position: {x: 252, y: 307, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 1
     00000000:
@@ -105,7 +105,7 @@ MonoBehaviour:
         seed: 1
         bounds:
           m_Center: {x: 0, y: 0, z: 0}
-          m_Extent: {x: 300, y: 5, z: 300}
+          m_Extent: {x: 100, y: 5, z: 100}
         inputs: []
     00000001:
       type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
@@ -184,7 +184,7 @@ MonoBehaviour:
         expanded: 0
         debug: 0
         nodeLock: 0
-        color: {r: 0.30556232, g: 0.81960785, b: 0.2588235, a: 1}
+        color: {r: 0.24308383, g: 0.6509434, b: 0.20572266, a: 1}
         size: 1
     00000006:
       type: {class: OperationRemoveSample, ns: OrionReed, asm: Assembly-CSharp}

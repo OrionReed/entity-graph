@@ -22,6 +22,7 @@ namespace OrionReed
       EntityGraph.Reset();
       UpdateComputeOrder();
       Run();
+      EntityGraph.OnFinishedProcessing();
       UnityEngine.Debug.LogWarning(st.Elapsed);
       CallCounter.Results();
     }

@@ -11,6 +11,8 @@ namespace OrionReed
     [NonSerialized] private OutputMasterNode _outputMasterNode;
     [NonSerialized] private Region _completeRegion;
 
+    public event Action onFinishedProcessing;
+
     public Region CompleteRegion => _completeRegion ??= new Region(OutputMasterNode.bounds);
 
     public EntityGraph()
@@ -30,6 +32,8 @@ namespace OrionReed
         AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100));
       }
     }
+
+    public void OnFinishedProcessing() => onFinishedProcessing?.Invoke();
 
     protected override void MigrateDeprecatedNodes()
     {

@@ -25,6 +25,11 @@ namespace OrionReed
     private ComputeBuffer argsBuffer;
     private PointProperties[] properties;
 
+    private void OnEnable()
+    {
+      graph.onFinishedProcessing += Setup;
+    }
+
     private void OnDrawGizmos()
     {
       if (drawGizmos)
@@ -33,6 +38,7 @@ namespace OrionReed
 
     private void Setup()
     {
+      Debug.Log("setting up shader...");
       bounds = graph.OutputMasterNode.bounds;
       properties = GetPointPropertiesFromGraph();
       InitializeBuffers(properties);
@@ -40,17 +46,10 @@ namespace OrionReed
 
     private void Update()
     {
-      if (graph?.EntityCache == null || graph.EntityCache.EntityCount == 0)
+      if (!drawInstanced || graph?.EntityCache == null || graph.EntityCache.EntityCount == 0 || properties == null)
         return;
 
-      if (properties != null && properties.Length == graph.EntityCache.EntityCount && drawInstanced)
-      {
-        Graphics.DrawMeshInstancedIndirect(mesh, 0, material, bounds, argsBuffer);
-      }
-      else
-      {
-        Setup();
-      }
+      Graphics.DrawMeshInstancedIndirect(mesh, 0, material, bounds, argsBuffer);
     }
 
     private PointProperties[] GetPointPropertiesFromGraph()
