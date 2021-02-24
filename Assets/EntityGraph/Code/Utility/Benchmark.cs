@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Reflection;
 
 namespace OrionReed
@@ -19,37 +17,6 @@ namespace OrionReed
     {
       numTimes = averageOverMultipleRuns;
     }
-  }
-
-  public static class CallCounter
-  {
-    private static Dictionary<string, int> counts = new Dictionary<string, int>();
-
-    #region public
-
-    public static bool Enabled { get; set; }
-    public static void Count(this object obj, [CallerMemberName] string caller = null) { if (Enabled) AddCount($"{obj.GetType().Name}.{caller}"); }
-    public static void Count(this Type obj, [CallerMemberName] string caller = null) { if (Enabled) AddCount($"{obj.Name}.{caller}"); }
-    public static void Count(this string name, [CallerMemberName] string caller = null) { if (Enabled) AddCount($"{name}.{caller}"); }
-
-    public static void Reset() => counts = new Dictionary<string, int>();
-
-    private static void AddCount(string key)
-    {
-      if (counts.TryGetValue(key, out _))
-        counts[key]++;
-      else
-        counts[key] = 1;
-    }
-
-    public static void Results()
-    {
-      if (counts.Count == 0) return;
-      UnityEngine.Debug.Log(String.Join("\n", counts.OrderByDescending(key => key.Value).Select(x => string.Format(" {0} × {1}", x.Key, x.Value)).Append("------------").Prepend("   <b>Call Counter</b>")));
-      Reset();
-    }
-
-    #endregion
   }
 
   public static class BenchmarkStatic

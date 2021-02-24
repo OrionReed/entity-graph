@@ -27,7 +27,6 @@ namespace OrionReed
 
     public static Coordinate FromWorldSpace(float x, float y)
     {
-      CallCounter.Count("Coordinate.FromWorldSpace");
       return new Coordinate(Mathf.FloorToInt(x / scale), Mathf.FloorToInt(y / scale));
     }
 

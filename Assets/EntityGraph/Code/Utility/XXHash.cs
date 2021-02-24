@@ -46,7 +46,6 @@ namespace OrionReed
 
     public static uint GetHash(byte[] buf)
     {
-      CallCounter.Count("Hash.byte[]");
       uint h32;
       int index = 0;
       int len = buf.Length;
@@ -105,7 +104,6 @@ namespace OrionReed
 
     public static uint GetHash(params uint[] buf)
     {
-      CallCounter.Count("Hash.uint[] buf");
       uint h32;
       int index = 0;
       int len = buf.Length;
@@ -157,7 +155,6 @@ namespace OrionReed
 
     public static uint GetHash(params int[] buf)
     {
-      CallCounter.Count("Hash.int[] buf");
       uint h32;
       int index = 0;
       int len = buf.Length;
@@ -209,7 +206,6 @@ namespace OrionReed
 
     public static uint GetHash(int buf)
     {
-      CallCounter.Count("Hash.int");
       uint h32 = Seed + PRIME32_5;
       h32 += 4U;
       h32 += (uint)buf * PRIME32_3;

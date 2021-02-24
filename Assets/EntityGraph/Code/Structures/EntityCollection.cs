@@ -16,7 +16,6 @@ namespace OrionReed
 
     public void AddEntity(IEntity entity)
     {
-      CallCounter.Count(this);
       Coordinate coord = Coordinate.FromWorldSpace(entity.Position);
       if (TryGetEntity(entity.ID, out IEntity _))
       {
@@ -31,8 +30,6 @@ namespace OrionReed
 
     public void RemoveEntity(string key)
     {
-      CallCounter.Count(this);
-
       IEntity entity = _entities[key];
       if (entity == null) return;
       _chunks[Coordinate.FromWorldSpace(entity.Position)].Add(entity.ID);

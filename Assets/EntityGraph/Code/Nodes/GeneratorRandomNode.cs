@@ -23,13 +23,11 @@ namespace OrionReed
 
       foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
       {
-        CallCounter.Count(this);
         System.Random rng = RNG(chunk);
         Vector3 worldPos = Coordinate.WorldPosition(chunk);
         int numberOfPoints = (int)(Coordinate.scale / frequency);
         for (int i = 0; i < numberOfPoints; i++)
         {
-          CallCounter.Count(this);
           Vector3 randomPos = rng.NextZeroedVector3(worldPos, worldPos + (Vector3.one * Coordinate.scale));
           output.AddEntity(new Entity(randomPos, entitySettings.GetWithRandom(rng)));
         }

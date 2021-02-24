@@ -24,7 +24,6 @@ namespace OrionReed
       Run();
       EntityGraph.OnFinishedProcessing();
       UnityEngine.Debug.LogWarning(st.Elapsed);
-      CallCounter.Results();
     }
 
     public override void UpdateComputeOrder()
