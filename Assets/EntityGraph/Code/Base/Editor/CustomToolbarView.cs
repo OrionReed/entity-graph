@@ -31,7 +31,7 @@ namespace OrionReed
     private void ClearGraph()
     {
       EntityGraph graph = graphView.graph as EntityGraph;
-      graph.Reset();
+      graph.Clear();
     }
   }
 }

@@ -19,7 +19,7 @@ namespace OrionReed
     {
       Stopwatch st = new Stopwatch();
       st.Start();
-      EntityGraph.Reset();
+      EntityGraph.Clear();
       UpdateComputeOrder();
       Run();
       EntityGraph.OnFinishedProcessing();

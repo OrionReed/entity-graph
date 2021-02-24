@@ -16,6 +16,12 @@ namespace OrionReed
       cellCount = cellsPerChunk;
       cellSize = (float)Coordinate.scale / (float)cellsPerChunk;
     }
+
+    public int ChunkCount()
+    {
+      return values.Count;
+    }
+
     public float[,] AddChunk(Coordinate coord)
     {
       return values[coord] = new float[cellCount + 1, cellCount + 1];
@@ -44,11 +50,6 @@ namespace OrionReed
       {
         yield return chunk;
       }
-    }
-
-    public int ChunkCount()
-    {
-      return values.Count;
     }
 
     public void ImprintSquare(Vector3 bottomLeft, float size, float value)

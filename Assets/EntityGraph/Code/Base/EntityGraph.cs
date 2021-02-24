@@ -25,6 +25,7 @@ namespace OrionReed
     public OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
 
     public event Action onFinishedProcessing;
+    public event Action onClear;
 
     public EntityGraph()
     {
@@ -75,12 +76,13 @@ namespace OrionReed
       }
     }
 
-    public void Reset()
+    public void Clear()
     {
       _map = null;
       _completeRegion = null;
       rnd = null;
       EntityCache = null;
+      onClear?.Invoke();
     }
   }
 }

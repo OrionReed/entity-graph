@@ -38,6 +38,7 @@ namespace OrionReed
       graph.onFinishedProcessing += UpdateBounds;
       graph.onFinishedProcessing += SetupEntities;
       graph.onFinishedProcessing += TrySetupMaps;
+      graph.onClear += ReleaseBuffers;
     }
 
     private void OnDrawGizmos()
@@ -137,6 +138,11 @@ namespace OrionReed
     }
 
     void OnDisable()
+    {
+      ReleaseBuffers();
+    }
+
+    void ReleaseBuffers()
     {
       entityMeshPropertiesBuffer?.Release();
       entityMeshPropertiesBuffer = null;
