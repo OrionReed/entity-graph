@@ -18,7 +18,8 @@ namespace OrionReed
     [Output(name = "Out")]
     public IPositionSampler output;
 
-    private Map map;
+    [Output(name = "Map")]
+    public Map map;
 
     public float SamplePosition(Vector3 position)
     {

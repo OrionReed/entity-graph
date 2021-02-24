@@ -1,6 +1,7 @@
 using UnityEngine;
 using GraphProcessor;
 using System;
+using System.Collections.Generic;
 
 namespace OrionReed
 {
@@ -9,21 +10,26 @@ namespace OrionReed
   {
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private OutputMasterNode _outputMasterNode;
+    [NonSerialized] private Map _map;
     [NonSerialized] private Region _completeRegion;
 
-    public event Action onFinishedProcessing;
-
     public Region CompleteRegion => _completeRegion ??= new Region(OutputMasterNode.bounds);
+    public EntityCollection EntityCache { get; set; }
+    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
+    public Map Map
+    {
+      get { return _map; }
+      set { _map = value; }
+    }
+
+    public OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
+
+    public event Action onFinishedProcessing;
 
     public EntityGraph()
     {
       base.onEnabled += Initialize;
     }
-
-    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
-    public EntityCollection EntityCache { get; set; }
-
-    public OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
 
     private void Initialize()
     {
@@ -71,6 +77,7 @@ namespace OrionReed
 
     public void Reset()
     {
+      _map = null;
       _completeRegion = null;
       rnd = null;
       EntityCache = null;

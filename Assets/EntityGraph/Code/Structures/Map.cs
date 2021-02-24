@@ -38,6 +38,19 @@ namespace OrionReed
       }
     }
 
+    public IEnumerable<KeyValuePair<Coordinate, float[,]>> IterateChunks()
+    {
+      foreach (KeyValuePair<Coordinate, float[,]> chunk in values)
+      {
+        yield return chunk;
+      }
+    }
+
+    public int ChunkCount()
+    {
+      return values.Count;
+    }
+
     public void ImprintSquare(Vector3 bottomLeft, float size, float value)
     {
       Coordinate startCoord = Coordinate.FromWorldSpace(bottomLeft, out Vector3 localPosStart);
@@ -54,7 +67,7 @@ namespace OrionReed
         AddChunkIfNull(currentCoord);
         for (int x = startX; x < endX; x++)
         {
-          if (x > 0 && x % cellCount == 0)
+          if (x > 1 && (x - 1) % cellCount == 0)
           {
             currentCoord = new Coordinate(currentCoord.X + 1, currentCoord.Y);
             endX -= x;
@@ -75,7 +88,7 @@ namespace OrionReed
       }
     }
 
-    private int LocalIndex(float value) => Mathf.FloorToInt(value / cellSize);
+    private int LocalIndex(float value) => Mathf.RoundToInt(value / cellSize);
 
     private void AddChunkIfNull(Coordinate coord)
     {

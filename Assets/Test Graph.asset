@@ -21,6 +21,7 @@ MonoBehaviour:
   - id: 4
   - id: 5
   - id: 6
+  - id: 7
   edges:
   - GUID: 3bb9624d-b600-456c-a003-6f138e9918c5
     owner: {fileID: 11400000}
@@ -78,14 +79,22 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
+  - GUID: 4e236870-c0e2-4db7-9765-d6543ccece59
+    owner: {fileID: 11400000}
+    inputNodeGUID: 53dcd2bd-52c6-45c9-be4e-54f109af9680
+    outputNodeGUID: 60292fe9-8ce9-405a-a703-61a86cae5749
+    inputFieldName: input
+    outputFieldName: map
+    inputPortIdentifier: 
+    outputPortIdentifier: 
   groups: []
   stackNodes: []
   pinnedElements: []
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 252, y: 307, z: 0}
-  scale: {x: 0.7561437, y: 0.7561437, z: 1}
+  position: {x: 358, y: 102.99999, z: 0}
+  scale: {x: 0.8695652, y: 0.8695652, z: 1}
   references:
     version: 1
     00000000:
@@ -197,6 +206,20 @@ MonoBehaviour:
           y: 364
           width: 142
           height: 101
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+    00000007:
+      type: {class: VizMap, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: 53dcd2bd-52c6-45c9-be4e-54f109af9680
+        computeOrder: 7
+        position:
+          serializedVersion: 2
+          x: 855.00006
+          y: 132.50002
+          width: 93
+          height: 77
         expanded: 0
         debug: 0
         nodeLock: 0
