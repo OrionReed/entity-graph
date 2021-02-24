@@ -39,10 +39,5 @@ namespace OrionReed
     {
       values = edges.ConvertAll(e => (EntityCollection)e.passThroughBuffer);
     }
-
-    public void Visualize()
-    {
-      Util.DrawBounds(bounds, Color.white / 2);
-    }
   }
 }

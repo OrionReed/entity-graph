@@ -1,7 +1,6 @@
 using UnityEngine;
 using GraphProcessor;
 using System;
-using System.Collections.Generic;
 
 namespace OrionReed
 {
@@ -57,25 +56,6 @@ namespace OrionReed
       }
     }
 
-    public void Visualize()
-    {
-      OutputMasterNode.Visualize();
-      if (EntityCache?.ChunkCount > 0)
-      {
-        foreach (Coordinate chunk in CompleteRegion.EnumerateCoordinates())
-        {
-          Util.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, Color.cyan / 7);
-        }
-      }
-      if (EntityCache?.EntityCount > 0)
-      {
-        foreach (IEntity entity in EntityCache.AllEntities)
-        {
-          entity.Settings.Visualize(entity.Position);
-        }
-      }
-    }
-
     public void Clear()
     {
       _map = null;
@@ -86,4 +66,3 @@ namespace OrionReed
     }
   }
 }
-

@@ -36,11 +36,5 @@ namespace OrionReed
 
     public Color Color { get; }
     public float Size { get; }
-
-    public void Visualize(Vector3 position)
-    {
-      Gizmos.color = Color;
-      Gizmos.DrawSphere(position, Size / 2);
-    }
   }
 }

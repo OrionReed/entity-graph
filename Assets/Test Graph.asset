@@ -22,47 +22,8 @@ MonoBehaviour:
   - id: 5
   - id: 6
   - id: 7
+  - id: 8
   edges:
-  - GUID: 3bb9624d-b600-456c-a003-6f138e9918c5
-    owner: {fileID: 11400000}
-    inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
-    outputNodeGUID: 97d200a6-d8d5-449a-a00c-9da1fba75a9c
-    inputFieldName: inputs
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: e9712794-5b10-41e3-bf67-aab4347fc5be
-    owner: {fileID: 11400000}
-    inputNodeGUID: 97d200a6-d8d5-449a-a00c-9da1fba75a9c
-    outputNodeGUID: 95006bf3-9f00-4896-9f3a-d5dab6152244
-    inputFieldName: entitySettings
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: 7d607341-bf26-40f2-ae86-bfee45dfd9eb
-    owner: {fileID: 11400000}
-    inputNodeGUID: 60292fe9-8ce9-405a-a703-61a86cae5749
-    outputNodeGUID: 97d200a6-d8d5-449a-a00c-9da1fba75a9c
-    inputFieldName: input
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: 8a5dbd8d-7522-4283-b63c-31304761f362
-    owner: {fileID: 11400000}
-    inputNodeGUID: d178fb29-6cbb-4ada-9a51-cfb50ad91264
-    outputNodeGUID: 2fdd5d2f-540f-42a4-8729-6ed0b3ac6c1e
-    inputFieldName: entitySettings
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: a0af954e-1051-4805-95f4-9aa30b2eb606
-    owner: {fileID: 11400000}
-    inputNodeGUID: b27fca59-9941-4be5-b406-97630c51de4a
-    outputNodeGUID: d178fb29-6cbb-4ada-9a51-cfb50ad91264
-    inputFieldName: entities
-    outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
   - GUID: 8eb4b016-bcfb-465c-a7a4-d2784f37e4a6
     owner: {fileID: 11400000}
     inputNodeGUID: b27fca59-9941-4be5-b406-97630c51de4a
@@ -71,20 +32,68 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: ae2a1092-efdd-4347-85db-c7096d5719d6
+  - GUID: c2df1067-e691-4e3f-9634-00b3e9be6690
     owner: {fileID: 11400000}
     inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
-    outputNodeGUID: b27fca59-9941-4be5-b406-97630c51de4a
+    outputNodeGUID: 0f567435-a2ef-42cf-9fc9-eb7e1eabc988
     inputFieldName: inputs
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 4e236870-c0e2-4db7-9765-d6543ccece59
+  - GUID: da967d8d-17d6-45df-ab23-5bee5f70c501
     owner: {fileID: 11400000}
-    inputNodeGUID: 53dcd2bd-52c6-45c9-be4e-54f109af9680
-    outputNodeGUID: 60292fe9-8ce9-405a-a703-61a86cae5749
+    inputNodeGUID: 0f567435-a2ef-42cf-9fc9-eb7e1eabc988
+    outputNodeGUID: b27fca59-9941-4be5-b406-97630c51de4a
+    inputFieldName: entities
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 819ea810-36b1-4348-aef4-d2e3a0acd0b6
+    owner: {fileID: 11400000}
+    inputNodeGUID: 0f567435-a2ef-42cf-9fc9-eb7e1eabc988
+    outputNodeGUID: c459abb3-e9c1-4afd-9c17-b65de9333533
+    inputFieldName: sampler
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 2c97361f-e0ec-42b7-8f08-49e7ce15f9f6
+    owner: {fileID: 11400000}
+    inputNodeGUID: 807122ec-28c9-4212-a42a-36acb1ffa5c1
+    outputNodeGUID: 2fdd5d2f-540f-42a4-8729-6ed0b3ac6c1e
+    inputFieldName: entitySettings
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 7b28b5ab-5695-4c06-9ab4-fb4a16068642
+    owner: {fileID: 11400000}
+    inputNodeGUID: b27fca59-9941-4be5-b406-97630c51de4a
+    outputNodeGUID: 807122ec-28c9-4212-a42a-36acb1ffa5c1
+    inputFieldName: entities
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: f848d06f-ea29-4b09-9df6-afee0168dc64
+    owner: {fileID: 11400000}
+    inputNodeGUID: 115cbfae-c960-40fd-b424-93b23e1f3d7c
+    outputNodeGUID: 95006bf3-9f00-4896-9f3a-d5dab6152244
+    inputFieldName: entitySettings
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 910f9d6b-355b-43e0-98ac-94171ab94439
+    owner: {fileID: 11400000}
+    inputNodeGUID: 60292fe9-8ce9-405a-a703-61a86cae5749
+    outputNodeGUID: 115cbfae-c960-40fd-b424-93b23e1f3d7c
     inputFieldName: input
-    outputFieldName: map
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 9cd15952-7c13-4089-bccc-5ab1caaea33b
+    owner: {fileID: 11400000}
+    inputNodeGUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
+    outputNodeGUID: 115cbfae-c960-40fd-b424-93b23e1f3d7c
+    inputFieldName: inputs
+    outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
   groups: []
@@ -93,7 +102,7 @@ MonoBehaviour:
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 358, y: 102.99999, z: 0}
+  position: {x: 339, y: 277, z: 0}
   scale: {x: 0.8695652, y: 0.8695652, z: 1}
   references:
     version: 1
@@ -101,7 +110,7 @@ MonoBehaviour:
       type: {class: OutputMasterNode, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: edcc9ecf-568c-49fe-b0b9-af94077d2800
-        computeOrder: 6
+        computeOrder: 8
         position:
           serializedVersion: 2
           x: 1173
@@ -114,17 +123,17 @@ MonoBehaviour:
         seed: 1
         bounds:
           m_Center: {x: 0, y: 0, z: 0}
-          m_Extent: {x: 100, y: 5, z: 100}
+          m_Extent: {x: 30, y: 5, z: 30}
         inputs: []
     00000001:
       type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: 95006bf3-9f00-4896-9f3a-d5dab6152244
-        computeOrder: 0
+        computeOrder: 1
         position:
           serializedVersion: 2
-          x: -287.47827
-          y: 317.5217
+          x: -190.95001
+          y: 1015.7004
           width: 369
           height: 118
         expanded: 0
@@ -133,61 +142,31 @@ MonoBehaviour:
         color: {r: 0.25938943, g: 0.6401403, b: 0.8207547, a: 1}
         size: 1
     00000002:
-      type: {class: GeneratorPoissonNewNode, ns: OrionReed, asm: Assembly-CSharp}
-      data:
-        GUID: 97d200a6-d8d5-449a-a00c-9da1fba75a9c
-        computeOrder: 1
-        position:
-          serializedVersion: 2
-          x: 139
-          y: 294
-          width: 175
-          height: 101
-        expanded: 0
-        debug: 0
-        nodeLock: 0
-        radius: 50
-    00000003:
       type: {class: OperationImprint, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: 60292fe9-8ce9-405a-a703-61a86cae5749
-        computeOrder: 2
-        position:
-          serializedVersion: 2
-          x: 511
-          y: 154
-          width: 201
-          height: 140
-        expanded: 0
-        debug: 0
-        nodeLock: 0
-        resolution: 15
-        squareSize: 15.7
-        value: 1
-    00000004:
-      type: {class: GeneratorPoissonNewNode, ns: OrionReed, asm: Assembly-CSharp}
-      data:
-        GUID: d178fb29-6cbb-4ada-9a51-cfb50ad91264
-        computeOrder: 4
-        position:
-          serializedVersion: 2
-          x: 143
-          y: 543
-          width: 175
-          height: 101
-        expanded: 0
-        debug: 0
-        nodeLock: 0
-        radius: 2
-    00000005:
-      type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
-      data:
-        GUID: 2fdd5d2f-540f-42a4-8729-6ed0b3ac6c1e
         computeOrder: 3
         position:
           serializedVersion: 2
-          x: -273.47827
-          y: 566.5217
+          x: 433.15005
+          y: 600.50006
+          width: 196
+          height: 164
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        resolution: 34
+        squareSize: 6.02
+        value: 1
+    00000003:
+      type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: 2fdd5d2f-540f-42a4-8729-6ed0b3ac6c1e
+        computeOrder: 4
+        position:
+          serializedVersion: 2
+          x: -110.700005
+          y: 245.80006
           width: 369
           height: 118
         expanded: 0
@@ -195,31 +174,77 @@ MonoBehaviour:
         nodeLock: 0
         color: {r: 0.24308383, g: 0.6509434, b: 0.20572266, a: 1}
         size: 1
-    00000006:
+    00000004:
       type: {class: OperationRemoveSample, ns: OrionReed, asm: Assembly-CSharp}
       data:
         GUID: b27fca59-9941-4be5-b406-97630c51de4a
-        computeOrder: 5
+        computeOrder: 6
         position:
           serializedVersion: 2
-          x: 855
-          y: 364
+          x: 738.1501
+          y: 462.50006
+          width: 142
+          height: 101
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+    00000005:
+      type: {class: SamplerGradientNode, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: c459abb3-e9c1-4afd-9c17-b65de9333533
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: 756.1501
+          y: 649.5
+          width: 140
+          height: 101
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        top: 100
+        bottom: -100
+    00000006:
+      type: {class: OperationRemoveSample, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: 0f567435-a2ef-42cf-9fc9-eb7e1eabc988
+        computeOrder: 7
+        position:
+          serializedVersion: 2
+          x: 947.15
+          y: 548.50006
           width: 142
           height: 101
         expanded: 0
         debug: 0
         nodeLock: 0
     00000007:
-      type: {class: VizMap, ns: OrionReed, asm: Assembly-CSharp}
+      type: {class: GeneratorPoissonNode, ns: OrionReed, asm: Assembly-CSharp}
       data:
-        GUID: 53dcd2bd-52c6-45c9-be4e-54f109af9680
-        computeOrder: 7
+        GUID: 807122ec-28c9-4212-a42a-36acb1ffa5c1
+        computeOrder: 5
         position:
           serializedVersion: 2
-          x: 855.00006
-          y: 132.50002
-          width: 93
-          height: 77
+          x: 443.30005
+          y: 228.80005
+          width: 169
+          height: 101
         expanded: 0
         debug: 0
         nodeLock: 0
+        radius: 4
+    00000008:
+      type: {class: GeneratorRandomNode, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: 115cbfae-c960-40fd-b424-93b23e1f3d7c
+        computeOrder: 2
+        position:
+          serializedVersion: 2
+          x: 231.05
+          y: 990.75006
+          width: 169
+          height: 101
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        frequency: 5

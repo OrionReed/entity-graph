@@ -14,7 +14,6 @@ namespace OrionReed
   {
     public Color Color { get; }
     public float Size { get; }
-    void Visualize(Vector3 position);
   }
 
   public interface IEntitySampler

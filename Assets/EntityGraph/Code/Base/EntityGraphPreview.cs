@@ -15,14 +15,20 @@ namespace OrionReed
   public class EntityGraphPreview : MonoBehaviour
   {
     public EntityGraph graph;
-    public bool drawGizmos;
-    public bool drawInstanced;
+    public bool drawBounds;
+    public bool drawChunks;
     [Space]
     public Material entityMat;
-    public Mesh entityMesh;
-    [Space]
     public Material chunkMat;
-    public Mesh chunkMesh;
+
+    public Color unprocessedChunk = Color.red;
+    public Color processedChunk = Color.green;
+
+    [Range(0, 1)]
+    public float gizmoBrightness = 0.5f;
+
+    private Mesh entityMesh;
+    private Mesh chunkMesh;
 
     private Bounds bounds;
     private ComputeBuffer entityMeshPropertiesBuffer;
@@ -39,12 +45,18 @@ namespace OrionReed
       graph.onFinishedProcessing += SetupEntities;
       graph.onFinishedProcessing += TrySetupMaps;
       graph.onClear += ReleaseBuffers;
+      entityMesh = CreatePrimitiveMesh(PrimitiveType.Sphere);
+      chunkMesh = CreatePrimitiveMesh(PrimitiveType.Plane);
     }
 
     private void OnDrawGizmos()
     {
-      if (drawGizmos)
-        graph?.Visualize();
+      if (graph == null)
+        return;
+      if (drawBounds)
+        DrawBounds();
+      if (drawChunks)
+        DrawChunks();
     }
 
     private void UpdateBounds()
@@ -66,9 +78,25 @@ namespace OrionReed
 
     }
 
+    void DrawBounds()
+    {
+      Util.DrawBounds(graph.CompleteRegion.Bounds, Color.white * gizmoBrightness);
+    }
+
+    void DrawChunks()
+    {
+      if (graph.EntityCache?.ChunkCount > 0)
+      {
+        foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
+        {
+          Util.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, graph.CompleteRegion.IsCoordinateProcessed(chunk) ? processedChunk * gizmoBrightness : unprocessedChunk * gizmoBrightness);
+        }
+      }
+    }
+
     private void Update()
     {
-      if (!drawInstanced || graph?.EntityCache == null || graph.EntityCache.EntityCount == 0 || entityValues == null)
+      if (graph?.EntityCache == null || graph.EntityCache.EntityCount == 0 || entityValues == null)
         return;
 
       Graphics.DrawMeshInstancedIndirect(entityMesh, 0, entityMat, bounds, entityArgsBuffer);
@@ -88,7 +116,7 @@ namespace OrionReed
       {
         p.Add(new EntityValue
         {
-          matrix = Matrix4x4.TRS(entity.Position, Quaternion.identity, Vector3.one * entity.Settings.Size),
+          matrix = Matrix4x4.TRS(entity.Position - bounds.center, Quaternion.identity, Vector3.one * entity.Settings.Size),
           color = entity.Settings.Color
         });
       }
@@ -148,6 +176,14 @@ namespace OrionReed
       entityMeshPropertiesBuffer = null;
       entityArgsBuffer?.Release();
       entityArgsBuffer = null;
+    }
+
+    private static Mesh CreatePrimitiveMesh(PrimitiveType type)
+    {
+      GameObject gameObject = GameObject.CreatePrimitive(type);
+      Mesh mesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
+      DestroyImmediate(gameObject);
+      return mesh;
     }
   }
 }
