@@ -23,7 +23,7 @@ namespace OrionReed
 
     protected override void Process()
     {
-      output = EntityCollection.SubtractLayers(radiusSource, applyTo.Copy(), radius);
+      output = EntityCollection.SubtractLayers(radiusSource, applyTo, radius);
     }
   }
 }

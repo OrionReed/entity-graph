@@ -11,7 +11,7 @@ namespace OrionReed
     public static int Size() => (sizeof(float) * 4 * 4) + (sizeof(float) * 4);
   }
 
-  [ExecuteInEditMode]
+  [ExecuteAlways]
   public class EntityGraphPreview : MonoBehaviour
   {
     public EntityGraph graph;

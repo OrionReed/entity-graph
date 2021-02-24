@@ -9,6 +9,10 @@ namespace OrionReed
   {
     public static Vector4 ConvertFloatToVector4(float from) => new Vector4(from, from, from, from);
     public static float ConvertVector4ToFloat(Vector4 from) => from.x;
+    public static EntityCollection ConvertEntityCollectionToCopy(EntityCollection from)
+    {
+      return from.Copy();
+    }
 
     public override IEnumerable<(Type, Type)> GetIncompatibleTypes()
     {
