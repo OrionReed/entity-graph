@@ -17,11 +17,9 @@ namespace OrionReed
     }
 
 
-    public Material entityMat;
-    public Material chunkMat;
-
     private EntityGraph graph;
-
+    private Material entityMat;
+    private Material chunkMat;
     private Mesh entityMesh;
     private Mesh chunkMesh;
 
@@ -47,6 +45,7 @@ namespace OrionReed
       chunkMesh = CreatePrimitiveMesh(PrimitiveType.Plane);
       entityMat = (Material)Resources.Load("ENTITY_POINT_MATERIAL", typeof(Material));
       chunkMat = (Material)Resources.Load("CHUNK_MATERIAL", typeof(Material));
+      AssemblyReloadEvents.beforeAssemblyReload += ReleaseBuffers;
     }
 
     public void Update()
@@ -56,11 +55,6 @@ namespace OrionReed
       if (graph.debugDrawChunks) DrawChunks();
       if (graph.debugDrawEntities) DrawEntities();
       if (graph.debugDrawMaps) DrawMaps();
-    }
-
-    public void Destroy()
-    {
-      ReleaseBuffers();
     }
 
     void DrawEntities()
@@ -103,6 +97,9 @@ namespace OrionReed
         texture.Apply();
         chunkMatrices[index] = Matrix4x4.TRS(Coordinate.WorldPosition(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
         chunkProperties[index] = new MaterialPropertyBlock();
+        chunkProperties[index].SetTexture(texID, texture);
+        chunkProperties[index].SetColor("_MinCol", graph.debugMapColorMin);
+        chunkProperties[index].SetColor("_MaxCol", graph.debugMapColorMax);
         chunkProperties[index].SetTexture(texID, texture);
         index++;
       }

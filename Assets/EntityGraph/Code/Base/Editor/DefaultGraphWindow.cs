@@ -42,7 +42,6 @@ namespace OrionReed
 
     protected override void OnDestroy()
     {
-      Debug.Log("destroying");
       graphView?.Dispose();
       DestroyImmediate(tmpGraph);
     }
