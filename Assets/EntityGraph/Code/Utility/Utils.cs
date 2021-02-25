@@ -29,18 +29,6 @@ namespace OrionReed
       var theta = (double)rng.Next() / int.MaxValue * 2 * Math.PI;
       return new Vector3((int)(r * Math.Cos(theta)), 0, (int)(r * Math.Sin(theta)));
     }
-
-    public static void DrawBoundsFromCorners(Vector3 cornerA, Vector3 cornerB, Color color)
-    {
-      Gizmos.color = color;
-      Gizmos.DrawWireCube(cornerA + (cornerB / 2), cornerB);
-    }
-
-    public static void DrawBounds(Bounds bounds, Color color)
-    {
-      Gizmos.color = color;
-      Gizmos.DrawWireCube(bounds.center, bounds.size);
-    }
   }
 }
 

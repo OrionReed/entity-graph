@@ -12,6 +12,16 @@ namespace OrionReed
     [NonSerialized] private Map _map;
     [NonSerialized] private Region _completeRegion;
 
+    #region debug
+    public bool debugDrawBounds = true;
+    public bool debugDrawChunks = true;
+    public bool debugDrawEntities = true;
+    public bool debugDrawMaps = true;
+    public Color debugMapColorMin = Color.black;
+    public Color debugMapColorMax = Color.blue;
+    public float debugGizmoBrightness = 0.5f;
+    #endregion
+
     public Region CompleteRegion => _completeRegion ??= new Region(OutputMasterNode.bounds);
     public EntityCollection EntityCache { get; set; }
     public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);

@@ -9,6 +9,7 @@ namespace OrionReed
   public class DefaultGraphWindow : BaseGraphWindow
   {
     private EntityGraph tmpGraph;
+    EntityGraphVisualizer viz;
 
     [MenuItem("Window/Entity Graph")]
     public static BaseGraphWindow OpenWithTmpGraph()
@@ -34,8 +35,14 @@ namespace OrionReed
       return graphWindow;
     }
 
+    private void UpdateViz()
+    {
+      viz.Update();
+    }
+
     protected override void OnDestroy()
     {
+      Debug.Log("destroying");
       graphView?.Dispose();
       DestroyImmediate(tmpGraph);
     }
@@ -50,14 +57,21 @@ namespace OrionReed
 
     protected override void InitializeWindow(BaseGraph graph)
     {
+      if (viz == null)
+        viz = new EntityGraphVisualizer(graph as EntityGraph);
       if (graphView == null)
       {
-        titleContent = new GUIContent("Entity Graph");
+        titleContent = new GUIContent(graph.name);
         graphView = new DefaultGraphView(this);
         graphView.Add(new CustomToolbarView(graphView));
-        //graphView.Add(new MiniMapView(graphView));
+
+        MiniMapView mmv = new MiniMapView(graphView);
+        Vector2 mmvPos = mmv.GetPosition().position + new Vector2(5f, 25f);
+        mmv.SetPosition(new Rect(mmvPos, Vector2.one));
+        graphView.Add(mmv);
       }
       rootView.Add(graphView);
+      SceneView.duringSceneGui += (_) => UpdateViz();
     }
   }
 }

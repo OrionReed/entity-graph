@@ -1,31 +1,26 @@
+using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace OrionReed
 {
-  public struct EntityValue
+  public class EntityGraphVisualizer
   {
-    public Matrix4x4 matrix;
-    public Vector4 color;
+    private struct EntityValue
+    {
+      public Matrix4x4 matrix;
+      public Vector4 color;
 
-    public static int Size() => (sizeof(float) * 4 * 4) + (sizeof(float) * 4);
-  }
+      public static int Size() => (sizeof(float) * 4 * 4) + (sizeof(float) * 4);
+    }
 
-  [ExecuteAlways]
-  public class EntityGraphPreview : MonoBehaviour
-  {
-    public EntityGraph graph;
-    public bool drawBounds;
-    public bool drawChunks;
-    [Space]
+
     public Material entityMat;
     public Material chunkMat;
 
-    public Color unprocessedChunk = Color.red;
-    public Color processedChunk = Color.green;
-
-    [Range(0, 1)]
-    public float gizmoBrightness = 0.5f;
+    private EntityGraph graph;
 
     private Mesh entityMesh;
     private Mesh chunkMesh;
@@ -38,89 +33,52 @@ namespace OrionReed
     private Matrix4x4[] chunkMatrices;
     private MaterialPropertyBlock[] chunkProperties;
     private const float chunkMeshScale = 10;
+    private Color chunkToProcess = new Color(1f, 0.533f, 0.219f);
+    private Color chunkProcessed = new Color(0.082f, 0.698f, 0.164f);
 
-    private void OnEnable()
+    public EntityGraphVisualizer(EntityGraph g)
     {
+      graph = g;
       graph.onFinishedProcessing += UpdateBounds;
       graph.onFinishedProcessing += SetupEntities;
       graph.onFinishedProcessing += TrySetupMaps;
       graph.onClear += ReleaseBuffers;
       entityMesh = CreatePrimitiveMesh(PrimitiveType.Sphere);
       chunkMesh = CreatePrimitiveMesh(PrimitiveType.Plane);
+      entityMat = (Material)Resources.Load("ENTITY_POINT_MATERIAL", typeof(Material));
+      chunkMat = (Material)Resources.Load("CHUNK_MATERIAL", typeof(Material));
     }
 
-    private void OnDrawGizmos()
+    public void Update()
     {
-      if (graph == null)
-        return;
-      if (drawBounds)
-        DrawBounds();
-      if (drawChunks)
-        DrawChunks();
+      if (graph == null) return;
+      if (graph.debugDrawBounds) DrawBounds();
+      if (graph.debugDrawChunks) DrawChunks();
+      if (graph.debugDrawEntities) DrawEntities();
+      if (graph.debugDrawMaps) DrawMaps();
     }
 
-    private void UpdateBounds()
+    public void Destroy()
     {
-      bounds = graph.OutputMasterNode.bounds;
+      ReleaseBuffers();
     }
 
-    private void SetupEntities()
-    {
-      entityValues = GetEntityValues();
-      BufferEntitites(entityValues);
-    }
-
-    private void TrySetupMaps()
-    {
-      if (graph.Map == null)
-        return;
-      GetChunkValues();
-
-    }
-
-    void DrawBounds()
-    {
-      Util.DrawBounds(graph.CompleteRegion.Bounds, Color.white * gizmoBrightness);
-    }
-
-    void DrawChunks()
-    {
-      if (graph.EntityCache?.ChunkCount > 0)
-      {
-        foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
-        {
-          Util.DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, graph.CompleteRegion.IsCoordinateProcessed(chunk) ? processedChunk * gizmoBrightness : unprocessedChunk * gizmoBrightness);
-        }
-      }
-    }
-
-    private void Update()
+    void DrawEntities()
     {
       if (graph?.EntityCache == null || graph.EntityCache.EntityCount == 0 || entityValues == null)
         return;
 
       Graphics.DrawMeshInstancedIndirect(entityMesh, 0, entityMat, bounds, entityArgsBuffer);
+    }
 
-      if (graph.Map == null)
-        return;
+    private void DrawMaps()
+    {
+      if (graph.Map == null) return;
+
       for (int i = 0; i < chunkMatrices.Length; i++)
       {
         Graphics.DrawMesh(chunkMesh, chunkMatrices[i], chunkMat, 0, null, 0, chunkProperties[i]);
       }
-    }
-
-    private EntityValue[] GetEntityValues()
-    {
-      List<EntityValue> p = new List<EntityValue>(graph.EntityCache.EntityCount);
-      foreach (IEntity entity in graph.EntityCache.AllEntities)
-      {
-        p.Add(new EntityValue
-        {
-          matrix = Matrix4x4.TRS(entity.Position - bounds.center, Quaternion.identity, Vector3.one * entity.Settings.Size),
-          color = entity.Settings.Color
-        });
-      }
-      return p.ToArray();
     }
 
     private void GetChunkValues()
@@ -165,11 +123,6 @@ namespace OrionReed
       entityMat.SetBuffer("_Properties", entityMeshPropertiesBuffer);
     }
 
-    void OnDisable()
-    {
-      ReleaseBuffers();
-    }
-
     void ReleaseBuffers()
     {
       entityMeshPropertiesBuffer?.Release();
@@ -182,8 +135,61 @@ namespace OrionReed
     {
       GameObject gameObject = GameObject.CreatePrimitive(type);
       Mesh mesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
-      DestroyImmediate(gameObject);
+      SceneView.DestroyImmediate(gameObject);
       return mesh;
+    }
+
+    private EntityValue[] GetEntityValues()
+    {
+      List<EntityValue> p = new List<EntityValue>(graph.EntityCache.EntityCount);
+      foreach (IEntity entity in graph.EntityCache.AllEntities)
+      {
+        p.Add(new EntityValue
+        {
+          matrix = Matrix4x4.TRS(entity.Position - bounds.center, Quaternion.identity, Vector3.one * entity.Settings.Size),
+          color = entity.Settings.Color
+        });
+      }
+      return p.ToArray();
+    }
+
+    private void UpdateBounds() => bounds = graph.OutputMasterNode.bounds;
+    void DrawBounds() => DrawBounds(graph.CompleteRegion.Bounds, Color.white * graph.debugGizmoBrightness);
+
+    private void SetupEntities()
+    {
+      entityValues = GetEntityValues();
+      BufferEntitites(entityValues);
+    }
+
+    private void TrySetupMaps()
+    {
+      if (graph.Map == null)
+        return;
+      GetChunkValues();
+    }
+
+    void DrawChunks()
+    {
+      if (graph.EntityCache?.ChunkCount > 0)
+      {
+        foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
+        {
+          DrawBoundsFromCorners(Coordinate.WorldPosition(chunk), Vector3.one * Coordinate.scale, graph.CompleteRegion.IsCoordinateProcessed(chunk) ? chunkProcessed * graph.debugGizmoBrightness : chunkToProcess * graph.debugGizmoBrightness);
+        }
+      }
+    }
+
+    private static void DrawBoundsFromCorners(Vector3 cornerA, Vector3 cornerB, Color color)
+    {
+      Handles.color = color;
+      Handles.DrawWireCube(cornerA + (cornerB / 2), cornerB);
+    }
+
+    private static void DrawBounds(Bounds bounds, Color color)
+    {
+      Handles.color = color;
+      Handles.DrawWireCube(bounds.center, bounds.size);
     }
   }
 }

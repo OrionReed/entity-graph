@@ -17,7 +17,8 @@ namespace OrionReed
       bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
       AddToggle("Show Parameters", exposedParamsVisible, (_) => graphView.ToggleView<ExposedParameterView>());
 
-      AddButton("Benchmark", () => BenchmarkStatic.Run(), false);
+      bool visualize = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
+      AddToggle("Visualization", visualize, (_) => graphView.ToggleView<VisualizationView>(), false);
 
       AddButton("Show In Project", () => EditorGUIUtility.PingObject(graphView.graph), false);
     }
