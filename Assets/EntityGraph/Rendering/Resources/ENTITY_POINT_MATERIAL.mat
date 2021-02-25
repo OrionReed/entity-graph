@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EntityGraphPoint
+  m_Name: ENTITY_POINT_MATERIAL
   m_Shader: {fileID: 4800000, guid: 6250baf712a054101a7a0b8ba5d60a45, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4

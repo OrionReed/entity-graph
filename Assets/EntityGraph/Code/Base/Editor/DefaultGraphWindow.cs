@@ -38,6 +38,14 @@ namespace OrionReed
     private void UpdateViz()
     {
       viz.Update();
+
+    }
+
+    protected override void OnDisable()
+    {
+      if (graph != null && graphView != null)
+        graphView.SaveGraphToDisk();
+      viz = null;
     }
 
     protected override void OnDestroy()

@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
-using System.Linq;
-using System;
 using GraphProcessor;
 
 namespace OrionReed
@@ -27,8 +21,7 @@ namespace OrionReed
       title = "Visualization";
       graph = graphView.graph as EntityGraph;
 
-      ColorField colorMinField = new ColorField();
-      ColorField colorMaxField = new ColorField();
+      ColorField mapColorField = new ColorField();
       Slider sliderBrightness = new Slider(0f, 1f);
       buttonBounds = new Button(OnToggleBounds) { name = "ActionButton", text = "Bounds" };
       buttonChunks = new Button(OnToggleChunks) { name = "ActionButton", text = "Chunks" };
@@ -36,11 +29,9 @@ namespace OrionReed
       buttonMaps = new Button(OnToggleMaps) { name = "ActionButton", text = "Maps" };
 
       sliderBrightness.RegisterValueChangedCallback(x => BrightnessChanged(x.newValue));
-      colorMinField.RegisterValueChangedCallback(x => MinColorChanged(x.newValue));
-      colorMaxField.RegisterValueChangedCallback(x => MaxColorChanged(x.newValue));
+      mapColorField.RegisterValueChangedCallback(x => MapColorChanged(x.newValue));
 
-      colorMinField.value = graph.debugMapColorMin;
-      colorMaxField.value = graph.debugMapColorMax;
+      mapColorField.value = graph.debugMapColor;
       sliderBrightness.value = graph.debugGizmoBrightness;
       UpdateButtonState(buttonBounds, graph.debugDrawBounds);
       UpdateButtonState(buttonChunks, graph.debugDrawChunks);
@@ -52,8 +43,7 @@ namespace OrionReed
       content.Add(buttonChunks);
       content.Add(buttonMaps);
       content.Add(sliderBrightness);
-      content.Add(colorMinField);
-      content.Add(colorMaxField);
+      content.Add(mapColorField);
     }
 
     private void OnToggleBounds()
@@ -80,8 +70,7 @@ namespace OrionReed
       UpdateButtonState(buttonMaps, graph.debugDrawMaps);
     }
 
-    private void MinColorChanged(Color newColor) => graph.debugMapColorMin = newColor;
-    private void MaxColorChanged(Color newColor) => graph.debugMapColorMax = newColor;
+    private void MapColorChanged(Color newColor) => graph.debugMapColor = newColor;
     private void BrightnessChanged(float newValue) => graph.debugGizmoBrightness = newValue;
 
     private void UpdateButtonState(Button button, bool highlight)

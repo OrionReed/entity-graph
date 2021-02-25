@@ -81,7 +81,8 @@ namespace OrionReed
       chunkMatrices = new Matrix4x4[graph.Map.ChunkCount()];
       chunkProperties = new MaterialPropertyBlock[graph.Map.ChunkCount()];
       Vector3 meshOffset = new Vector3(chunkMeshScale / 2, 0, chunkMeshScale / 2);
-      int texID = Shader.PropertyToID("_ChunkTex");
+      int textureID = Shader.PropertyToID("_ChunkTex");
+      int colorID = Shader.PropertyToID("_MapColor");
       int index = 0;
       foreach (var c in graph.Map.IterateChunks())
       {
@@ -91,16 +92,15 @@ namespace OrionReed
         {
           for (int y = 0; y < c.Value.GetLength(1); y++)
           {
-            texture.SetPixel(x, y, col * c.Value[x, y]);
+            texture.SetPixel(x, y, col * c.Value[x, y] * UnityEngine.Random.value);
           }
         }
         texture.Apply();
         chunkMatrices[index] = Matrix4x4.TRS(Coordinate.WorldPosition(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
         chunkProperties[index] = new MaterialPropertyBlock();
-        chunkProperties[index].SetTexture(texID, texture);
-        chunkProperties[index].SetColor("_MinCol", graph.debugMapColorMin);
-        chunkProperties[index].SetColor("_MaxCol", graph.debugMapColorMax);
-        chunkProperties[index].SetTexture(texID, texture);
+        chunkProperties[index].SetTexture(textureID, texture);
+        chunkProperties[index].SetColor(colorID, graph.debugMapColor);
+        chunkProperties[index].SetTexture(textureID, texture);
         index++;
       }
     }

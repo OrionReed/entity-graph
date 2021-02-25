@@ -23,6 +23,7 @@ MonoBehaviour:
   - id: 6
   - id: 7
   - id: 8
+  - id: 9
   edges:
   - GUID: 8eb4b016-bcfb-465c-a7a4-d2784f37e4a6
     owner: {fileID: 11400000}
@@ -96,14 +97,59 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
+  - GUID: f3e334f1-4c00-4df1-97a8-08d8b95a16eb
+    owner: {fileID: 11400000}
+    inputNodeGUID: c1320fba-7bc7-4cc1-babc-15167979f698
+    outputNodeGUID: 60292fe9-8ce9-405a-a703-61a86cae5749
+    inputFieldName: input
+    outputFieldName: map
+    inputPortIdentifier: 
+    outputPortIdentifier: 
   groups: []
   stackNodes: []
-  pinnedElements: []
-  exposedParameters: []
+  pinnedElements:
+  - position:
+      serializedVersion: 2
+      x: 21
+      y: 74
+      width: 426
+      height: 203
+    opened: 0
+    editorType:
+      serializedType: GraphProcessor.ExposedParameterView, com.alelievr.NodeGraphProcessor.Editor,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - position:
+      serializedVersion: 2
+      x: 1466
+      y: 37
+      width: 150
+      height: 200
+    opened: 1
+    editorType:
+      serializedType: GraphProcessor.VisualizationView, Assembly-CSharp-Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - position:
+      serializedVersion: 2
+      x: 1340
+      y: 32
+      width: 187
+      height: 210
+    opened: 1
+    editorType:
+      serializedType: OrionReed.VisualizationView, Assembly-CSharp-Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  exposedParameters:
+  - id: 10
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 339, y: 277, z: 0}
-  scale: {x: 0.8695652, y: 0.8695652, z: 1}
+  position: {x: 330, y: -1.9999924, z: 0}
+  scale: {x: 0.65751624, y: 0.65751624, z: 1}
+  debugDrawBounds: 1
+  debugDrawChunks: 0
+  debugDrawEntities: 1
+  debugDrawMaps: 1
+  debugMapColor: {r: 0.29178533, g: 0.7830189, b: 0.29325026, a: 1}
+  debugGizmoBrightness: 1
   references:
     version: 1
     00000000:
@@ -248,3 +294,38 @@ MonoBehaviour:
         debug: 0
         nodeLock: 0
         frequency: 5
+    00000009:
+      type: {class: VizMap, ns: OrionReed, asm: Assembly-CSharp}
+      data:
+        GUID: c1320fba-7bc7-4cc1-babc-15167979f698
+        computeOrder: 9
+        position:
+          serializedVersion: 2
+          x: 787
+          y: 1016
+          width: 93
+          height: 77
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+    0000000A:
+      type: {class: ColorParameter, ns: GraphProcessor, asm: com.alelievr.NodeGraphProcessor.Runtime}
+      data:
+        guid: 1bd4726e-8243-4233-859f-3f258cbbc0f0
+        name: New Color
+        type: 
+        serializedValue:
+          serializedType: 
+          serializedName: 
+          serializedValue: 
+        input: 1
+        settings:
+          id: 11
+        val: {r: 0, g: 0, b: 0, a: 0}
+    0000000B:
+      type: {class: ColorParameter/ColorSettings, ns: GraphProcessor, asm: com.alelievr.NodeGraphProcessor.Runtime}
+      data:
+        isHidden: 1
+        expanded: 1
+        guid: 1bd4726e-8243-4233-859f-3f258cbbc0f0
+        mode: 0

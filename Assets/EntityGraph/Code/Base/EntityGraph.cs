@@ -17,8 +17,7 @@ namespace OrionReed
     public bool debugDrawChunks = true;
     public bool debugDrawEntities = true;
     public bool debugDrawMaps = true;
-    public Color debugMapColorMin = Color.black;
-    public Color debugMapColorMax = Color.blue;
+    public Color debugMapColor = Color.blue;
     public float debugGizmoBrightness = 0.5f;
     #endregion
 
