@@ -9,10 +9,6 @@ namespace OrionReed
   [System.Serializable]
   public class OutputMasterNode : BaseEntityGraphNode
   {
-    //[VisibleIf("someVar", 1)]
-    public int seed;
-    //public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
-
     [Input, RequiredInput]
     public List<EntityCollection> inputs;
 
@@ -24,8 +20,9 @@ namespace OrionReed
 
     protected override void Process()
     {
-      graph.EntityCache = EntityCollection.MergeIntoFirst(values);
-      Debug.Log($"Entities: {graph.EntityCache.EntityCount}");
+      EntityCollection result = EntityCollection.MergeIntoFirst(values);
+      //graph.EntityCache = result;
+      Debug.Log($"Result: {result.EntityCount} entities");
     }
 
     [CustomPortBehavior(nameof(inputs))]

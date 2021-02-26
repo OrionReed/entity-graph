@@ -12,9 +12,11 @@ namespace OrionReed
     [SerializeField] private EntityGraph graph;
     [SerializeField] public Vector3 bounds = new Vector3(20, 5, 20);
 
-    private Color chunkColor = new Color(0.5f, 0.5f, 0.25f, 1);
+    private Color chunkColorMasked = new Color(0.6f, 0.6f, 0.35f, 1);
+    private Color chunkColorBoundless = Color.cyan;
 
     private EntityVolumeVisualiser vis;
+    private EntityCollection processedCollection = new EntityCollection();
 
     public EntityGraph Graph => graph;
 
@@ -40,11 +42,18 @@ namespace OrionReed
 
     public void UpdateVisualiser()
     {
-      vis = new EntityVolumeVisualiser(graph, GetBounds());
+      Debug.Log("updating vis...");
+      vis = new EntityVolumeVisualiser(graph, GetBounds(), processedCollection);
     }
 
     private void OnDrawGizmos()
     {
+      if (EntityGraph.debugDrawBounds && EntityGraph.debugDrawChunks)
+      {
+        DrawBounds();
+        DrawClippedChunks();
+        return;
+      }
       if (EntityGraph.debugDrawBounds)
         DrawBounds();
       if (EntityGraph.debugDrawChunks)
@@ -66,9 +75,9 @@ namespace OrionReed
       float rowLength = Coordinate.scale * (columnCount - 1);
       float columnLength = Coordinate.scale * (rowCount - 1);
 
-      Handles.color = chunkColor * EntityGraph.debugGizmoBrightness;
+      Handles.color = chunkColorBoundless * EntityGraph.debugGizmoBrightness;
 
-      Vector3 origin = Coordinate.WorldPosition(start);
+      Vector3 origin = Coordinate.WorldPositionZeroed(start);
       origin.y = transform.position.y + (bounds.y / 2f);
 
       for (int row = 0; row < rowCount; row++)
@@ -81,6 +90,30 @@ namespace OrionReed
       {
         Vector3 linePos = origin + new Vector3(column * Coordinate.scale, 0, 0);
         Handles.DrawAAPolyLine(linePos, linePos + (Vector3.forward * columnLength));
+      }
+    }
+    private void DrawClippedChunks()
+    {
+      Coordinate start = Coordinate.FromWorldSpace(transform.position - (bounds / 2));
+      Coordinate end = Coordinate.FromWorldSpace(transform.position + (bounds / 2));
+      int rowCount = Mathf.Abs(start.Y - end.Y);
+      int columnCount = Mathf.Abs(start.X - end.X);
+
+      Handles.color = chunkColorMasked * EntityGraph.debugGizmoBrightness;
+
+      Vector3 origin = Coordinate.WorldPositionZeroed(start);
+      origin.y = transform.position.y + (bounds.y / 2f);
+
+      for (int row = 1; row < rowCount + 1; row++)
+      {
+        Vector3 lineStart = new Vector3(transform.position.x - (bounds.x / 2), origin.y, origin.z + (row * Coordinate.scale));
+        Handles.DrawAAPolyLine(lineStart, lineStart + (Vector3.right * bounds.x));
+      }
+
+      for (int column = 1; column < columnCount + 1; column++)
+      {
+        Vector3 lineStart = new Vector3(origin.x + (column * Coordinate.scale), origin.y, transform.position.z - (bounds.z / 2));
+        Handles.DrawAAPolyLine(lineStart, lineStart + (Vector3.forward * bounds.z));
       }
     }
   }

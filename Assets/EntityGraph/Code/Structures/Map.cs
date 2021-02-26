@@ -27,16 +27,12 @@ namespace OrionReed
       return values[coord] = new float[cellCount + 1, cellCount + 1];
     }
 
-    public void SetFromLocalPos(Coordinate coordinate, Vector3 localPos, float value)
-    {
-      values[coordinate][Mathf.FloorToInt(localPos.x / cellSize), Mathf.FloorToInt(localPos.z / cellSize)] = value;
-    }
 
-    public float Sample(Vector3 pos)
+    public float Sample(Vector2 pos)
     {
-      if (values.TryGetValue(Coordinate.FromWorldSpace(pos, out Vector3 insideChunk), out float[,] value))
+      if (values.TryGetValue(Coordinate.FromWorldSpace(pos, out Vector2 insideChunk), out float[,] value))
       {
-        return value[(int)(insideChunk.x / cellSize), (int)(insideChunk.z / cellSize)];
+        return value[(int)(insideChunk.x / cellSize), (int)(insideChunk.y / cellSize)];
       }
       else
       {
@@ -52,16 +48,16 @@ namespace OrionReed
       }
     }
 
-    public void ImprintSquare(Vector3 bottomLeft, float size, float value)
+    public void ImprintSquare(Vector2 bottomLeft, float size, float value)
     {
-      Coordinate startCoord = Coordinate.FromWorldSpace(bottomLeft, out Vector3 localPosStart);
+      Coordinate startCoord = Coordinate.FromWorldSpace(bottomLeft, out Vector2 localPosStart);
       Coordinate currentCoord = startCoord;
 
       int startX = LocalIndex(localPosStart.x);
-      int startZ = LocalIndex(localPosStart.z);
+      int startZ = LocalIndex(localPosStart.y);
       int endXAtStart = LocalIndex(localPosStart.x + size);
       int endX = endXAtStart;
-      int endZ = LocalIndex(localPosStart.z + size);
+      int endZ = LocalIndex(localPosStart.y + size);
       int coordinateRows = endZ / cellCount;
       for (int row = 0; row <= coordinateRows; row++)
       {

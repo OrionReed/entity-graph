@@ -14,20 +14,17 @@ namespace OrionReed
     {
       return ((float)random.NextDouble() * (max - min)) + min;
     }
-    public static Vector3 NextVector3(this System.Random random, Vector3 min, Vector3 max)
+
+    public static Vector2 NextVector2(this System.Random random, Vector2 min, Vector2 max)
     {
-      return new Vector3(random.NextFloat(min.x, max.x), random.NextFloat(min.y, max.y), random.NextFloat(min.z, max.z));
-    }
-    public static Vector3 NextZeroedVector3(this System.Random random, Vector3 min, Vector3 max)
-    {
-      return new Vector3(random.NextFloat(min.x, max.x), 0, random.NextFloat(min.z, max.z));
+      return new Vector2(random.NextFloat(min.x, max.x), random.NextFloat(min.y, max.y));
     }
 
-    public static Vector3 GetPointInCircle(this System.Random rng, float radius)
+    public static Vector2 GetPointInCircle(this System.Random rng, float radius)
     {
       var r = Math.Sqrt((double)rng.Next() / int.MaxValue) * radius;
       var theta = (double)rng.Next() / int.MaxValue * 2 * Math.PI;
-      return new Vector3((int)(r * Math.Cos(theta)), 0, (int)(r * Math.Sin(theta)));
+      return new Vector2((int)(r * Math.Cos(theta)), (int)(r * Math.Sin(theta)));
     }
   }
 }

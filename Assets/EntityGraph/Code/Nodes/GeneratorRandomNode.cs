@@ -24,11 +24,11 @@ namespace OrionReed
       foreach (Coordinate chunk in graph.GetCurrentRegion().EnumerateCoordinates())
       {
         System.Random rng = RNG(chunk);
-        Vector3 worldPos = Coordinate.WorldPosition(chunk);
+        Vector2 worldPos = Coordinate.WorldPosition(chunk);
         int numberOfPoints = (int)(Coordinate.scale / frequency);
         for (int i = 0; i < numberOfPoints; i++)
         {
-          Vector3 randomPos = rng.NextZeroedVector3(worldPos, worldPos + (Vector3.one * Coordinate.scale));
+          Vector2 randomPos = rng.NextVector2(worldPos, worldPos + (Vector2.one * Coordinate.scale));
           output.AddEntity(new Entity(randomPos, entitySettings.GetWithRandom(rng)));
         }
       }

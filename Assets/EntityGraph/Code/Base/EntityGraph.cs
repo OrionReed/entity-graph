@@ -8,10 +8,10 @@ namespace OrionReed
   [Serializable]
   public class EntityGraph : BaseGraph
   {
+    public int seed = 1;
     [NonSerialized] private CoordinateRNG rnd;
-    [NonSerialized] private OutputMasterNode _outputMasterNode;
-    [NonSerialized] private Map _map;
-    [NonSerialized] private Region _currentRegion;
+    [NonSerialized] private Map map;
+    [NonSerialized] private Region currentRegion;
 
     public static bool debugDrawBounds = true;
     public static bool debugDrawChunks = true;
@@ -22,21 +22,17 @@ namespace OrionReed
 
     public static List<EntityGraphVolume> VolumesInScene = new List<EntityGraphVolume>();
 
-    public void SetCurrentRegion(Region region) => _currentRegion = region;
-    public Region GetCurrentRegion() => _currentRegion;
+    public void SetCurrentRegion(Region region) => currentRegion = region;
+    public Region GetCurrentRegion() => currentRegion;
 
-    public EntityCollection EntityCache { get; set; }
-    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
+    public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(seed);
     public Map Map
     {
-      get { return _map; }
-      set { _map = value; }
+      get { return map; }
+      set { map = value; }
     }
 
-    public OutputMasterNode OutputMasterNode => _outputMasterNode ??= nodes.Find(n => n is OutputMasterNode) as OutputMasterNode;
-
     public event Action onFinishedProcessing;
-    public event Action onClear;
 
     public EntityGraph()
     {
@@ -45,7 +41,7 @@ namespace OrionReed
 
     private void Initialize()
     {
-      if (OutputMasterNode == null)
+      if (nodes.Find(n => n is OutputMasterNode) == null)
       {
         AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100));
       }
@@ -70,11 +66,8 @@ namespace OrionReed
 
     public void Clear()
     {
-      _map = null;
-      //_completeRegion = null;
+      map = null;
       rnd = null;
-      EntityCache = null;
-      onClear?.Invoke();
     }
   }
 }

@@ -31,9 +31,10 @@ namespace OrionReed
           output.AddEntity(e);
         }
       }
-      static Vector3 MapToChunkSpace(Vector2 vector2, Coordinate coordinate)
+
+      static Vector2 MapToChunkSpace(Vector2 vector2, Coordinate coordinate)
       {
-        return new Vector3(vector2.x + Coordinate.WorldPosition(coordinate).x, 0, vector2.y + Coordinate.WorldPosition(coordinate).z);
+        return new Vector2(vector2.x + Coordinate.WorldPosition(coordinate).x, vector2.y + Coordinate.WorldPosition(coordinate).y);
       }
     }
   }

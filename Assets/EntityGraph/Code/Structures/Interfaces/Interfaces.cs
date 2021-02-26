@@ -5,7 +5,7 @@ namespace OrionReed
 {
   public interface IEntity
   {
-    Vector3 Position { get; }
+    Vector2 Position { get; }
     string ID { get; }
     IEntitySettingsData Settings { get; }
   }

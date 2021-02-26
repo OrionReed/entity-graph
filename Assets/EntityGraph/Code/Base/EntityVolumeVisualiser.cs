@@ -28,6 +28,8 @@ namespace OrionReed
 
     private Bounds drawBounds;
 
+    private EntityCollection entitiesToDraw;
+
     static EntityVolumeVisualiser()
     {
       entityMesh = EGVisualize.CreatePrimitiveMesh(PrimitiveType.Sphere);
@@ -36,13 +38,15 @@ namespace OrionReed
       chunkMat = (Material)Resources.Load("CHUNK_MATERIAL", typeof(Material));
     }
 
-    public EntityVolumeVisualiser(EntityGraph g, Bounds renderBounds)
+    public EntityVolumeVisualiser(EntityGraph g, Bounds renderBounds, EntityCollection entities)
     {
+      Debug.Log("creating viz...");
+      entitiesToDraw = entities;
       drawBounds = renderBounds;
       graph = g;
       graph.onFinishedProcessing += SetupEntities;
       graph.onFinishedProcessing += TrySetupMaps;
-      graph.onClear += ReleaseBuffers;
+      //graph.onClear += ReleaseBuffers;
       AssemblyReloadEvents.beforeAssemblyReload += ReleaseBuffers;
     }
 
@@ -55,7 +59,7 @@ namespace OrionReed
 
     void DrawEntities()
     {
-      if (graph?.EntityCache == null || graph.EntityCache.EntityCount == 0 || entityValues == null)
+      if (entitiesToDraw == null || entitiesToDraw.EntityCount == 0 || entityValues == null)
         return;
 
       Graphics.DrawMeshInstancedIndirect(entityMesh, 0, entityMat, drawBounds, entityArgsBuffer);
@@ -92,7 +96,7 @@ namespace OrionReed
           }
         }
         texture.Apply();
-        chunkMatrices[index] = Matrix4x4.TRS(Coordinate.WorldPosition(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
+        chunkMatrices[index] = Matrix4x4.TRS(Coordinate.WorldPositionZeroed(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
         chunkProperties[index] = new MaterialPropertyBlock();
         chunkProperties[index].SetTexture(textureID, texture);
         chunkProperties[index].SetColor(colorID, EntityGraph.debugMapColor);
@@ -126,12 +130,12 @@ namespace OrionReed
 
     private EntityValue[] GetEntityValues()
     {
-      List<EntityValue> p = new List<EntityValue>(graph.EntityCache.EntityCount);
-      foreach (IEntity entity in graph.EntityCache.AllEntities)
+      List<EntityValue> p = new List<EntityValue>(entitiesToDraw.EntityCount);
+      foreach (IEntity entity in entitiesToDraw.AllEntities)
       {
         p.Add(new EntityValue
         {
-          matrix = Matrix4x4.TRS(entity.Position - drawBounds.center, Quaternion.identity, Vector3.one * entity.Settings.Size),
+          matrix = Matrix4x4.TRS(new Vector3(entity.Position.x, 0, entity.Position.y) - drawBounds.center, Quaternion.identity, Vector3.one * entity.Settings.Size),
           color = entity.Settings.Color
         });
       }

@@ -29,7 +29,7 @@ namespace OrionReed
     protected override void Process()
     {
       map = new Map(resolution);
-      Vector3 centeredSquareOffset = new Vector3(squareSize / 2, 0, squareSize / 2);
+      Vector2 centeredSquareOffset = new Vector2(squareSize / 2, squareSize / 2);
 
       foreach (IEntity entity in input.AllEntities)
       {

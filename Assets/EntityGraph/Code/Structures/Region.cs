@@ -7,15 +7,22 @@ namespace OrionReed
   [Serializable]
   public class Region
   {
-    private static readonly Dictionary<Coordinate, Vector3> coordinateLocationCache = new Dictionary<Coordinate, Vector3>();
+    private static readonly Dictionary<Coordinate, Vector2> coordinateLocationCache = new Dictionary<Coordinate, Vector2>();
     private readonly Dictionary<Coordinate, bool> coordinatesToProcess = new Dictionary<Coordinate, bool>();
 
     public Region(Bounds bounds)
     {
       foreach (Coordinate coord in Coordinate.InsideBounds(bounds))
       {
-        if (!coordinatesToProcess.TryGetValue(coord, out _))
-          coordinatesToProcess.Add(coord, false);
+        AddCoordIfNotProcessed(coord);
+      }
+    }
+
+    public Region(EntityGraphVolume volume)
+    {
+      foreach (Coordinate coord in Coordinate.InsideBounds(volume.GetBounds()))
+      {
+        AddCoordIfNotProcessed(coord);
       }
     }
 
@@ -27,12 +34,17 @@ namespace OrionReed
       {
         foreach (Coordinate coord in Coordinate.InsideBounds(b))
         {
-          if (!coordinatesToProcess.TryGetValue(coord, out _))
-            coordinatesToProcess.Add(coord, false);
+          AddCoordIfNotProcessed(coord);
         }
         min = Vector3.Min(min, b.min);
         max = Vector3.Max(max, b.max);
       }
+    }
+
+    private void AddCoordIfNotProcessed(Coordinate coord)
+    {
+      if (!coordinatesToProcess.TryGetValue(coord, out _))
+        coordinatesToProcess.Add(coord, false);
     }
 
     public bool IsCoordinateProcessed(Coordinate coordinate)
@@ -60,9 +72,9 @@ namespace OrionReed
       }
     }
 
-    public static Vector3 GetWorldSpace(Coordinate coordinate)
+    public static Vector2 GetWorldSpace(Coordinate coordinate)
     {
-      if (coordinateLocationCache.TryGetValue(coordinate, out Vector3 result))
+      if (coordinateLocationCache.TryGetValue(coordinate, out Vector2 result))
       {
         return result;
       }
@@ -80,7 +92,7 @@ namespace OrionReed
       }
     }
 
-    public IEnumerable<Vector3> EnumerateWorld()
+    public IEnumerable<Vector2> EnumerateWorld()
     {
       foreach (Coordinate coord in coordinatesToProcess.Keys)
       {

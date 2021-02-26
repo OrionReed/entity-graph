@@ -19,26 +19,22 @@ namespace OrionReed
 
     public void ProcessAllInstancesInScene()
     {
-      List<Bounds> volumesToProcess = new List<Bounds>();
       foreach (EntityGraphVolume volume in EntityGraph.VolumesInScene)
       {
         if (volume.Graph.name == graph.name)
         {
-          UnityEngine.Debug.Log($"Region to process: {volume.name}");
+          UnityEngine.Debug.Log($"Processing Volume: {volume.name}");
           volume.UpdateVisualiser();
-          volumesToProcess.Add(volume.GetBounds());
+          ProcessRegion(new Region(volume.GetBounds()));
         }
       }
-
-      Region completeRegion = new Region(volumesToProcess);
-      ProcessRegion(completeRegion);
     }
 
     private void ProcessRegion(Region region)
     {
       Stopwatch st = new Stopwatch();
       st.Start();
-      graph.Clear();
+      //graph.Clear();
       graph.SetCurrentRegion(region);
       UpdateComputeOrder();
       Run();
