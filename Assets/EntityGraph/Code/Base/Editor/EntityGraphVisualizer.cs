@@ -92,7 +92,7 @@ namespace OrionReed
         {
           for (int y = 0; y < c.Value.GetLength(1); y++)
           {
-            texture.SetPixel(x, y, col * c.Value[x, y] * UnityEngine.Random.value);
+            texture.SetPixel(x, y, col * c.Value[x, y]);
           }
         }
         texture.Apply();
