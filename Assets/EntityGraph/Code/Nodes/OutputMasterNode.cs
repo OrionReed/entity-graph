@@ -11,7 +11,7 @@ namespace OrionReed
   {
     //[VisibleIf("someVar", 1)]
     public int seed;
-    public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
+    //public Bounds bounds = new Bounds(new Vector3(), new Vector3(200, 10, 200));
 
     [Input, RequiredInput]
     public List<EntityCollection> inputs;
@@ -25,7 +25,7 @@ namespace OrionReed
     protected override void Process()
     {
       graph.EntityCache = EntityCollection.MergeIntoFirst(values);
-      Debug.LogWarning($"Entities: {graph.EntityCache.EntityCount}");
+      Debug.Log($"Entities: {graph.EntityCache.EntityCount}");
     }
 
     [CustomPortBehavior(nameof(inputs))]

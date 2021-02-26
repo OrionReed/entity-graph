@@ -16,13 +16,12 @@ namespace OrionReed
     [Output(name = "Out")]
     public EntityCollection output;
 
-    public override string name => "Generate Poisson New";
+    public override string name => "Generate Poisson (DEPRECATED)";
 
     protected override void Process()
     {
-      System.Random rng = RNG(new Coordinate(0, 0));
-      Region region = graph.CompleteRegion;
-      output = PoissonSamplerNew.GenerateSamples(rng, radius, region, entitySettings.Get);
+      //System.Random rng = RNG(new Coordinate(0, 0));
+      //output = PoissonSamplerNew.GenerateSamples(rng, radius, graph.GetCurrentRegion(), entitySettings.Get);
     }
   }
 }

@@ -22,7 +22,7 @@ namespace OrionReed
     {
       output = new EntityCollection();
 
-      foreach (Coordinate chunk in graph.CompleteRegion.EnumerateCoordinates())
+      foreach (Coordinate chunk in graph.GetCurrentRegion().EnumerateCoordinates())
       {
         System.Random rng = RNG(chunk);
         foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, Coordinate.scale, Coordinate.scale))

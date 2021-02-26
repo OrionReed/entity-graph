@@ -31,12 +31,12 @@ namespace OrionReed
       sliderBrightness.RegisterValueChangedCallback(x => BrightnessChanged(x.newValue));
       mapColorField.RegisterValueChangedCallback(x => MapColorChanged(x.newValue));
 
-      mapColorField.value = graph.debugMapColor;
-      sliderBrightness.value = graph.debugGizmoBrightness;
-      UpdateButtonState(buttonBounds, graph.debugDrawBounds);
-      UpdateButtonState(buttonChunks, graph.debugDrawChunks);
-      UpdateButtonState(buttonEntities, graph.debugDrawEntities);
-      UpdateButtonState(buttonMaps, graph.debugDrawMaps);
+      mapColorField.value = EntityGraph.debugMapColor;
+      sliderBrightness.value = EntityGraph.debugGizmoBrightness;
+      UpdateButtonState(buttonBounds, EntityGraph.debugDrawBounds);
+      UpdateButtonState(buttonChunks, EntityGraph.debugDrawChunks);
+      UpdateButtonState(buttonEntities, EntityGraph.debugDrawEntities);
+      UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
 
       content.Add(buttonEntities);
       content.Add(buttonBounds);
@@ -48,30 +48,30 @@ namespace OrionReed
 
     private void OnToggleBounds()
     {
-      graph.debugDrawBounds = !graph.debugDrawBounds;
-      UpdateButtonState(buttonBounds, graph.debugDrawBounds);
+      EntityGraph.debugDrawBounds = !EntityGraph.debugDrawBounds;
+      UpdateButtonState(buttonBounds, EntityGraph.debugDrawBounds);
     }
 
     private void OnToggleChunks()
     {
-      graph.debugDrawChunks = !graph.debugDrawChunks;
-      UpdateButtonState(buttonChunks, graph.debugDrawChunks);
+      EntityGraph.debugDrawChunks = !EntityGraph.debugDrawChunks;
+      UpdateButtonState(buttonChunks, EntityGraph.debugDrawChunks);
     }
 
     private void OnToggleEntities()
     {
-      graph.debugDrawEntities = !graph.debugDrawEntities;
-      UpdateButtonState(buttonEntities, graph.debugDrawEntities);
+      EntityGraph.debugDrawEntities = !EntityGraph.debugDrawEntities;
+      UpdateButtonState(buttonEntities, EntityGraph.debugDrawEntities);
     }
 
     private void OnToggleMaps()
     {
-      graph.debugDrawMaps = !graph.debugDrawMaps;
-      UpdateButtonState(buttonMaps, graph.debugDrawMaps);
+      EntityGraph.debugDrawMaps = !EntityGraph.debugDrawMaps;
+      UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
     }
 
-    private void MapColorChanged(Color newColor) => graph.debugMapColor = newColor;
-    private void BrightnessChanged(float newValue) => graph.debugGizmoBrightness = newValue;
+    private void MapColorChanged(Color newColor) => EntityGraph.debugMapColor = newColor;
+    private void BrightnessChanged(float newValue) => EntityGraph.debugGizmoBrightness = newValue;
 
     private void UpdateButtonState(Button button, bool highlight)
     {

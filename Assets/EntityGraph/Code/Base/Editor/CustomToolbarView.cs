@@ -10,7 +10,7 @@ namespace OrionReed
 
     protected override void AddButtons()
     {
-      AddButton("Run", () => ProcessGraph());
+      AddButton("Run", () => ProcessAllInScene());
       AddButton("Clear", () => ClearGraph());
       AddButton("Center", graphView.ResetPositionAndZoom);
 
@@ -22,10 +22,11 @@ namespace OrionReed
 
       AddButton("Show In Project", () => EditorGUIUtility.PingObject(graphView.graph), false);
     }
-    private void ProcessGraph()
+    private void ProcessAllInScene()
     {
+      UnityEngine.Debug.Log("Processing all in scene...");
       EntityGraphProcessor processor = new EntityGraphProcessor(graphView.graph as EntityGraph);
-      processor.ProcessEntityGraph();
+      processor.ProcessAllInstancesInScene();
     }
     private void ClearGraph()
     {

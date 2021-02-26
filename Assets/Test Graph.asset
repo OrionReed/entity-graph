@@ -130,8 +130,8 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - position:
       serializedVersion: 2
-      x: 1340
-      y: 32
+      x: 1397
+      y: 33
       width: 187
       height: 210
     opened: 1
@@ -142,14 +142,8 @@ MonoBehaviour:
   - id: 10
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 330, y: -1.9999924, z: 0}
-  scale: {x: 0.65751624, y: 0.65751624, z: 1}
-  debugDrawBounds: 1
-  debugDrawChunks: 0
-  debugDrawEntities: 1
-  debugDrawMaps: 1
-  debugMapColor: {r: 0.29178533, g: 0.7830189, b: 0.29325026, a: 1}
-  debugGizmoBrightness: 1
+  position: {x: 249, y: -92, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 1
     00000000:
@@ -167,9 +161,6 @@ MonoBehaviour:
         debug: 1
         nodeLock: 0
         seed: 1
-        bounds:
-          m_Center: {x: 0, y: 0, z: 0}
-          m_Extent: {x: 30, y: 5, z: 30}
         inputs: []
     00000001:
       type: {class: SimpleEntitySampler, ns: OrionReed, asm: Assembly-CSharp}
@@ -178,8 +169,8 @@ MonoBehaviour:
         computeOrder: 1
         position:
           serializedVersion: 2
-          x: -190.95001
-          y: 1015.7004
+          x: -360.00003
+          y: 1092.9563
           width: 369
           height: 118
         expanded: 0
@@ -194,8 +185,8 @@ MonoBehaviour:
         computeOrder: 3
         position:
           serializedVersion: 2
-          x: 433.15005
-          y: 600.50006
+          x: 311.45428
+          y: 586.99994
           width: 196
           height: 164
         expanded: 0
@@ -211,8 +202,8 @@ MonoBehaviour:
         computeOrder: 4
         position:
           serializedVersion: 2
-          x: -110.700005
-          y: 245.80006
+          x: 61.99999
+          y: 430.99988
           width: 369
           height: 118
         expanded: 0
@@ -271,8 +262,8 @@ MonoBehaviour:
         computeOrder: 5
         position:
           serializedVersion: 2
-          x: 443.30005
-          y: 228.80005
+          x: 479.7291
+          y: 403.99997
           width: 169
           height: 101
         expanded: 0
@@ -286,8 +277,8 @@ MonoBehaviour:
         computeOrder: 2
         position:
           serializedVersion: 2
-          x: 231.05
-          y: 990.75006
+          x: 61.999985
+          y: 1067.9563
           width: 169
           height: 101
         expanded: 0
@@ -301,8 +292,8 @@ MonoBehaviour:
         computeOrder: 9
         position:
           serializedVersion: 2
-          x: 787
-          y: 1016
+          x: 582.49994
+          y: 629.4695
           width: 93
           height: 77
         expanded: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using GraphProcessor;
 using System;
+using System.Collections.Generic;
 
 namespace OrionReed
 {
@@ -10,18 +11,20 @@ namespace OrionReed
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private OutputMasterNode _outputMasterNode;
     [NonSerialized] private Map _map;
-    [NonSerialized] private Region _completeRegion;
+    [NonSerialized] private Region _currentRegion;
 
-    #region debug
-    public bool debugDrawBounds = true;
-    public bool debugDrawChunks = true;
-    public bool debugDrawEntities = true;
-    public bool debugDrawMaps = true;
-    public Color debugMapColor = Color.blue;
-    public float debugGizmoBrightness = 0.5f;
-    #endregion
+    public static bool debugDrawBounds = true;
+    public static bool debugDrawChunks = true;
+    public static bool debugDrawEntities = true;
+    public static bool debugDrawMaps = true;
+    public static Color debugMapColor = Color.blue;
+    public static float debugGizmoBrightness = 0.5f;
 
-    public Region CompleteRegion => _completeRegion ??= new Region(OutputMasterNode.bounds);
+    public static List<EntityGraphVolume> VolumesInScene = new List<EntityGraphVolume>();
+
+    public void SetCurrentRegion(Region region) => _currentRegion = region;
+    public Region GetCurrentRegion() => _currentRegion;
+
     public EntityCollection EntityCache { get; set; }
     public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(OutputMasterNode.seed);
     public Map Map
@@ -68,7 +71,7 @@ namespace OrionReed
     public void Clear()
     {
       _map = null;
-      _completeRegion = null;
+      //_completeRegion = null;
       rnd = null;
       EntityCache = null;
       onClear?.Invoke();
