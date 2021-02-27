@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7035fbdc1b0e04b6db208e92936ce657, type: 3}
-  m_Name: EntityGraph
+  m_Name: EntityGraph 1
   m_EditorClassIdentifier: 
   serializedNodes: []
   nodes:
@@ -24,6 +24,7 @@ MonoBehaviour:
   stickyNotes: []
   position: {x: 0, y: 0, z: 0}
   scale: {x: 1, y: 1, z: 1}
+  seed: 1
   references:
     version: 1
     00000000:
@@ -40,5 +41,4 @@ MonoBehaviour:
         expanded: 0
         debug: 0
         nodeLock: 0
-        seed: 0
         inputs: []

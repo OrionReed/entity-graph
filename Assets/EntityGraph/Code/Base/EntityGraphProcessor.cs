@@ -25,11 +25,8 @@ namespace OrionReed
         if (projector.Graph.name == graph.name)
         {
           graph.ResetRNG();
-          UnityEngine.Debug.Log($"Processing Volume: {projector.name}");
           graph.SetCurrentRegion(new Region(projector.GetBounds()));
           graph.SetCurrentProjector(projector);
-          //Stopwatch st = new Stopwatch();
-          //st.Start();
           Run();
         }
       }

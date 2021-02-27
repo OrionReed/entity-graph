@@ -20,7 +20,6 @@ namespace OrionReed
 
       if (asset != null)
       {
-        //asset.Validate();
         EditorWindow.GetWindow<DefaultGraphWindow>().InitializeGraph(asset as EntityGraph);
         return true;
       }

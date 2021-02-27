@@ -9,14 +9,12 @@ namespace OrionReed
   public class DefaultGraphWindow : BaseGraphWindow
   {
     private EntityGraph tmpGraph;
-    //EntityVolumeVisualiser viz;
 
     [MenuItem("Window/Entity Graph")]
     public static BaseGraphWindow OpenWithTmpGraph()
     {
       var graphWindow = CreateWindow<DefaultGraphWindow>();
 
-      // When the graph is opened from the window, we don't save the graph to disk
       graphWindow.tmpGraph = ScriptableObject.CreateInstance<EntityGraph>();
       graphWindow.tmpGraph.hideFlags = HideFlags.HideAndDontSave;
       graphWindow.InitializeGraph(graphWindow.tmpGraph);
@@ -35,16 +33,10 @@ namespace OrionReed
       return graphWindow;
     }
 
-    /* private void UpdateViz()
-    {
-      //viz.Update();
-    } */
-
     protected override void OnDisable()
     {
       if (graph != null && graphView != null)
         graphView.SaveGraphToDisk();
-      //  viz = null;
     }
 
     protected override void OnDestroy()
@@ -63,8 +55,6 @@ namespace OrionReed
 
     protected override void InitializeWindow(BaseGraph graph)
     {
-      //if (viz == null)
-      //  viz = new EntityVolumeVisualiser(graph as EntityGraph);
       if (graphView == null)
       {
         titleContent = new GUIContent(graph.name);

@@ -18,9 +18,9 @@ namespace OrionReed
       }
     }
 
-    public Region(EntityGraphProjector volume)
+    public Region(EntityGraphProjector projector)
     {
-      foreach (Coordinate coord in Coordinate.InsideBounds(volume.GetBounds()))
+      foreach (Coordinate coord in Coordinate.InsideBounds(projector.GetBounds()))
       {
         AddCoordIfNotProcessed(coord);
       }

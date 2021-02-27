@@ -10,15 +10,15 @@ namespace OrionReed
 
     protected override void AddButtons()
     {
-      AddButton("Run", () => ProcessAllInScene());
-      AddButton("Reset RNG", () => ClearGraph());
-      AddButton("Center", graphView.ResetPositionAndZoom);
+      AddButton("Preview", () => ProcessAllInScene());
+      AddButton("Apply", () => Apply());
+      bool visualize = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
+      AddToggle("Visualization", visualize, (_) => graphView.ToggleView<VisualizationView>());
 
       bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
-      AddToggle("Show Parameters", exposedParamsVisible, (_) => graphView.ToggleView<ExposedParameterView>());
+      AddToggle("Show Parameters", exposedParamsVisible, (_) => graphView.ToggleView<ExposedParameterView>(), false);
+      AddButton("Center", graphView.ResetPositionAndZoom, false);
 
-      bool visualize = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
-      AddToggle("Visualization", visualize, (_) => graphView.ToggleView<VisualizationView>(), false);
 
       AddButton("Show In Project", () => EditorGUIUtility.PingObject(graphView.graph), false);
     }
@@ -27,10 +27,9 @@ namespace OrionReed
       EntityGraphProcessor processor = new EntityGraphProcessor(graphView.graph as EntityGraph);
       processor.ProcessAllInstancesInScene();
     }
-    private void ClearGraph()
+    private void Apply()
     {
-      EntityGraph graph = graphView.graph as EntityGraph;
-      graph.ResetRNG();
+      //EntityGraph graph = graphView.graph as EntityGraph;
     }
   }
 }
