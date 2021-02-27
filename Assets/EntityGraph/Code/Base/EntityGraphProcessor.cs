@@ -19,27 +19,20 @@ namespace OrionReed
 
     public void ProcessAllInstancesInScene()
     {
-      foreach (EntityGraphVolume volume in EntityGraph.VolumesInScene)
+      UpdateComputeOrder();
+      foreach (EntityGraphProjector projector in EntityGraph.ProjectorsInScene)
       {
-        if (volume.Graph.name == graph.name)
+        if (projector.Graph.name == graph.name)
         {
-          UnityEngine.Debug.Log($"Processing Volume: {volume.name}");
-          volume.UpdateVisualiser();
-          ProcessRegion(new Region(volume.GetBounds()));
+          graph.ResetRNG();
+          UnityEngine.Debug.Log($"Processing Volume: {projector.name}");
+          graph.SetCurrentRegion(new Region(projector.GetBounds()));
+          graph.SetCurrentProjector(projector);
+          //Stopwatch st = new Stopwatch();
+          //st.Start();
+          Run();
         }
       }
-    }
-
-    private void ProcessRegion(Region region)
-    {
-      Stopwatch st = new Stopwatch();
-      st.Start();
-      //graph.Clear();
-      graph.SetCurrentRegion(region);
-      UpdateComputeOrder();
-      Run();
-      graph.OnFinishedProcessing();
-      UnityEngine.Debug.LogWarning(st.Elapsed);
     }
 
     public override void UpdateComputeOrder()

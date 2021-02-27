@@ -11,7 +11,7 @@ namespace OrionReed
     protected override void AddButtons()
     {
       AddButton("Run", () => ProcessAllInScene());
-      AddButton("Clear", () => ClearGraph());
+      AddButton("Reset RNG", () => ClearGraph());
       AddButton("Center", graphView.ResetPositionAndZoom);
 
       bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
@@ -24,14 +24,13 @@ namespace OrionReed
     }
     private void ProcessAllInScene()
     {
-      UnityEngine.Debug.Log("Processing all in scene...");
       EntityGraphProcessor processor = new EntityGraphProcessor(graphView.graph as EntityGraph);
       processor.ProcessAllInstancesInScene();
     }
     private void ClearGraph()
     {
       EntityGraph graph = graphView.graph as EntityGraph;
-      graph.Clear();
+      graph.ResetRNG();
     }
   }
 }

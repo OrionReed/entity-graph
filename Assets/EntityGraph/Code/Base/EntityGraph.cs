@@ -12,6 +12,7 @@ namespace OrionReed
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private Map map;
     [NonSerialized] private Region currentRegion;
+    [NonSerialized] private EntityGraphProjector currentVolume;
 
     public static bool debugDrawBounds = true;
     public static bool debugDrawChunks = true;
@@ -20,10 +21,12 @@ namespace OrionReed
     public static Color debugMapColor = Color.blue;
     public static float debugGizmoBrightness = 0.5f;
 
-    public static List<EntityGraphVolume> VolumesInScene = new List<EntityGraphVolume>();
+    public static List<EntityGraphProjector> ProjectorsInScene = new List<EntityGraphProjector>();
 
     public void SetCurrentRegion(Region region) => currentRegion = region;
     public Region GetCurrentRegion() => currentRegion;
+    public void SetCurrentProjector(EntityGraphProjector volume) => currentVolume = volume;
+    public EntityGraphProjector GetCurrentVolume() => currentVolume;
 
     public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(seed);
     public Map Map
@@ -31,8 +34,6 @@ namespace OrionReed
       get { return map; }
       set { map = value; }
     }
-
-    public event Action onFinishedProcessing;
 
     public EntityGraph()
     {
@@ -46,8 +47,6 @@ namespace OrionReed
         AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100));
       }
     }
-
-    public void OnFinishedProcessing() => onFinishedProcessing?.Invoke();
 
     protected override void MigrateDeprecatedNodes()
     {
@@ -64,9 +63,9 @@ namespace OrionReed
       }
     }
 
-    public void Clear()
+    public void ResetRNG()
     {
-      map = null;
+      //map = null;
       rnd = null;
     }
   }

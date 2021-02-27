@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace OrionReed
 {
-  [CustomEditor(typeof(EntityGraphVolume))]
+  [CustomEditor(typeof(EntityGraphProjector))]
   [CanEditMultipleObjects]
   public class EntityGraphVolumeEditor : Editor
   {
