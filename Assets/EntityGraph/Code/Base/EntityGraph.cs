@@ -12,7 +12,7 @@ namespace OrionReed
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private Map map;
     [NonSerialized] private Region currentRegion;
-    [NonSerialized] private EntityGraphProjector currentVolume;
+    [NonSerialized] private EntityGraphProjector currentProjector;
 
     public static bool debugDrawBounds = true;
     public static bool debugDrawChunks = true;
@@ -25,8 +25,8 @@ namespace OrionReed
 
     public void SetCurrentRegion(Region region) => currentRegion = region;
     public Region GetCurrentRegion() => currentRegion;
-    public void SetCurrentProjector(EntityGraphProjector volume) => currentVolume = volume;
-    public EntityGraphProjector GetCurrentVolume() => currentVolume;
+    public void SetCurrentProjector(EntityGraphProjector projector) => currentProjector = projector;
+    public EntityGraphProjector GetCurrentProjector() => currentProjector;
 
     public CoordinateRNG ChunkRandoms => rnd ??= new CoordinateRNG(seed);
     public Map Map

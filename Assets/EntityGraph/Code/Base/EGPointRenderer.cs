@@ -1,8 +1,5 @@
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEngine;
-using System.Collections.Generic;
-using System;
 
 namespace OrionReed
 {
@@ -23,7 +20,6 @@ namespace OrionReed
 
     public EGPointRenderer(Bounds renderBounds, EntityCollection entities, float height, Vector3 position)
     {
-      Debug.Log($"new viz created {position}");
       entityMat = (Material)Resources.Load("ENTITY_POINT_MATERIAL", typeof(Material));
       drawBounds = renderBounds;
       InitializePoints(PointsFromEntityCollection(entities, height, position));
@@ -49,7 +45,6 @@ namespace OrionReed
       if (entities.EntityCount == 0)
         Debug.LogWarning("Trying to draw empty entity collection...");
 
-      Debug.LogWarning($"Creating point array at {pos}");
       ColoredPoint[] points = new ColoredPoint[entities.EntityCount];
       int index = 0;
       foreach (IEntity entity in entities.AllEntities)

@@ -77,8 +77,8 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - position:
       serializedVersion: 2
-      x: 27
-      y: 93
+      x: 37
+      y: 74
       width: 187
       height: 210
     opened: 1
@@ -102,11 +102,11 @@ MonoBehaviour:
         position:
           serializedVersion: 2
           x: 1173
-          y: 599
-          width: 276
-          height: 172
+          y: 533
+          width: 85
+          height: 77
         expanded: 0
-        debug: 1
+        debug: 0
         nodeLock: 0
         inputs: []
     00000001:

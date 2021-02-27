@@ -21,8 +21,8 @@ namespace OrionReed
     protected override void Process()
     {
       EntityCollection result = EntityCollection.MergeIntoFirst(values);
-      Debug.Log($"{graph.GetCurrentVolume().gameObject.name}: {result.EntityCount} entities.");
-      graph.GetCurrentVolume().ResetVisualiser(result);
+      Debug.Log($"{graph.GetCurrentProjector().gameObject.name}: {result.EntityCount} entities.");
+      graph.GetCurrentProjector().ResetVisualiser(result);
     }
 
     [CustomPortBehavior(nameof(inputs))]
