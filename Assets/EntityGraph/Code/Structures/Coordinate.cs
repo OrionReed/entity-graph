@@ -19,9 +19,13 @@ namespace OrionReed
     {
       return new Vector2(coordinate.X * scale, coordinate.Y * scale);
     }
-    public static Vector3 WorldPositionZeroed(Coordinate coordinate)
+    public static Vector3 FloorVector3(Coordinate coordinate)
     {
       return new Vector3(coordinate.X * scale, 0, coordinate.Y * scale);
+    }
+    public static Vector2 FloorVector2(Coordinate coordinate)
+    {
+      return new Vector2(coordinate.X * scale, coordinate.Y * scale);
     }
 
     public static Coordinate FromWorldSpace(Vector3 position) => FromWorldSpace(position.x, position.z);

@@ -20,7 +20,7 @@ namespace OrionReed
 
     public Region(EntityGraphProjector projector)
     {
-      foreach (Coordinate coord in Coordinate.InsideBounds(projector.GetBounds()))
+      foreach (Coordinate coord in Coordinate.InsideBounds(projector.Bounds))
       {
         AddCoordIfNotProcessed(coord);
       }

@@ -22,10 +22,10 @@ namespace OrionReed
       UpdateComputeOrder();
       foreach (EntityGraphProjector projector in EntityGraph.ProjectorsInScene)
       {
-        if (projector.Graph.name == graph.name)
+        if (projector.Graph?.name == graph.name)
         {
           graph.ResetRNG();
-          graph.SetCurrentRegion(new Region(projector.GetBounds()));
+          graph.SetCurrentRegion(new Region(projector.Bounds));
           graph.SetCurrentProjector(projector);
           Run();
         }

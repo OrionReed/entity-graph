@@ -18,9 +18,7 @@ namespace OrionReed
       graphWindow.tmpGraph = ScriptableObject.CreateInstance<EntityGraph>();
       graphWindow.tmpGraph.hideFlags = HideFlags.HideAndDontSave;
       graphWindow.InitializeGraph(graphWindow.tmpGraph);
-
       graphWindow.Show();
-
       return graphWindow;
     }
 
@@ -67,6 +65,34 @@ namespace OrionReed
         graphView.Add(mmv);
       }
       rootView.Add(graphView);
+      SceneView.duringSceneGui += (_) => DrawProjectors();
+    }
+
+    private void DrawProjectors()
+    {
+      foreach (EntityGraphProjector projector in EntityGraph.ProjectorsInScene)
+      {
+        if (projector.Graph == null) // we need to add a graph
+        {
+          EGProjectorUtil.DrawBoundsDotted(EGProjectorUtil.ColDefault, projector.Bounds);
+          return;
+        }
+        if (EntityGraph.debugDrawBounds && EntityGraph.debugDrawChunks) // we limit chunks to only show on face of bounds
+        {
+          EGProjectorUtil.DrawBoundsWire(EGProjectorUtil.ColDefault, projector.Bounds);
+          EGProjectorUtil.DrawClippedChunks(projector.Dirty ? EGProjectorUtil.ColDirty * 0.65f : EGProjectorUtil.ColDefault * 0.65f, projector.Bounds);
+          return;
+        }
+        if (EntityGraph.debugDrawBounds) // only showing bounds
+        {
+          EGProjectorUtil.DrawBoundsWire(EGProjectorUtil.ColDefault, projector.Bounds);
+        }
+        if (EntityGraph.debugDrawChunks) // only showing chunks
+        {
+          EGProjectorUtil.DrawChunks(projector.Dirty ? EGProjectorUtil.ColDirty : EGProjectorUtil.ColDefault, projector.Bounds);
+          EGProjectorUtil.DrawTop(EGProjectorUtil.ColDefault * 0.65f, projector.Bounds);
+        }
+      }
     }
   }
 }

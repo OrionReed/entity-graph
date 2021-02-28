@@ -69,7 +69,7 @@ namespace OrionReed
           }
         }
         texture.Apply();
-        chunkMatrices[index] = Matrix4x4.TRS(Coordinate.WorldPositionZeroed(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
+        chunkMatrices[index] = Matrix4x4.TRS(Coordinate.FloorVector3(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
         chunkProperties[index] = new MaterialPropertyBlock();
         chunkProperties[index].SetTexture(textureID, texture);
         chunkProperties[index].SetColor(colorID, EntityGraph.debugMapColor);
