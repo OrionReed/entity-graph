@@ -48,21 +48,6 @@ namespace OrionReed
       }
     }
 
-    void MigrateDeprecatedNodes()
-    {
-      for (int i = 0; i < nodes.Count; i++)
-      {
-        if (nodes[i] == null) continue;
-        if (Attribute.GetCustomAttribute(nodes[i].GetType(), typeof(Deprecated)) is Deprecated deprecated)
-        {
-          Debug.LogWarning($"{nodes[i].GetType().Name} is deprecated. Upgrading to {deprecated.newType.Name}.");
-
-          var json = JsonUtility.ToJson(nodes[i]);
-          nodes[i] = JsonUtility.FromJson(json, deprecated.newType) as BaseNode;
-        }
-      }
-    }
-
     public void ResetRNG()
     {
       //map = null;
