@@ -1,25 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GraphProcessor;
+﻿using GraphProcessor;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace OrionReed
 {
   public class DefaultGraphWindow : BaseGraphWindow
   {
-    private EntityGraph tmpGraph;
+    private VisualElement noAsset;
 
     [MenuItem("Window/Entity Graph")]
-    public static BaseGraphWindow OpenWithTmpGraph()
+    public static BaseGraphWindow OpenNewEditor()
     {
       var graphWindow = CreateWindow<DefaultGraphWindow>();
+      graphWindow.NoAssetView();
 
-      graphWindow.tmpGraph = ScriptableObject.CreateInstance<EntityGraph>();
-      graphWindow.tmpGraph.hideFlags = HideFlags.HideAndDontSave;
-      graphWindow.InitializeGraph(graphWindow.tmpGraph);
       graphWindow.Show();
       return graphWindow;
+    }
+
+    private void OnCreateAsset()
+    {
+      string filePath = EditorUtility.SaveFilePanelInProject("", "New EntityGraph", "asset", "Create new Entity Graph");
+      if (!string.IsNullOrEmpty(filePath))
+      {
+        EntityGraph newGraph = CreateInstance<EntityGraph>();
+        AssetDatabase.CreateAsset(newGraph, filePath);
+        InitializeGraph(AssetDatabase.LoadAssetAtPath<EntityGraph>(filePath));
+      }
+      if (noAsset != null)
+        rootView.Remove(noAsset);
     }
 
     public static BaseGraphWindow Open()
@@ -31,6 +41,13 @@ namespace OrionReed
       return graphWindow;
     }
 
+    protected override void OnEnable()
+    {
+      base.OnEnable();
+      if (!graph)
+        NoAssetView();
+    }
+
     protected override void OnDisable()
     {
       if (graph != null && graphView != null)
@@ -40,7 +57,6 @@ namespace OrionReed
     protected override void OnDestroy()
     {
       graphView?.Dispose();
-      DestroyImmediate(tmpGraph);
     }
 
     public override void OnGraphDeleted()
@@ -48,6 +64,7 @@ namespace OrionReed
       if (graph != null)
         rootView.Remove(graphView);
 
+      NoAssetView();
       graphView = null;
     }
 
@@ -55,12 +72,40 @@ namespace OrionReed
     {
       if (graphView == null)
       {
-        titleContent = new GUIContent(graph.name);
+        if (noAsset != null)
+          rootView.Remove(noAsset);
+
+        SetTitle(graph.name);
         graphView = new DefaultGraphView(this);
         graphView.Add(new CustomToolbarView(graphView));
       }
       rootView.Add(graphView);
       SceneView.duringSceneGui += (_) => DrawProjectors();
+    }
+
+    private void SetTitle(string name)
+    {
+      titleContent = new GUIContent(name);
+    }
+
+    private void NoAssetView()
+    {
+      SetTitle("Empty Entity Graph");
+      noAsset = new Label("\n\n\nTo begin using Entity Graph, create a new Entity Graph Asset.\n(or double-click an existing Entity Graph in the project view)") { name = "no-asset" };
+      noAsset.style.position = Position.Absolute;
+      noAsset.style.unityTextAlign = TextAnchor.MiddleCenter;
+      noAsset.style.left = new StyleLength(40f);
+      noAsset.style.right = new StyleLength(40f);
+      noAsset.style.top = new StyleLength(40f);
+      noAsset.style.bottom = new StyleLength(140f);
+      noAsset.style.fontSize = new StyleLength(12f);
+      noAsset.style.color = Color.white * 0.75f;
+
+      var createButton = new Button(OnCreateAsset) { text = "Create new Entity Graph" };
+      createButton.style.position = Position.Absolute;
+      createButton.style.alignSelf = Align.Center;
+      noAsset.Add(createButton);
+      rootView.Add(noAsset);
     }
 
     private void DrawProjectors()

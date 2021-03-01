@@ -12,7 +12,7 @@ namespace OrionReed
     {
       AddButton("Preview", () => ProcessAllInScene());
       AddButton("Apply", () => Apply());
-      bool visualize = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
+      bool visualize = graphView.GetPinnedElementStatus<VisualizationView>() != Status.Hidden;
       AddToggle("Visualization", visualize, (_) => graphView.ToggleView<VisualizationView>());
 
       bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
