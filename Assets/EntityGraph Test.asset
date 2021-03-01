@@ -15,14 +15,42 @@ MonoBehaviour:
   serializedNodes: []
   nodes:
   - id: 0
-  edges: []
+  - id: 1
+  - id: 2
+  edges:
+  - GUID: d5f28c4c-a0ca-41ea-b40e-2cdce8a1764a
+    owner: {fileID: 11400000}
+    inputNodeGUID: 5f54cc53-05f8-4bd4-9be4-596d63bdba09
+    outputNodeGUID: d5408f8c-dcf9-46ff-a09c-06eda05f8964
+    inputFieldName: entitySettings
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 0210197e-c953-4472-9a26-52e2b268add7
+    owner: {fileID: 11400000}
+    inputNodeGUID: c6a662cd-e7a0-4142-9c0d-8b4b566d7f67
+    outputNodeGUID: 5f54cc53-05f8-4bd4-9be4-596d63bdba09
+    inputFieldName: inputs
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
   groups: []
   stackNodes: []
-  pinnedElements: []
+  pinnedElements:
+  - position:
+      serializedVersion: 2
+      x: 43
+      y: 40
+      width: 150
+      height: 200
+    opened: 1
+    editorType:
+      serializedType: OrionReed.VisualizationView, com.orionreed.entity-graph.editor,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 0, y: 0, z: 0}
+  position: {x: 8, y: 30, z: 0}
   scale: {x: 1, y: 1, z: 1}
   seed: 1
   references:
@@ -31,14 +59,46 @@ MonoBehaviour:
       type: {class: OutputMasterNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
       data:
         GUID: c6a662cd-e7a0-4142-9c0d-8b4b566d7f67
-        computeOrder: -1
+        computeOrder: 2
         position:
           serializedVersion: 2
-          x: 100
-          y: 100
-          width: 100
-          height: 100
+          x: 966
+          y: 325
+          width: 85
+          height: 77
         expanded: 0
         debug: 0
         nodeLock: 0
         inputs: []
+    00000001:
+      type: {class: RandomEntitySampler, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: d5408f8c-dcf9-46ff-a09c-06eda05f8964
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: 104
+          y: 340
+          width: 369
+          height: 139
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+        min: 0.2
+        max: 1.5
+    00000002:
+      type: {class: GeneratorRandomNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 5f54cc53-05f8-4bd4-9be4-596d63bdba09
+        computeOrder: 1
+        position:
+          serializedVersion: 2
+          x: 719
+          y: 340
+          width: 169
+          height: 101
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        frequency: 0.5
