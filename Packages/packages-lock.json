@@ -1,10 +1,19 @@
 {
   "dependencies": {
     "com.alelievr.node-graph-processor": {
-      "version": "file:../com.alelievr.NodeGraphProcessor",
+      "version": "https://github.com/alelievr/NodeGraphProcessor.git#upm",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "09049f83201e928a6978808c70f76b04ce1e682f"
+    },
+    "com.orionreed.entity-graph": {
+      "version": "file:com.orionreed.entity-graph",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.alelievr.node-graph-processor": "1.0.1"
+      }
     },
     "com.unity.burst": {
       "version": "1.4.1",

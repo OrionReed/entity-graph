@@ -28,22 +28,8 @@ namespace OrionReed
       node = nodeTarget as BaseEntityGraphNode;
       DrawDefaultInspector();
 
-      node.onBeforeProcessed += () => DrawDefaultDebug();
-      node.onBeforeProcessed += () => VerifyProcessability();
       node.onPortsUpdated += (_) => DrawDefaultDebug();
       node.onProcessed += () => ShowEntityCount();
-    }
-
-    private void VerifyProcessability()
-    {
-      if (HasRequiredInputs() && HasRequiredOutputs())
-      {
-        UnHighlight();
-      }
-      else
-      {
-        Highlight();
-      }
     }
 
     private void DrawDefaultDebug()

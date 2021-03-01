@@ -1,0 +1,21 @@
+{
+  "name": "com.orionreed.entity-graph",
+  "version": "0.0.1",
+  "displayName": "Entity Graph",
+  "description": "A tool to help distribute objects in a scene. E.g. cover a terrain in forests and meadows, placing trees, grass, rocks, and other objects.",
+  "unity": "2020.2",
+  "dependencies": {
+    "com.alelievr.node-graph-processor": "1.0.1"
+  },
+  "keywords": [
+    "point",
+    "cloud",
+    "placement",
+    "entity"
+  ],
+  "author": {
+    "name": "Orion Reed",
+    "email": "orionreedt@gmail.com"
+  },
+  "type": "tool"
+}

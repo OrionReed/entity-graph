@@ -1,0 +1,20 @@
+{
+    "name": "com.orionreed.entity-graph.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a432eb0a70c5c4a37ab50d59671586f8",
+        "GUID:ca937d03ee5dd4d699091438dc0f3ae6",
+        "GUID:914ceb3ebe8be4c52965c455a0bb1798"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

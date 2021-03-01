@@ -48,7 +48,7 @@ namespace OrionReed
       }
     }
 
-    protected override void MigrateDeprecatedNodes()
+    void MigrateDeprecatedNodes()
     {
       for (int i = 0; i < nodes.Count; i++)
       {
