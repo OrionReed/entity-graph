@@ -20,6 +20,8 @@ namespace OrionReed
     {
       title = "Gizmo Settings";
       graph = graphView.graph as EntityGraph;
+      Rect pos = GetPosition();
+      SetPosition(new Rect(20, 40, pos.width, pos.height));
 
       ColorField mapColorField = new ColorField();
       Slider sliderBrightness = new Slider(0f, 1f);
