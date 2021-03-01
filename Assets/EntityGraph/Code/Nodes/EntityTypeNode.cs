@@ -17,9 +17,6 @@ namespace OrionReed
     [VisibleIf("entityType", EntityTypeOptions.RangedScale)]
     public float max = 1.5f;
 
-    [Output(name = "Out")]
-    public Foo<EntityTypeOptions> output;
-
     public override string name => "Entity Type";
 
     public IEntitySettingsData Get => new SimpleEntitySettings(color, max);
@@ -31,7 +28,7 @@ namespace OrionReed
 
     protected override void Process()
     {
-      //output = this;
+
     }
   }
 
@@ -40,14 +37,5 @@ namespace OrionReed
     FixedScale,
     RangedScale,
     MapScale
-  }
-
-  [System.Serializable]
-  public class Foo<T> where T : System.Enum
-  {
-    public Foo()
-    {
-
-    }
   }
 }

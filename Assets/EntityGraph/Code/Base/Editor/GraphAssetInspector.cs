@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GraphProcessor;
+﻿using GraphProcessor;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace OrionReed

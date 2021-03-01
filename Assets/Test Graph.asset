@@ -113,11 +113,11 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - position:
       serializedVersion: 2
-      x: 225
-      y: 49
+      x: 257
+      y: 50
       width: 187
       height: 210
-    opened: 1
+    opened: 0
     editorType:
       serializedType: OrionReed.VisualizationView, Assembly-CSharp-Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -125,8 +125,8 @@ MonoBehaviour:
   - id: 9
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 315, y: 149, z: 0}
-  scale: {x: 0.8695652, y: 0.8695652, z: 1}
+  position: {x: 197.5, y: 130.5, z: 0}
+  scale: {x: 0.43232757, y: 0.43232757, z: 1}
   seed: 1
   references:
     version: 1

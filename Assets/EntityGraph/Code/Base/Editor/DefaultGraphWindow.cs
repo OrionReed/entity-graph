@@ -58,11 +58,6 @@ namespace OrionReed
         titleContent = new GUIContent(graph.name);
         graphView = new DefaultGraphView(this);
         graphView.Add(new CustomToolbarView(graphView));
-
-        MiniMapView mmv = new MiniMapView(graphView);
-        Vector2 mmvPos = mmv.GetPosition().position + new Vector2(5f, 25f);
-        mmv.SetPosition(new Rect(mmvPos, Vector2.one));
-        graphView.Add(mmv);
       }
       rootView.Add(graphView);
       SceneView.duringSceneGui += (_) => DrawProjectors();
