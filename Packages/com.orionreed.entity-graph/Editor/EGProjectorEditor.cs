@@ -7,7 +7,7 @@ namespace OrionReed
 {
   [CustomEditor(typeof(EntityGraphProjector))]
   [CanEditMultipleObjects]
-  public class EntityGraphProjectorEditor : Editor
+  public class EGProjectorEditor : Editor
   {
     private readonly BoxBoundsHandle boundsHandles = new BoxBoundsHandle();
 

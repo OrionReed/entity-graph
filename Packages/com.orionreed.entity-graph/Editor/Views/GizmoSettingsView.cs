@@ -5,7 +5,7 @@ using GraphProcessor;
 
 namespace OrionReed
 {
-  public class VisualizationView : PinnedElementView
+  public class GizmoSettingsView : PinnedElementView
   {
     private EntityGraph graph;
     private Button buttonBounds;
@@ -18,7 +18,7 @@ namespace OrionReed
 
     protected override void Initialize(BaseGraphView graphView)
     {
-      title = "Visualization";
+      title = "Gizmo Settings";
       graph = graphView.graph as EntityGraph;
 
       ColorField mapColorField = new ColorField();

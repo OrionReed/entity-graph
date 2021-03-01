@@ -7,9 +7,9 @@ using UnityEngine.UIElements;
 
 namespace OrionReed
 {
-  public class DefaultGraphView : BaseGraphView
+  public class EGView : BaseGraphView
   {
-    public DefaultGraphView(EditorWindow window) : base(window) { }
+    public EGView(EditorWindow window) : base(window) { }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {

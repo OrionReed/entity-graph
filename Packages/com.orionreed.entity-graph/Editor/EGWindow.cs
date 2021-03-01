@@ -5,14 +5,14 @@ using UnityEngine.UIElements;
 
 namespace OrionReed
 {
-  public class DefaultGraphWindow : BaseGraphWindow
+  public class EGWindow : BaseGraphWindow
   {
     private VisualElement noAsset;
 
     [MenuItem("Window/Entity Graph")]
     public static BaseGraphWindow OpenNewEditor()
     {
-      var graphWindow = CreateWindow<DefaultGraphWindow>();
+      var graphWindow = CreateWindow<EGWindow>();
       graphWindow.NoAssetView();
 
       graphWindow.Show();
@@ -34,7 +34,7 @@ namespace OrionReed
 
     public static BaseGraphWindow Open()
     {
-      var graphWindow = GetWindow<DefaultGraphWindow>();
+      var graphWindow = GetWindow<EGWindow>();
 
       graphWindow.Show();
 
@@ -76,8 +76,8 @@ namespace OrionReed
           rootView.Remove(noAsset);
 
         SetTitle(graph.name);
-        graphView = new DefaultGraphView(this);
-        graphView.Add(new CustomToolbarView(graphView));
+        graphView = new EGView(this);
+        graphView.Add(new EGToolbarView(graphView));
       }
       rootView.Add(graphView);
       SceneView.duringSceneGui += (_) => DrawProjectors();

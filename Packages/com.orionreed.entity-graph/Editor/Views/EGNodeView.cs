@@ -6,7 +6,7 @@ namespace OrionReed
 {
   // VERY CLUNKY mostly to get used to building views for this system. complete redo in the future.
   [NodeCustomEditor(typeof(BaseEntityGraphNode))]
-  public class BaseEntityGraphNodeView : BaseNodeView
+  public class EGNodeView : BaseNodeView
   {
     private BaseEntityGraphNode node;
 

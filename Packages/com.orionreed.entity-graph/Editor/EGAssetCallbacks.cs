@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OrionReed
 {
-  public static class GraphAssetCallbacks
+  public static class EGAssetCallbacks
   {
     [MenuItem("Assets/Create/Entity Graph", false, 10)]
     public static void CreateGraphPorcessor()
@@ -20,7 +20,7 @@ namespace OrionReed
 
       if (asset != null)
       {
-        EditorWindow.GetWindow<DefaultGraphWindow>().InitializeGraph(asset as EntityGraph);
+        EditorWindow.GetWindow<EGWindow>().InitializeGraph(asset as EntityGraph);
         return true;
       }
       return false;

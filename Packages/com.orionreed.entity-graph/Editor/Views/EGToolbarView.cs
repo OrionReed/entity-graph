@@ -4,16 +4,16 @@ using Status = UnityEngine.UIElements.DropdownMenuAction.Status;
 
 namespace OrionReed
 {
-  public class CustomToolbarView : ToolbarView
+  public class EGToolbarView : ToolbarView
   {
-    public CustomToolbarView(BaseGraphView graphView) : base(graphView) { }
+    public EGToolbarView(BaseGraphView graphView) : base(graphView) { }
 
     protected override void AddButtons()
     {
       AddButton("Preview", () => ProcessAllInScene());
       AddButton("Apply", () => Apply());
-      bool visualize = graphView.GetPinnedElementStatus<VisualizationView>() != Status.Hidden;
-      AddToggle("Visualization", visualize, (_) => graphView.ToggleView<VisualizationView>());
+      bool visualize = graphView.GetPinnedElementStatus<GizmoSettingsView>() != Status.Hidden;
+      AddToggle("Visualization", visualize, (_) => graphView.ToggleView<GizmoSettingsView>());
 
       bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
       AddToggle("Show Parameters", exposedParamsVisible, (_) => graphView.ToggleView<ExposedParameterView>(), false);
