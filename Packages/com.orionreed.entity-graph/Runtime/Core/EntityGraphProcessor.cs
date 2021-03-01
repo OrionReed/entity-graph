@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using GraphProcessor;
 using Unity.Jobs;
-using System.Diagnostics;
-using UnityEngine;
 
 namespace OrionReed
 {

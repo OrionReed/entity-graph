@@ -7,45 +7,47 @@ namespace OrionReed
 {
   public class GizmoSettingsView : PinnedElementView
   {
-    private EntityGraph graph;
     private Button buttonBounds;
     private Button buttonChunks;
     private Button buttonEntities;
     private Button buttonMaps;
-    private Color enabledBorderColor = new Color(0.090f, 0.478f, 0.631f);
+    private Color enabledColor = new Color(0.35f, 0.35f, 0.35f);
+    private Color disabledColor = new Color(0.25f, 0.25f, 0.25f);
 
     public override bool IsResizable() => false;
 
     protected override void Initialize(BaseGraphView graphView)
     {
       title = "Gizmo Settings";
-      graph = graphView.graph as EntityGraph;
       Rect pos = GetPosition();
       SetPosition(new Rect(20, 40, pos.width, pos.height));
 
-      ColorField mapColorField = new ColorField();
       Slider sliderBrightness = new Slider(0f, 1f);
+      buttonEntities = new Button(OnToggleEntities) { name = "ActionButton", text = "Entities" };
       buttonBounds = new Button(OnToggleBounds) { name = "ActionButton", text = "Bounds" };
       buttonChunks = new Button(OnToggleChunks) { name = "ActionButton", text = "Chunks" };
-      buttonEntities = new Button(OnToggleEntities) { name = "ActionButton", text = "Entities" };
       buttonMaps = new Button(OnToggleMaps) { name = "ActionButton", text = "Maps" };
 
       sliderBrightness.RegisterValueChangedCallback(x => BrightnessChanged(x.newValue));
-      mapColorField.RegisterValueChangedCallback(x => MapColorChanged(x.newValue));
 
-      mapColorField.value = EntityGraph.debugMapColor;
       sliderBrightness.value = EntityGraph.debugGizmoBrightness;
       UpdateButtonState(buttonBounds, EntityGraph.debugDrawBounds);
       UpdateButtonState(buttonChunks, EntityGraph.debugDrawChunks);
       UpdateButtonState(buttonEntities, EntityGraph.debugDrawEntities);
       UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
 
+      Label visibilityLabel = new Label("Visibility");
+      Label brightnessLabel = new Label("Brightness");
+      visibilityLabel.style.paddingTop = new StyleLength(10f);
+      brightnessLabel.style.paddingTop = new StyleLength(10f);
+
+      content.Add(visibilityLabel);
       content.Add(buttonEntities);
       content.Add(buttonBounds);
       content.Add(buttonChunks);
       content.Add(buttonMaps);
+      content.Add(brightnessLabel);
       content.Add(sliderBrightness);
-      content.Add(mapColorField);
     }
 
     private void OnToggleBounds()
@@ -72,25 +74,14 @@ namespace OrionReed
       UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
     }
 
-    private void MapColorChanged(Color newColor) => EntityGraph.debugMapColor = newColor;
     private void BrightnessChanged(float newValue) => EntityGraph.debugGizmoBrightness = newValue;
 
     private void UpdateButtonState(Button button, bool highlight)
     {
       if (highlight)
-      {
-        button.style.borderBottomColor = enabledBorderColor;
-        button.style.borderLeftColor = enabledBorderColor;
-        button.style.borderRightColor = enabledBorderColor;
-        button.style.borderTopColor = enabledBorderColor;
-      }
+        button.style.backgroundColor = enabledColor;
       else
-      {
-        button.style.borderBottomColor = StyleKeyword.Null;
-        button.style.borderLeftColor = StyleKeyword.Null;
-        button.style.borderRightColor = StyleKeyword.Null;
-        button.style.borderTopColor = StyleKeyword.Null;
-      }
+        button.style.backgroundColor = disabledColor;
     }
   }
 }
