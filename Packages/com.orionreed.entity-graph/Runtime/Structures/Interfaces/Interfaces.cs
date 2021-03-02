@@ -7,20 +7,19 @@ namespace OrionReed
   {
     Vector2 Position { get; }
     string ID { get; }
-    IEntitySettingsData Settings { get; }
+    IEntityVisualizable Visualization { get; set; }
+    IEntityInstantiatable Instantiation { get; set; }
   }
 
-  public interface IEntitySettingsData
+  public interface IEntityVisualizable
   {
-    public Color Color { get; }
-    public float Size { get; }
+    Color Color { get; }
+    float Size { get; }
   }
 
-  public interface IEntitySampler
+  public interface IEntityInstantiatable
   {
-    IEntitySettingsData Get { get; }
-
-    IEntitySettingsData GetWithRandom(System.Random random);
+    bool Instantiate(Vector3 position);
   }
 
   public interface IPositionSampler

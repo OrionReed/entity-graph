@@ -27,8 +27,8 @@ namespace OrionReed
       foreach (IEntity entity in entities.AllEntities)
       {
         vertices[index] = new Vector3(entity.Position.x, bounds.center.y + bounds.extents.y, entity.Position.y);
-        uvs[index] = Vector2.one * entity.Settings.Size;
-        colors[index] = entity.Settings.Color;
+        uvs[index] = Vector2.one * entity.Visualization.Size;
+        colors[index] = entity.Visualization.Color;
         index++;
       }
 

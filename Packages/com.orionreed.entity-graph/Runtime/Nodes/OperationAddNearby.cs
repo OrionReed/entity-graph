@@ -15,9 +15,6 @@ namespace OrionReed
     [Input(name = "Max Distance"), ShowAsDrawer]
     public float maxDistance = 5f;
 
-    [Input("Entity Settings")]
-    public IEntitySampler entitySettings;
-
     [Output(name = "Out")]
     public EntityCollection output;
 
@@ -34,7 +31,7 @@ namespace OrionReed
           for (int x = 0; x < numberToAdd; x++)
           {
             if (!input.TryGetEntity(entityID, out IEntity entity)) continue;
-            output.AddEntity(new Entity(entity.Position + rng.GetPointInCircle(maxDistance), entitySettings.GetWithRandom(rng)));
+            output.AddEntity(new Entity(entity.Position + rng.GetPointInCircle(maxDistance)));
           }
         }
       }

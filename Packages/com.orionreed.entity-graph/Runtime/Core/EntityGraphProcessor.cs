@@ -17,6 +17,8 @@ namespace OrionReed
 
     public void ProcessAllInstancesInScene()
     {
+      UnityEngine.Debug.Log("processing all");
+
       UpdateComputeOrder();
       foreach (EntityGraphProjector projector in EntityGraph.ProjectorsInScene)
       {

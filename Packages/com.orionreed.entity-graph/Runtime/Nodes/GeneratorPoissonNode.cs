@@ -10,9 +10,6 @@ namespace OrionReed
     [Input(name = "Disk Radius"), ShowAsDrawer]
     public float radius = 5f;
 
-    [Input("Entity Settings")]
-    public IEntitySampler entitySettings;
-
     [Output(name = "Out")]
     public EntityCollection output;
 
@@ -20,6 +17,7 @@ namespace OrionReed
 
     protected override void Process()
     {
+      Debug.Log("generating poisson");
       output = new EntityCollection();
 
       foreach (Coordinate chunk in graph.GetCurrentRegion().EnumerateCoordinates())
@@ -27,7 +25,7 @@ namespace OrionReed
         System.Random rng = RNG(chunk);
         foreach (Vector2 sample in PoissonSampler.GenerateSamples(rng, radius, Coordinate.scale, Coordinate.scale))
         {
-          Entity e = new Entity(MapToChunkSpace(sample, chunk), entitySettings.GetWithRandom(rng));
+          Entity e = new Entity(MapToChunkSpace(sample, chunk));
           output.AddEntity(e);
         }
       }

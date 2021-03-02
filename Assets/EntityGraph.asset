@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7035fbdc1b0e04b6db208e92936ce657, type: 3}
+  m_Name: EntityGraph
+  m_EditorClassIdentifier: 
+  serializedNodes: []
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - GUID: e92fbd68-cb20-4053-a092-c8920b6dd2c8
+    owner: {fileID: 11400000}
+    inputNodeGUID: 0942ced9-809b-4662-b7ca-29b081289cc1
+    outputNodeGUID: 80385b0e-3ad2-4b25-8f6b-0cd6b8b30757
+    inputFieldName: input
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: cb7a23aa-ce67-4415-a31f-409b70a33bca
+    owner: {fileID: 11400000}
+    inputNodeGUID: e6b1039e-f5e3-4383-b818-b1ae13bd0c23
+    outputNodeGUID: 0942ced9-809b-4662-b7ca-29b081289cc1
+    inputFieldName: input
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 854ac335-cf4e-422e-80a7-c655d4976ea6
+    owner: {fileID: 11400000}
+    inputNodeGUID: 2e62de32-678c-4850-a79d-44991366fe2d
+    outputNodeGUID: e6b1039e-f5e3-4383-b818-b1ae13bd0c23
+    inputFieldName: inputs
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  groups: []
+  stackNodes: []
+  pinnedElements: []
+  exposedParameters: []
+  serializedParameterList: []
+  stickyNotes: []
+  position: {x: 348, y: 105, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
+  seed: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: OutputNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 2e62de32-678c-4850-a79d-44991366fe2d
+        computeOrder: 3
+        position:
+          serializedVersion: 2
+          x: 766.0175
+          y: 235.195
+          width: 81
+          height: 75
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        inputs: []
+    00000001:
+      type: {class: GeneratorRandomNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 80385b0e-3ad2-4b25-8f6b-0cd6b8b30757
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: -162.70395
+          y: 259
+          width: 146
+          height: 75
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        frequency: 0.5
+    00000002:
+      type: {class: EntityFixedSize, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 0942ced9-809b-4662-b7ca-29b081289cc1
+        computeOrder: 1
+        position:
+          serializedVersion: 2
+          x: 72.29607
+          y: 259
+          width: 178
+          height: 96
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        size: 2
+    00000003:
+      type: {class: EntityJitterInstantiatorNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: e6b1039e-f5e3-4383-b818-b1ae13bd0c23
+        computeOrder: 2
+        position:
+          serializedVersion: 2
+          x: 331.58
+          y: 259
+          width: 308
+          height: 116
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        amount: 1
+        prefab: {fileID: 0}

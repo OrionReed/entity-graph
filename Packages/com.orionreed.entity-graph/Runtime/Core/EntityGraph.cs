@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using UnityEngine;
 using GraphProcessor;
 using System;
@@ -21,7 +22,7 @@ namespace OrionReed
     public static Color debugMapColor = Color.blue;
     public static float debugGizmoBrightness = 0.5f;
 
-    public static List<EntityGraphProjector> ProjectorsInScene = new List<EntityGraphProjector>();
+    public static ObservableCollection<EntityGraphProjector> ProjectorsInScene = new ObservableCollection<EntityGraphProjector>();
 
     public void SetCurrentRegion(Region region) => currentRegion = region;
     public Region GetCurrentRegion() => currentRegion;
@@ -42,9 +43,9 @@ namespace OrionReed
 
     private void Initialize()
     {
-      if (nodes.Find(n => n is OutputMasterNode) == null)
+      if (nodes.Find(n => n is OutputNode) == null)
       {
-        AddNode(BaseNode.CreateFromType<OutputMasterNode>(Vector2.one * 100));
+        AddNode(BaseNode.CreateFromType<OutputNode>(Vector2.one * 100));
       }
     }
 

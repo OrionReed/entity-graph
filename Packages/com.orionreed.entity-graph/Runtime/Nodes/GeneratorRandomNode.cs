@@ -9,9 +9,6 @@ namespace OrionReed
     [Input(name = "Frequency"), ShowAsDrawer]
     public float frequency = 0.5f;
 
-    [Input("Entity Settings")]
-    public IEntitySampler entitySettings;
-
     [Output(name = "Out")]
     public EntityCollection output;
 
@@ -29,7 +26,7 @@ namespace OrionReed
         for (int i = 0; i < numberOfPoints; i++)
         {
           Vector2 randomPos = rng.NextVector2(worldPos, worldPos + (Vector2.one * Coordinate.scale));
-          output.AddEntity(new Entity(randomPos, entitySettings.GetWithRandom(rng)));
+          output.AddEntity(new Entity(randomPos));
         }
       }
     }

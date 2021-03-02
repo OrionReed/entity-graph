@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
 using GraphProcessor;
 using UnityEngine;
-using UnityEditor;
 
 namespace OrionReed
 {
   [System.Serializable]
-  public class OutputMasterNode : BaseEntityGraphNode
+  public class OutputNode : BaseEntityGraphNode
   {
     [Input, RequiredInput]
     public List<EntityCollection> inputs;
@@ -22,7 +20,8 @@ namespace OrionReed
     {
       EntityCollection result = EntityCollection.MergeIntoFirst(values);
       Debug.Log($"{graph.GetCurrentProjector().gameObject.name}: {result.EntityCount} entities.");
-      graph.GetCurrentProjector().ResetVisualiser(result);
+      graph.GetCurrentProjector().SetVisualization(result);
+      graph.GetCurrentProjector().Project(result);
     }
 
     [CustomPortBehavior(nameof(inputs))]

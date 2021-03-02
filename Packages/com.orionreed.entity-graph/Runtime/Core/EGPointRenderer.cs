@@ -49,9 +49,9 @@ namespace OrionReed
       int index = 0;
       foreach (IEntity entity in entities.AllEntities)
       {
-        points[index].matrix = Matrix4x4.TRS(new Vector3(entity.Position.x - pos.x, height - pos.y, entity.Position.y - pos.z), Quaternion.identity, Vector3.one * entity.Settings.Size);
+        points[index].matrix = Matrix4x4.TRS(new Vector3(entity.Position.x - pos.x, height - pos.y, entity.Position.y - pos.z), Quaternion.identity, Vector3.one * entity.Visualization.Size);
         //Debug.Log($"POINT {points[index].matrix}");
-        points[index].color = entity.Settings.Color;
+        points[index].color = entity.Visualization.Color;
         index++;
       }
       return points;

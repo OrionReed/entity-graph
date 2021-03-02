@@ -1,19 +1,27 @@
 using GraphProcessor;
 using UnityEditor;
+using UnityEngine.UIElements;
 using Status = UnityEngine.UIElements.DropdownMenuAction.Status;
+using System.Collections.Specialized;
 
 namespace OrionReed
 {
   public class EGToolbarView : ToolbarView
   {
+    private Label projectorCount;
     public EGToolbarView(BaseGraphView graphView) : base(graphView) { }
 
     protected override void AddButtons()
     {
+      EntityGraph graph = graphView.graph as EntityGraph;
       AddButton("Preview", () => ProcessAllInScene());
       AddButton("Apply", () => Apply());
       bool visualize = graphView.GetPinnedElementStatus<GizmoSettingsView>() != Status.Hidden;
       AddToggle("Visualization", visualize, (_) => graphView.ToggleView<GizmoSettingsView>());
+      projectorCount = new Label($"Projectors in scene: {EntityGraph.ProjectorsInScene.Count}");
+      Add(projectorCount);
+
+      EntityGraph.ProjectorsInScene.CollectionChanged += UpdateProjectorCount;
 
       //bool exposedParamsVisible = graphView.GetPinnedElementStatus<ExposedParameterView>() != Status.Hidden;
       //AddToggle("Show Parameters", exposedParamsVisible, (_) => graphView.ToggleView<ExposedParameterView>(), false);
@@ -29,6 +37,11 @@ namespace OrionReed
     private void Apply()
     {
       //EntityGraph graph = graphView.graph as EntityGraph;
+    }
+
+    private void UpdateProjectorCount(object _, NotifyCollectionChangedEventArgs __)
+    {
+      projectorCount.text = $"Projectors in scene: {EntityGraph.ProjectorsInScene.Count}";
     }
   }
 }
