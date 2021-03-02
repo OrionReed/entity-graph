@@ -39,19 +39,19 @@ MonoBehaviour:
   pinnedElements:
   - position:
       serializedVersion: 2
-      x: 20
-      y: 40
+      x: 631
+      y: 218
       width: 150
       height: 200
-    opened: 1
+    opened: 0
     editorType:
       serializedType: OrionReed.GizmoSettingsView, com.orionreed.entity-graph.editor,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 62, y: 355, z: 0}
-  scale: {x: 1, y: 1, z: 1}
+  position: {x: 320, y: -174, z: 0}
+  scale: {x: 1.3225, y: 1.3225, z: 1}
   seed: 1
   references:
     version: 1

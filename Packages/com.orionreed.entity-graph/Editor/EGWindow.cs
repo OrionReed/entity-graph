@@ -7,6 +7,7 @@ namespace OrionReed
 {
   public class EGWindow : BaseGraphWindow
   {
+    private static Texture2D windowIcon;
     private VisualElement noAsset;
 
     [MenuItem("Window/Entity Graph")]
@@ -43,6 +44,8 @@ namespace OrionReed
 
     protected override void OnEnable()
     {
+      if (windowIcon == null)
+        windowIcon = GetWindowIcon();
       base.OnEnable();
       if (!graph)
         NoAssetView();
@@ -85,8 +88,19 @@ namespace OrionReed
 
     private void SetTitle(string name)
     {
+      if (windowIcon != null)
+      {
+        titleContent = new GUIContent(name, windowIcon);
+        return;
+      }
       titleContent = new GUIContent(name);
     }
+
+    private Texture2D GetWindowIcon()
+    {
+      return (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.orionreed.entity-graph/Editor/Icons/EG_Window.png", typeof(Texture2D));
+    }
+
 
     private void NoAssetView()
     {
