@@ -27,6 +27,23 @@ namespace OrionReed
     {
       return new Vector2(coordinate.X * scale, coordinate.Y * scale);
     }
+    public static Vector3 Floor(Vector3 position)
+    {
+      return new Vector3(FloorFactor(position.x), position.y, FloorFactor(position.z));
+    }
+    public static Vector3 Ceil(Vector3 position)
+    {
+      return new Vector3(CeilFactor(position.x), position.y, CeilFactor(position.z));
+    }
+
+    private static float CeilFactor(float n)
+    {
+      return scale * Mathf.Ceil(n / scale);
+    }
+    private static float FloorFactor(float n)
+    {
+      return scale * Mathf.Floor(n / scale);
+    }
 
     public static Coordinate FromWorldSpace(Vector3 position) => FromWorldSpace(position.x, position.z);
 

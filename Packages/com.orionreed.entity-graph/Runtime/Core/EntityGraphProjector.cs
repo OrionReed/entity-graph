@@ -12,10 +12,12 @@ namespace OrionReed
   public class EntityGraphProjector : MonoBehaviour
   {
     [SerializeField] private EntityGraph graph;
+    [SerializeField] private UnityEngine.VFX.VisualEffect vfx;
 
     // Is this region possibly out of date?
     public bool Dirty { get; private set; }
-    private EGPointRenderer pointRenderer;
+    //private EGPointRenderer pointRenderer;
+    private EGPointRendererVFX pointRendererVFX;
     [SerializeField] private Bounds bounds;
 
     public Bounds Bounds
@@ -44,14 +46,14 @@ namespace OrionReed
 
     private void Update()
     {
-      pointRenderer?.Update();
+      //pointRenderer?.Update();
     }
 
     private void SetDirty() => Dirty = true;
     public void ResetVisualiser(EntityCollection entities)
     {
       Dirty = false;
-      pointRenderer = new EGPointRenderer(Bounds, entities, Bounds.center.y + Bounds.extents.y, transform.position);
+      pointRendererVFX = new EGPointRendererVFX(entities, vfx, bounds);
     }
   }
 }

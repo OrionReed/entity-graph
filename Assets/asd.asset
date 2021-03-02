@@ -17,6 +17,8 @@ MonoBehaviour:
   - id: 0
   - id: 1
   - id: 2
+  - id: 3
+  - id: 4
   edges:
   - GUID: b758f523-1483-4aca-a6f5-5a131807a3cc
     owner: {fileID: 11400000}
@@ -26,7 +28,23 @@ MonoBehaviour:
     outputFieldName: output
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 9a1970f4-ab70-43b6-861c-9ff9235a9245
+  - GUID: 51f942be-f697-42b5-84ae-0e0ea404c00f
+    owner: {fileID: 11400000}
+    inputNodeGUID: 82eefae8-abf2-43dc-a16a-8fab3c263dd2
+    outputNodeGUID: 09786b51-90c0-4f70-96fb-6be8bcbd7d99
+    inputFieldName: inputs
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 64af315f-416d-4f92-92fc-f84261e29186
+    owner: {fileID: 11400000}
+    inputNodeGUID: 09786b51-90c0-4f70-96fb-6be8bcbd7d99
+    outputNodeGUID: 24924c0a-f5ae-474e-b663-dab35a467d38
+    inputFieldName: entitySettings
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: 32f9477b-e2ff-45c2-9dab-75fd4898299c
     owner: {fileID: 11400000}
     inputNodeGUID: 82eefae8-abf2-43dc-a16a-8fab3c263dd2
     outputNodeGUID: c8b39475-bee5-44cf-9729-ea0ac8d7b031
@@ -50,8 +68,8 @@ MonoBehaviour:
   exposedParameters: []
   serializedParameterList: []
   stickyNotes: []
-  position: {x: 605, y: 51, z: 0}
-  scale: {x: 0.65751624, y: 0.65751624, z: 1}
+  position: {x: 468, y: -331, z: 0}
+  scale: {x: 1.15, y: 1.15, z: 1}
   seed: 1
   references:
     version: 1
@@ -59,7 +77,7 @@ MonoBehaviour:
       type: {class: OutputMasterNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
       data:
         GUID: 82eefae8-abf2-43dc-a16a-8fab3c263dd2
-        computeOrder: 2
+        computeOrder: 4
         position:
           serializedVersion: 2
           x: 718
@@ -74,11 +92,11 @@ MonoBehaviour:
       type: {class: GeneratorRandomNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
       data:
         GUID: c8b39475-bee5-44cf-9729-ea0ac8d7b031
-        computeOrder: 1
+        computeOrder: 3
         position:
           serializedVersion: 2
           x: 444
-          y: 480
+          y: 476.95825
           width: 169
           height: 99
         expanded: 0
@@ -89,15 +107,47 @@ MonoBehaviour:
       type: {class: SimpleEntitySampler, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
       data:
         GUID: 66e490a1-419a-4bc3-b270-995a35206381
-        computeOrder: 0
+        computeOrder: 2
         position:
           serializedVersion: 2
-          x: -38
-          y: 444
+          x: -135.33594
+          y: 477
           width: 369
           height: 116
         expanded: 0
         debug: 0
         nodeLock: 0
-        color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+        color: {r: 0, g: 0.43595576, b: 1, a: 1}
         size: 0.5
+    00000003:
+      type: {class: GeneratorRandomNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 09786b51-90c0-4f70-96fb-6be8bcbd7d99
+        computeOrder: 1
+        position:
+          serializedVersion: 2
+          x: 444
+          y: 677.5
+          width: 169
+          height: 147
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        frequency: 1
+    00000004:
+      type: {class: RandomEntitySampler, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 24924c0a-f5ae-474e-b663-dab35a467d38
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: -240.69571
+          y: 766.43475
+          width: 369
+          height: 137
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        color: {r: 0.6784314, g: 0.58794475, b: 0.2784314, a: 1}
+        min: 1
+        max: 2

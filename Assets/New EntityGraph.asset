@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7035fbdc1b0e04b6db208e92936ce657, type: 3}
+  m_Name: New EntityGraph
+  m_EditorClassIdentifier: 
+  serializedNodes: []
+  nodes:
+  - id: 0
+  edges: []
+  groups: []
+  stackNodes: []
+  pinnedElements: []
+  exposedParameters: []
+  serializedParameterList: []
+  stickyNotes: []
+  position: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  seed: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: OutputMasterNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: ad814224-23c2-4d26-b92c-d3cfa33e186e
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: 878
+          y: 671
+          width: 81
+          height: 75
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        inputs: []
