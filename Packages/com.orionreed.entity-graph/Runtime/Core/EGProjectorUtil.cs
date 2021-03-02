@@ -30,8 +30,9 @@ namespace OrionReed
       );
     }
 
-    public static void DrawBoundsDotted(Color color, Bounds bounds)
+    public static void GraphMissing(Color color, Bounds bounds)
     {
+      bounds.size *= 0.95f;
       Handles.color = color;
       Vector3 right = Vector3.right * bounds.size.x;
       Vector3 up = Vector3.up * bounds.size.y;

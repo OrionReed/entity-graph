@@ -128,14 +128,14 @@ namespace OrionReed
       {
         if (projector.Graph == null) // we need to add a graph
         {
-          EGProjectorUtil.DrawBoundsDotted(EGProjectorUtil.ColDefault, projector.Bounds);
-          return;
+          EGProjectorUtil.GraphMissing(EGProjectorUtil.ColDefault, projector.Bounds);
+          continue;
         }
         if (EntityGraph.debugDrawBounds && EntityGraph.debugDrawChunks) // we limit chunks to only show on face of bounds
         {
           EGProjectorUtil.DrawBoundsWire(EGProjectorUtil.ColDefault, projector.Bounds);
           EGProjectorUtil.DrawClippedChunks(projector.Dirty ? EGProjectorUtil.ColDirty * 0.65f : EGProjectorUtil.ColDefault * 0.65f, projector.Bounds);
-          return;
+          continue;
         }
         if (EntityGraph.debugDrawBounds) // only showing bounds
         {
