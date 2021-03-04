@@ -30,11 +30,11 @@ namespace OrionReed
 
       sliderBrightness.RegisterValueChangedCallback(x => BrightnessChanged(x.newValue));
 
-      sliderBrightness.value = EntityGraph.debugGizmoBrightness;
-      UpdateButtonState(buttonBounds, EntityGraph.debugDrawBounds);
-      UpdateButtonState(buttonChunks, EntityGraph.debugDrawChunks);
-      UpdateButtonState(buttonEntities, EntityGraph.debugDrawEntities);
-      UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
+      sliderBrightness.value = EGWindow.debugGizmoBrightness;
+      UpdateButtonState(buttonBounds, EGWindow.debugDrawBounds);
+      UpdateButtonState(buttonChunks, EGWindow.debugDrawChunks);
+      UpdateButtonState(buttonEntities, EGWindow.debugDrawEntities);
+      UpdateButtonState(buttonMaps, EGWindow.debugDrawMaps);
 
       Label visibilityLabel = new Label("Visibility");
       Label brightnessLabel = new Label("Brightness");
@@ -52,29 +52,29 @@ namespace OrionReed
 
     private void OnToggleBounds()
     {
-      EntityGraph.debugDrawBounds = !EntityGraph.debugDrawBounds;
-      UpdateButtonState(buttonBounds, EntityGraph.debugDrawBounds);
+      EGWindow.debugDrawBounds = !EGWindow.debugDrawBounds;
+      UpdateButtonState(buttonBounds, EGWindow.debugDrawBounds);
     }
 
     private void OnToggleChunks()
     {
-      EntityGraph.debugDrawChunks = !EntityGraph.debugDrawChunks;
-      UpdateButtonState(buttonChunks, EntityGraph.debugDrawChunks);
+      EGWindow.debugDrawChunks = !EGWindow.debugDrawChunks;
+      UpdateButtonState(buttonChunks, EGWindow.debugDrawChunks);
     }
 
     private void OnToggleEntities()
     {
-      EntityGraph.debugDrawEntities = !EntityGraph.debugDrawEntities;
-      UpdateButtonState(buttonEntities, EntityGraph.debugDrawEntities);
+      EGWindow.debugDrawEntities = !EGWindow.debugDrawEntities;
+      UpdateButtonState(buttonEntities, EGWindow.debugDrawEntities);
     }
 
     private void OnToggleMaps()
     {
-      EntityGraph.debugDrawMaps = !EntityGraph.debugDrawMaps;
-      UpdateButtonState(buttonMaps, EntityGraph.debugDrawMaps);
+      EGWindow.debugDrawMaps = !EGWindow.debugDrawMaps;
+      UpdateButtonState(buttonMaps, EGWindow.debugDrawMaps);
     }
 
-    private void BrightnessChanged(float newValue) => EntityGraph.debugGizmoBrightness = newValue;
+    private void BrightnessChanged(float newValue) => EGWindow.debugGizmoBrightness = newValue;
 
     private void UpdateButtonState(Button button, bool highlight)
     {

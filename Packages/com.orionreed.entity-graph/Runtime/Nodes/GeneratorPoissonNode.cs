@@ -17,7 +17,6 @@ namespace OrionReed
 
     protected override void Process()
     {
-      Debug.Log("generating poisson");
       output = new EntityCollection();
 
       foreach (Coordinate chunk in graph.GetCurrentRegion().EnumerateCoordinates())

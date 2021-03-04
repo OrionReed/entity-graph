@@ -7,8 +7,8 @@ namespace OrionReed
   public static class EGProjectorUtil
   {
     private static Color colDirty = new Color(1f, 0.513f, 0.078f);
-    public static Color ColDefault => Color.white * EntityGraph.debugGizmoBrightness;
-    public static Color ColDirty => colDirty * EntityGraph.debugGizmoBrightness;
+    public static Color ColDefault => Color.white * EGWindow.debugGizmoBrightness;
+    public static Color ColDirty => colDirty * EGWindow.debugGizmoBrightness;
 
     public static void DrawBoundsWire(Color color, Bounds bounds)
     {

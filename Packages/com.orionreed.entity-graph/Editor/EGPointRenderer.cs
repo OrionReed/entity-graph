@@ -28,8 +28,8 @@ namespace OrionReed
 
     public void Update()
     {
-      if (!EntityGraph.debugDrawEntities) return;
-      Graphics.DrawMeshInstancedIndirect(entityMesh, 0, entityMat, drawBounds, entityArgsBuffer);
+      //if (!EGWindow.debugDrawEntities) return;
+      //Graphics.DrawMeshInstancedIndirect(entityMesh, 0, entityMat, drawBounds, entityArgsBuffer);
     }
 
     void ReleaseBuffers()

@@ -15,10 +15,13 @@ namespace OrionReed
       this.graph = base.graph as EntityGraph;
     }
 
+    public void ProcessRegion(Region region)
+    {
+
+    }
+
     public void ProcessAllInstancesInScene()
     {
-      UnityEngine.Debug.Log("processing all");
-
       UpdateComputeOrder();
       foreach (EntityGraphProjector projector in EntityGraph.ProjectorsInScene)
       {

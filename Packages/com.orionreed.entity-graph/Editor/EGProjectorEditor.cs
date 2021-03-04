@@ -13,7 +13,7 @@ namespace OrionReed
 
     protected virtual void OnSceneGUI()
     {
-      if (!EntityGraph.debugDrawBounds)
+      if (!EGWindow.debugDrawBounds)
         return;
       EntityGraphProjector projector = (EntityGraphProjector)target;
 

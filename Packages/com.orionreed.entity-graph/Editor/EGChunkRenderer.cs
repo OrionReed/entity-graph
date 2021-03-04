@@ -36,7 +36,7 @@ namespace OrionReed
 
     public void Update()
     {
-      if (EntityGraph.debugDrawMaps) DrawMaps();
+      if (EGWindow.debugDrawMaps) DrawMaps();
     }
 
     private void DrawMaps()
@@ -72,7 +72,7 @@ namespace OrionReed
         chunkMatrices[index] = Matrix4x4.TRS(Coordinate.FloorVector3(c.Key) + meshOffset, Quaternion.Euler(0, 180, 0), Vector3.one);
         chunkProperties[index] = new MaterialPropertyBlock();
         chunkProperties[index].SetTexture(textureID, texture);
-        chunkProperties[index].SetColor(colorID, EntityGraph.debugMapColor);
+        chunkProperties[index].SetColor(colorID, EGWindow.debugMapColor);
         chunkProperties[index].SetTexture(textureID, texture);
         index++;
       }

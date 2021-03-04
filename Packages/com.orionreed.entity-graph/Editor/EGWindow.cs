@@ -7,6 +7,13 @@ namespace OrionReed
 {
   public class EGWindow : BaseGraphWindow
   {
+    [SerializeField] public static bool debugDrawBounds = true;
+    [SerializeField] public static bool debugDrawChunks = true;
+    [SerializeField] public static bool debugDrawEntities = true;
+    [SerializeField] public static bool debugDrawMaps = true;
+    [SerializeField] public static Color debugMapColor = Color.blue;
+    [SerializeField] public static float debugGizmoBrightness = 0.5f;
+
     private static Texture2D windowIcon;
     private VisualElement noAsset;
 
@@ -131,17 +138,17 @@ namespace OrionReed
           EGProjectorUtil.GraphMissing(EGProjectorUtil.ColDefault, projector.Bounds);
           continue;
         }
-        if (EntityGraph.debugDrawBounds && EntityGraph.debugDrawChunks) // we limit chunks to only show on face of bounds
+        if (EGWindow.debugDrawBounds && EGWindow.debugDrawChunks) // we limit chunks to only show on face of bounds
         {
           EGProjectorUtil.DrawBoundsWire(EGProjectorUtil.ColDefault, projector.Bounds);
           EGProjectorUtil.DrawClippedChunks(projector.Dirty ? EGProjectorUtil.ColDirty * 0.65f : EGProjectorUtil.ColDefault * 0.65f, projector.Bounds);
           continue;
         }
-        if (EntityGraph.debugDrawBounds) // only showing bounds
+        if (EGWindow.debugDrawBounds) // only showing bounds
         {
           EGProjectorUtil.DrawBoundsWire(EGProjectorUtil.ColDefault, projector.Bounds);
         }
-        if (EntityGraph.debugDrawChunks) // only showing chunks
+        if (EGWindow.debugDrawChunks) // only showing chunks
         {
           EGProjectorUtil.DrawChunks(projector.Dirty ? EGProjectorUtil.ColDirty : EGProjectorUtil.ColDefault, projector.Bounds);
           EGProjectorUtil.DrawTop(EGProjectorUtil.ColDefault * 0.65f, projector.Bounds);
