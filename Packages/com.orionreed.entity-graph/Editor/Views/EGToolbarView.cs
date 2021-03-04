@@ -8,13 +8,14 @@ namespace OrionReed
 {
   public class EGToolbarView : ToolbarView
   {
-    private Label projectorCount;
     public EGToolbarView(BaseGraphView graphView) : base(graphView) { }
+    private Label projectorCount;
+    private EntityGraph graph;
 
     protected override void AddButtons()
     {
-      EntityGraph graph = graphView.graph as EntityGraph;
-      AddButton("Preview", () => ProcessAllInScene());
+      graph = graphView.graph as EntityGraph;
+      AddButton("Preview", () => Preview());
       AddButton("Apply", () => Apply());
       bool visualize = graphView.GetPinnedElementStatus<GizmoSettingsView>() != Status.Hidden;
       AddToggle("Visualization", visualize, (_) => graphView.ToggleView<GizmoSettingsView>());
@@ -29,14 +30,14 @@ namespace OrionReed
       AddButton("Center", graphView.ResetPositionAndZoom, false);
       AddButton("Show In Project", () => EditorGUIUtility.PingObject(graphView.graph), false);
     }
-    private void ProcessAllInScene()
+    private void Preview()
     {
       EntityGraphProcessor processor = new EntityGraphProcessor(graphView.graph as EntityGraph);
       processor.ProcessAllInstancesInScene();
     }
     private void Apply()
     {
-      //EntityGraph graph = graphView.graph as EntityGraph;
+      graph.ProjectCurrent();
     }
 
     private void UpdateProjectorCount(object _, NotifyCollectionChangedEventArgs __)

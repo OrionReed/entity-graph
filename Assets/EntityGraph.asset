@@ -12,3 +12,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7035fbdc1b0e04b6db208e92936ce657, type: 3}
   m_Name: EntityGraph
   m_EditorClassIdentifier: 
+  serializedNodes: []
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - GUID: 8dd379a3-e4ca-4a03-a108-9fd31bf58498
+    owner: {fileID: 11400000}
+    inputNodeGUID: e80dd2b6-f3a6-4161-a02b-d6eca9b9c036
+    outputNodeGUID: 75290daa-48a5-4335-87ac-794fab02a416
+    inputFieldName: input
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: ddfc6f6c-72d3-4bf4-b989-1e11ac47810f
+    owner: {fileID: 11400000}
+    inputNodeGUID: 60fecd65-f205-424d-98b9-27d5771260b6
+    outputNodeGUID: e80dd2b6-f3a6-4161-a02b-d6eca9b9c036
+    inputFieldName: input
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: db495d74-2bc1-4ff9-865a-1dd5774b5e0a
+    owner: {fileID: 11400000}
+    inputNodeGUID: 2958e15f-7475-4ecc-85a0-abae1ae7baf2
+    outputNodeGUID: 60fecd65-f205-424d-98b9-27d5771260b6
+    inputFieldName: inputs
+    outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  groups: []
+  stackNodes: []
+  pinnedElements:
+  - position:
+      serializedVersion: 2
+      x: 56
+      y: 76
+      width: 150
+      height: 200
+    opened: 1
+    editorType:
+      serializedType: OrionReed.GizmoSettingsView, com.orionreed.entity-graph.editor,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  exposedParameters: []
+  serializedParameterList: []
+  stickyNotes: []
+  position: {x: 90, y: 102, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  seed: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: OutputNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 2958e15f-7475-4ecc-85a0-abae1ae7baf2
+        computeOrder: 3
+        position:
+          serializedVersion: 2
+          x: 851
+          y: 421
+          width: 81
+          height: 75
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        inputs: []
+    00000001:
+      type: {class: GeneratorRandomNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 75290daa-48a5-4335-87ac-794fab02a416
+        computeOrder: 0
+        position:
+          serializedVersion: 2
+          x: 56
+          y: 421
+          width: 146
+          height: 75
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        frequency: 0.5
+    00000002:
+      type: {class: EntityFixedSize, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: e80dd2b6-f3a6-4161-a02b-d6eca9b9c036
+        computeOrder: 1
+        position:
+          serializedVersion: 2
+          x: 256
+          y: 421
+          width: 177
+          height: 96
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        size: 0.28
+    00000003:
+      type: {class: EntityJitterInstantiatorNode, ns: OrionReed, asm: com.orionreed.entity-graph.runtime}
+      data:
+        GUID: 60fecd65-f205-424d-98b9-27d5771260b6
+        computeOrder: 2
+        position:
+          serializedVersion: 2
+          x: 489
+          y: 421
+          width: 308
+          height: 116
+        expanded: 0
+        debug: 0
+        nodeLock: 0
+        prefab: {fileID: 4787316320328827879, guid: 0de1983ebf0f84bf5befbd5b5cc49238, type: 3}
+        amount: 2.53

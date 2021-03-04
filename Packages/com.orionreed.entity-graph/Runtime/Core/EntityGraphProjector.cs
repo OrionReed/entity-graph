@@ -60,21 +60,14 @@ namespace OrionReed
 
     public void Project(EntityCollection entities)
     {
-      //GameObject prim = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       float y = ProjectorHeight;
       foreach (IEntity entity in entities.AllEntities)
       {
         if (projector.ProjectedPoint(new Vector3(entity.Position.x, y, entity.Position.y), out Vector3 result))
         {
           entity.Instantiation.Instantiate(result);
-          //Instantiate(prim, result, Quaternion.identity);
-        }
-        else
-        {
-          Debug.Log("Entity rejected");
         }
       }
-      //DestroyImmediate(prim);
     }
   }
 }

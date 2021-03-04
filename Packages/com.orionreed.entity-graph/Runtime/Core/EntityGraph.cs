@@ -10,14 +10,13 @@ namespace OrionReed
   {
     public int seed = 1;
 
-    //public EntityGraphProcessor processor
-
     #region ShouldNotBeHere
     public static ObservableCollection<EntityGraphProjector> ProjectorsInScene = new ObservableCollection<EntityGraphProjector>();
 
     [NonSerialized] private CoordinateRNG rnd;
     [NonSerialized] private Region currentRegion;
     [NonSerialized] private EntityGraphProjector currentProjector;
+    [NonSerialized] private EntityCollection currentEntities = new EntityCollection();
     public void SetCurrentRegion(Region region) => currentRegion = region;
     public Region GetCurrentRegion() => currentRegion;
     public void SetCurrentProjector(EntityGraphProjector projector) => currentProjector = projector;
@@ -28,6 +27,17 @@ namespace OrionReed
     public EntityGraph()
     {
       base.onEnabled += Initialize;
+    }
+
+    public void AddProcessedResult(EntityCollection entities)
+    {
+      currentEntities = entities;
+      GetCurrentProjector().SetVisualization(currentEntities);
+    }
+
+    public void ProjectCurrent()
+    {
+      GetCurrentProjector().Project(currentEntities);
     }
 
     private void Initialize()
